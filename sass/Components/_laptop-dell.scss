@@ -1,0 +1,85 @@
+.box-product {
+    position: relative;
+    border-left: 1px solid $color-grey;
+    border-top: 1px solid $color-grey;
+    display: flex;
+    padding: 2rem;
+    &__img {
+        width: 50%;
+        transition: all 0.5s;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+    &__detail {
+        padding-left: 2rem;
+        &--name {
+            width: 50%;
+            font-family: "Montserrat", sans-serif;
+            color: $color-black;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            text-decoration: none !important;
+            font-weight: 500;
+            @include respond (phone) {
+                font-size: .8rem;
+            }
+        }
+        &--start {
+            color: yellow;
+            margin-bottom: 2rem;
+            @include respond (phone) {
+                margin-bottom: .8rem;
+            }
+        }
+        &--price-new {
+            font-size: 1.4rem;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 700;
+            color: $color-black;
+            @include respond (phone) {
+                font-size: .8rem;
+            }
+        }
+    }
+}
+
+.pagination {
+    position: relative;
+    width: 100%;
+    border-top: 3px solid $color-grey;
+    border-bottom: 3px solid $color-grey;
+    margin-top: 2rem;
+    padding: 1rem 0;
+    &-numbers {
+        margin-left: 50%;
+        list-style: none;
+        @include respond (phone) {
+            margin-left: 25%;
+        }
+        &__group {
+            display: inline-block;
+            width: 40px;
+        }
+        &__link {
+            display: block;
+            text-decoration: none !important;
+            font-weight: bold;
+            background-color: $color-grey;
+            border-radius: .5rem;
+            color: $color-black;
+            padding: .5rem .5rem;
+            text-align: center;
+            border: 2px solid $color-grey;
+            transition: all .5s;
+            &:hover {
+                color: $color-black;
+                background-color: $color-white;
+            }
+        }
+        &__current {
+            color: $color-black;
+            background-color: $color-white;
+        }
+    }
+}

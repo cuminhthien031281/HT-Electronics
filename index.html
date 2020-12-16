@@ -25,7 +25,10 @@
         <ul class="header-content u-center-text">
             <li class="header-content__group"><a href="index.html" class="header-content__link header-content__link--home">Trang chủ</a></li>
             <li class="header-content__group"><a href="#" class="header-content__link">Sản phẩm</a></li>
-            <li class="header-content__group"><a href="#popup-log" class="header-content__link header-content__link--login">Đăng nhập</a></li>
+            <li class="header-content__group"><a href="login.html" class="header-content__link header-content__link--login">Đăng nhập</a></li>
+            <li class="header-content__group header-content-cart">
+                <a href="#" class="header-content__link"><i class="fas fa-shopping-cart header-content__link--cart"></i>giỏ hàng</a>
+            </li>
             <li class="header-content__group">
                 <div class="header-search">
                     <div class="header-search__item">
@@ -37,67 +40,13 @@
             </li>
         </ul>
     </header>
-    <div class="popup" id="popup-log">
-        <div class="popup__content">
-            <a href="index.html" class="popup__close">&times;</a>
-            <div class="popup-logo">
-                <img src="img/new.png" class="popup-logo__img" alt="logo" />
-            </div>
-            <div class="popup-login">
-                <h3 class="popup-login__name u-center-text">Đăng nhập</h3>
-                <div class="popup-group">
-                    <input type="text" class="popup__input" name="" id="" placeholder="Tên đăng nhập">
-                    <label for="name" class="popup__label">Tên đăng nhập</label>
-                </div>
-                <div class="popup-group">
-                    <input type="text" class="popup__input" name="" id="" placeholder="Mật khẩu">
-                    <label for="name" class="popup__label">Mật khẩu</label>
-                </div>
-                <a href="#" class="btn btn--blue">Đăng nhập</a>
-                <div class="popup-login__reg u-margin-bottom-big">
-                    <p><i>Nếu chưa có tài khoản đăng ký <a class="popup-login__reg--here" href="#popup-reg">Tại đây</a></i></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="popup" id="popup-reg">
-        <div class="popup__content">
-            <a href="#section-courses" class="popup__close">&times;</a>
-            <div class="popup-logo">
-                <img src="img/new.png" class="popup-logo__img" alt="logo" />
-            </div>
-            <div class="popup-login">
-                <h3 class="popup-login__name u-center-text">Đăng ký</h3>
-                <div class="popup-group">
-                    <input type="text" class="popup__input" name="" id="" placeholder="Tên đăng nhập">
-                    <label for="name" class="popup__label">Tên đăng nhập</label>
-                </div>
-                <div class="popup-group">
-                    <input type="text" class="popup__input" name="" id="" placeholder="Email">
-                    <label for="name" class="popup__label">Email</label>
-                </div>
-                <div class="popup-group">
-                    <input type="text" class="popup__input" name="" id="" placeholder="Mật khẩu">
-                    <label for="name" class="popup__label">Mật khẩu</label>
-                </div>
-                <div class="popup-group">
-                    <input type="text" class="popup__input" name="" id="" placeholder="Nhập lại mật khẩu">
-                    <label for="name" class="popup__label">Nhập lại mật khẩu</label>
-                </div>
-                <a href="#" class="btn btn--blue">Đăng ký</a>
-                <p><i>Bạn đã có tài khoản? <a class="popup-login__reg--here" href="#popup-log">Đăng nhập</a></i></p>
-                <div class="popup-login__reg u-margin-bottom-big">
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="adt adt-left">
         <div class="adt-left__name">
             <h3 class="font-default u-center-text adt-left-title">Sản phẩm</h3>
         </div>
         <h3 class="font-p adt-left-title">Laptop</h3>
         <ul class="adt-left-title">
-            <li class="adt-left__group"><a href="#" class="adt-left__link">Dell</a></li>
+            <li class="adt-left__group"><a href="laptop-dell.html" class="adt-left__link">Dell</a></li>
             <li class="adt-left__group"><a href="#" class="adt-left__link">Asus</a></li>
             <li class="adt-left__group"><a href="#" class="adt-left__link">Lenovo</a></li>
             <li class="adt-left__group"><a href="#" class="adt-left__link">Macbook</a></li>
@@ -227,8 +176,10 @@
         </div>
     </section>
     <section class="product-new">
-        <h3 class="u-center-text u-margin-bottom-small font-product-name">Sản phẩm mới</h3>
         <div class="container">
+            <div class="product-new-name">
+                <h3 class="margin-bottom-small product-new-name__text">Sản phẩm mới</h3>
+            </div>
             <div id="carouselExampleControls" class="carousel slide" data-wrap="false" data-ride="carousel" data-interval="false">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -568,8 +519,10 @@
         </div>
     </section>
     <section class="product-highlights">
-        <h3 class="u-center-text u-margin-bottom-small font-product-name">Sản phẩm nổi bật</h3>
         <div class="container">
+            <div class="product-new-name">
+                <h3 class="margin-bottom-small product-new-name__text">Sản phẩm nổi bật</h3>
+            </div>
             <div class="row">
                 <div class="col-6 col-lg-3">
                     <div class="box">

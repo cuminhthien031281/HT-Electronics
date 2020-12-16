@@ -1,5 +1,5 @@
 .footer {
-    background-color: $color-grey-dark;
+    background-color: $color-footer;
     padding: 5rem 0;
     font-size: 1.4rem;
     color: $color-grey-light;
@@ -50,7 +50,7 @@
         &:link,
         &:visited {
             color: $color-grey-light;
-            background-color: $color-grey-dark;
+            background-color: $color-footer;
             text-decoration: none;
             display: block;
             border-radius: 5rem;
@@ -65,6 +65,7 @@
         }
         &-icon {
             font-size: 1.7rem;
+            padding-right: 1rem;
         }
     }
 }

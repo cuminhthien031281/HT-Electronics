@@ -3,23 +3,38 @@ body {
     font-weight: 400;
     font-size: 1.4rem;
     line-height: 2;
-    background-color: $color-body;
 }
 
-.font-product-name {
-    font-size: 2.5rem;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 1.5rem;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 900;
-    padding: 1rem 0;
-    width: 50%;
-    transform: translateX(50%);
-    background-color: $color-white;
-    color: $color-black;
-    &:hover {
-        text-shadow: .5rem 1rem 2rem rgba($color-black, 0.2);
+.product-new-name {
+    position: relative;
+    text-align: center;
+    top: 2px;
+    padding-top: 1px;
+    margin-bottom: 14px;
+    line-height: 0;
+    ;
+    &__text {
+        position: relative;
+        font-size: 3rem;
+        text-transform: uppercase;
+        letter-spacing: .5rem;
+        z-index: 2;
+        background-color: $color-grey;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        padding: .5rem 1rem;
+        display: inline-block;
+    }
+    &::after {
+        content: "";
+        width: 100%;
+        background-color: transparent;
+        display: block;
+        height: 1px;
+        border-top: 2px solid $color-black;
+        position: absolute;
+        top: 50%;
+        margin-top: -1px;
     }
 }
 
@@ -40,4 +55,14 @@ body {
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
     color: $color-black;
+}
+
+.font-box-product-old {
+    font-size: 1.2rem;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    color: $color-black;
+    @include respond (phone) {
+        font-size: .5rem;
+    }
 }

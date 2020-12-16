@@ -1,80 +1,80 @@
-    .box {
-        position: relative;
-        background-color: $color-white;
-        font-size: 1.4rem;
-        overflow: hidden;
-        padding: 5rem 1rem 2rem 1rem;
-        box-shadow: 0 1.5rem 4rem rgba($color-black, .4);
+.box {
+    position: relative;
+    background-color: $color-white;
+    font-size: 1.4rem;
+    overflow: hidden;
+    padding: 5rem 1rem 2rem 1rem;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .4);
+    transition: all .2s;
+    margin: 1rem 0 2rem 0;
+    &:hover {
+        transform: scale(1.05);
+    }
+    &:hover &__add-to-card {
+        opacity: 1;
+        visibility: visible;
+    }
+    &__img {
+        object-fit: cover;
+        box-sizing: border-box;
         transition: all .2s;
-        margin: 1rem 0 2rem 0;
-        &:hover {
-            transform: scale(1.05);
+    }
+    &__detail {
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+        &--name {
+            position: relative;
         }
-        &:hover &__add-to-card {
-            opacity: 1;
-            visibility: visible;
+        &--price {
+            font-weight: 600;
         }
-        &__img {
-            object-fit: cover;
-            box-sizing: border-box;
+        &--start {
+            margin: 1rem 0;
+            font-size: 1rem;
+            color: yellow;
+        }
+    }
+    &__new-png {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        &--img {
+            width: 30%;
+        }
+    }
+    &__add-to-card {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 1;
+        opacity: 0;
+        visibility: hidden;
+        &--text {
+            position: absolute;
+            text-align: center;
+            width: 80%;
+            top: 20%;
+            left: 45%;
+            transform: translate(-50%, -50%);
+            text-transform: uppercase;
+            text-decoration: none !important;
+            color: rgba($color-white, 1);
+            padding: .5rem 1rem;
+            background-color: rgba($color-primary, .8);
+            border-radius: 1rem;
+            box-shadow: 1rem 1rem 1rem rgba($color-black, .4);
             transition: all .2s;
-        }
-        &__detail {
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            box-sizing: border-box;
-            &--name {
-                position: relative;
+            &:hover {
+                color: $color-white;
+                top: 18%;
             }
-            &--price {
-                font-weight: 600;
-            }
-            &--start {
-                margin: 1rem 0;
-                font-size: 1rem;
-                color: yellow;
-            }
-        }
-        &__new-png {
-            position: absolute;
-            width: 100%;
-            top: 0;
-            left: 0;
-            &--img {
-                width: 30%;
-            }
-        }
-        &__add-to-card {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            z-index: 1;
-            opacity: 0;
-            visibility: hidden;
-            &--text {
-                position: absolute;
-                text-align: center;
-                width: 80%;
-                top: 20%;
-                left: 45%;
-                transform: translate(-50%, -50%);
-                text-transform: uppercase;
-                text-decoration: none !important;
-                color: rgba($color-white, 1);
-                padding: .5rem 1rem;
-                background-color: rgba($color-primary, .8);
-                border-radius: 1rem;
-                box-shadow: 1rem 1rem 1rem rgba($color-black, .4);
-                transition: all .2s;
-                &:hover {
-                    color: $color-white;
-                    top: 18%;
-                }
-                &:active {
-                    color: $color-white;
-                    top: 19%;
-                }
+            &:active {
+                color: $color-white;
+                top: 19%;
             }
         }
     }
+}
