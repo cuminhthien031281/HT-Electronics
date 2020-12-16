@@ -556,14 +556,14 @@ body {
     text-decoration: none;
     display: block;
     border-radius: 5rem;
-    transition: all .2s; }
+    transition: all .2s;
+    margin: 2rem 1rem 0 0; }
   .footer__link:hover, .footer__link:active {
     color: #5a73fc;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
     transform: rotate(5deg) scale(1.05); }
   .footer__link-icon {
-    font-size: 1.7rem;
-    padding: 2rem 1rem 0 0; }
+    font-size: 1.7rem; }
 
 .group {
   width: 100%;
