@@ -1,0 +1,33 @@
+<header class="header" id="header"> <!-- Header.php -->
+        <div class="header__logo-box">
+            <img src="Public/img/new.png" alt="Logo" class="header__logo">
+        </div>
+        <ul class="header-content u-center-text">
+            <li class="header-content__group"><a href="index.html" class="header-content__link header-content__link--home">Trang chủ</a></li>
+            <li class="header-content__group"><a href="#" class="header-content__link">Sản phẩm</a></li>
+            <?php 
+                if(isset($_SESSION['UserName'])) {
+            ?>
+                    <li class="header-content__group header-content-cart">
+                        <a href="#" class="header-content__link"><i class="fas fa-shopping-cart header-content__link--cart"></i>giỏ hàng</a>
+                    </li>
+                    <?php echo '<h1 class="User_name">'.$_SESSION['UserName'].'</h1>'; ?>
+                    <a href="?Action=Logout">Logout</a>
+            <?php 
+                } else {
+            ?>
+                    <li class="header-content__group"><a href="?Action=Login" class="header-content__link header-content__link--login">Đăng nhập</a></li>
+            <?php 
+                }
+            ?>
+            <li class="header-content__group">
+                <div class="header-search">
+                    <div class="header-search__item">
+                        <input type="search" class="header-search__item--input" placeholder="Tìm kiếm ...">
+                    </div>
+                    <div class="header-search__item">
+                        <i class="fas fa-search  header-search__item--icon"></i>
+                    </div>
+            </li>
+        </ul>
+    </header>
