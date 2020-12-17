@@ -14,6 +14,15 @@
                     <?php echo '<h1 class="User_name">'.$_SESSION['UserName'].'</h1>'; ?>
                     <a href="?Action=Logout">Logout</a>
             <?php 
+                    include_once './Model/KhachHang.php';
+                    $ImgCheckObj = new KhachHang();
+                    if($ImgCheckObj->CheckImg($_SESSION['KhachHang_Id']) == true) {
+                        echo '<img class="img_user" src="Admin/ImageUser/profile'. $ImgCheckObj->getUsrID() . $ImgCheckObj->getImgName() . '.' . $ImgCheckObj->getImgType().'">';
+                    } else {
+                        echo '<img class="img_user" src="Admin/ImageUser/profile'. $ImgCheckObj->getImgName() .'.'. $ImgCheckObj->getImgType().'">';
+                    }
+            ?>
+            <?php 
                 } else {
             ?>
                     <li class="header-content__group"><a href="?Action=Login" class="header-content__link header-content__link--login">Đăng nhập</a></li>

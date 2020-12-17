@@ -4,7 +4,8 @@
         private $username = '';
         private $password = '';
         private $_userID;
-        private $_imgID;
+        private $_imgName;
+        private $_imgType;
         private $_resultUserReg;
 
         public function __construct()
@@ -30,6 +31,14 @@
         //Get $_userID.
         public function GetUsrId() {
             return $this->_userID;
+        }
+        //Get $_imgName.
+        public function GetImgName() {
+            return $this->_imgName;
+        }
+        //Get $_imgType.
+        public function GetImgType() {
+            return $this->_imgType;
         }
         //Get $_resultUserReg, result of query reg use for update img of user.
         public function GetResultUsrReg() {
@@ -76,7 +85,7 @@
             }
             return 0;
         }
-
+        //Login User method.
         public function Login() {
             //Statement select user from khachhang table
             $StatementSelectUser = $this->_pdo->prepare("SELECT* FROM khachhang WHERE UserName=?");
@@ -92,6 +101,21 @@
                 }
             }
             return 0;
+        }
+        //Check Img user
+        public function CheckImg($UserId) {
+            $StatementSelectUser = $this->_pdo->prepare("SELECT * FROM profileimg WHERE KhachHang_Id = ?");
+            $StatementSelectUser->bindParam(1, $UserId);
+            $StatementSelectUser->execute();
+            $this->_result = $StatementSelectUser->fetch();
+            $StatementSelectUser->closeCursor();
+            $this->_imgType = $this->_result['Type'];
+            $this->_imgName = $this->_result['NameImg'];
+            if($this->_result['Status'] == 1) {
+                 $this->_userID = $UserId;
+                 return true;
+            }
+            return false;
         }
     }
 ?>

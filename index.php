@@ -32,7 +32,7 @@
             include_once './Controller/Logout.php';
             break;
         case "Admin": 
-
+            
             break;
 
         default: 
