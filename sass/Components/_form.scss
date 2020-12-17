@@ -29,11 +29,6 @@
             }
         }
     }
-    &__input:placeholder-shown+&__label {
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(4rem);
-    }
     &__label {
         font-size: 1.2rem;
         font-weight: 600;

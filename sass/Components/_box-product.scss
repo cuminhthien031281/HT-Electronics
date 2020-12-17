@@ -46,19 +46,13 @@
         }
     }
     &__add-to-card {
-        width: 100%;
-        height: 100%;
-        position: absolute;
         z-index: 1;
-        opacity: 0;
         visibility: hidden;
         &--text {
             position: absolute;
             text-align: center;
-            width: 80%;
-            top: 20%;
-            left: 45%;
-            transform: translate(-50%, -50%);
+            top: 32%;
+            left: 13%;
             text-transform: uppercase;
             text-decoration: none !important;
             color: rgba($color-white, 1);
@@ -69,11 +63,11 @@
             transition: all .2s;
             &:hover {
                 color: $color-white;
-                top: 18%;
+                top: 30%;
             }
             &:active {
                 color: $color-white;
-                top: 19%;
+                top: 31%;
             }
         }
     }
