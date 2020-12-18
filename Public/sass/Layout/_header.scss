@@ -28,6 +28,16 @@
                 color: $color-primarily-dark;
                 text-shadow: .5rem 1rem 2rem rgba($color-black, 0.2);
             }
+            &--img {
+                width: 3rem;
+                border: 3px solid $color-black;
+                border-radius: 1.5rem;
+            }
+            &--username {
+                font-size: 1rem;
+                margin-left: .5rem;
+                color: orangered;
+            }
             &--home {
                 color: $color-primarily-dark;
             }
@@ -55,6 +65,17 @@
             }
             @include respond (phone) {
                 margin-left: 1rem;
+            }
+            &-login {
+                cursor: pointer;
+                transition: all .2s;
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+            &-user {
+                position: relative;
+                display: inline-block;
             }
         }
     }

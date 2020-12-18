@@ -8,20 +8,28 @@
             <?php 
                 if(isset($_SESSION['UserName'])) {
             ?>
-                    <li class="header-content__group header-content-cart">
-                        <a href="#" class="header-content__link"><i class="fas fa-shopping-cart header-content__link--cart"></i>giỏ hàng</a>
-                    </li>
-                    <?php echo '<h1 class="User_name">'.$_SESSION['UserName'].'</h1>'; ?>
-                    <a href="?Action=Logout">Logout</a>
-            <?php 
+            
+                    <li class="header-content__group header-content__group-login">
+                    <!--Style Username-logout-->
+                    <?php 
                     include_once './Model/KhachHang.php';
                     $ImgCheckObj = new KhachHang();
                     if($ImgCheckObj->CheckImg($_SESSION['KhachHang_Id']) == true) {
-                        echo '<img class="img_user" src="Admin/ImageUser/profile'. $ImgCheckObj->getUsrID() . $ImgCheckObj->getImgName() . '.' . $ImgCheckObj->getImgType().'">';
+                        echo '<img class="header-content__link--img header-content__group-user" src="Admin/ImageUser/profile'. $ImgCheckObj->getUsrID() . $ImgCheckObj->getImgName() . '.' . $ImgCheckObj->getImgType().'">';
                     } else {
-                        echo '<img class="img_user" src="Admin/ImageUser/profile'. $ImgCheckObj->getImgName() .'.'. $ImgCheckObj->getImgType().'">';
+                        echo '<img class="header-content__link--img header-content__group-user" src="Admin/ImageUser/profile'. $ImgCheckObj->getImgName() .'.'. $ImgCheckObj->getImgType().'">';
                     }
             ?>
+                        <?php echo '<h1 class="header-content__link--username header-content__group-user">'.$_SESSION['UserName'].'</h1>'; ?>
+                    </li>
+                    
+                    <li class="header-content__group header-content-cart">
+                        <a href="#" class="header-content__link"><i class="fas fa-shopping-cart header-content__link--cart"></i>giỏ hàng</a>
+                    </li>
+                    
+                    <a href="?Action=Logout">Logout</a>
+                    <!--Style Username-logout-->
+            
             <?php 
                 } else {
             ?>

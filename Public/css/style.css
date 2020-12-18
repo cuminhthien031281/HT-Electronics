@@ -27,6 +27,14 @@
       .header-content__link:hover {
         color: #2534f7;
         text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2); }
+      .header-content__link--img {
+        width: 3rem;
+        border: 3px solid #000;
+        border-radius: 1.5rem; }
+      .header-content__link--username {
+        font-size: 1rem;
+        margin-left: .5rem;
+        color: orangered; }
       .header-content__link--home {
         color: #2534f7; }
       .header-content__link--login {
@@ -50,6 +58,14 @@
       @media (max-width: 600px) {
         .header-content__group {
           margin-left: 1rem; } }
+      .header-content__group-login {
+        cursor: pointer;
+        transition: all .2s; }
+        .header-content__group-login:hover {
+          transform: scale(1.2); }
+      .header-content__group-user {
+        position: relative;
+        display: inline-block; }
   .header-search {
     position: relative; }
     .header-search__item {
@@ -620,6 +636,10 @@ body {
       border-bottom: 3px solid #2534f7; }
       .form__input:focus:invalid {
         border: 3px solid #2534f7; }
+  .form__input:placeholder-shown .form__label {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(4rem); }
   .form__label {
     font-size: 1.2rem;
     font-weight: 600;
