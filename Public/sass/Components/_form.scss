@@ -29,12 +29,13 @@
             }
         }
     }
-    &__input:placeholder-shown &__label {
+    &__input:placeholder-shown~label {
         opacity: 0;
-        visibility: hidden;
+        visibility: visible;
         transform: translateY(4rem);
     }
     &__label {
+        opacity: 1;
         font-size: 1.2rem;
         font-weight: 600;
         margin-top: .7rem;

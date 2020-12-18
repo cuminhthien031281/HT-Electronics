@@ -636,11 +636,12 @@ body {
       border-bottom: 3px solid #2534f7; }
       .form__input:focus:invalid {
         border: 3px solid #2534f7; }
-  .form__input:placeholder-shown .form__label {
+  .form__input:placeholder-shown ~ label {
     opacity: 0;
-    visibility: hidden;
+    visibility: visible;
     transform: translateY(4rem); }
   .form__label {
+    opacity: 1;
     font-size: 1.2rem;
     font-weight: 600;
     margin-top: .7rem;

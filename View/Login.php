@@ -13,7 +13,7 @@
                 <label for="name" class="form__label">Tên đăng nhập</label>
             </div>
             <div class="form-group">
-                <input type="text" class="form__input" name="MatKhau" required id="" placeholder="Mật khẩu">
+                <input type="password" class="form__input" name="MatKhau" required id="" placeholder="Mật khẩu">
                 <label for="name" class="form__label">Mật khẩu</label>
             </div>
             <button type="submit" class="form__btn u-margin-bottom-small" name="SubmitLogin" value="LogUserIn">Đăng nhập</button>

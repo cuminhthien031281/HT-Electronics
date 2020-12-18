@@ -13,15 +13,15 @@
                 <label for="name" class="form__label">Tên đăng nhập</label>
             </div>
             <div class="form-group">
-                <input type="text" class="form__input" name="Email" id="" placeholder="Email" required>
+                <input type="email" class="form__input" name="Email" id="" placeholder="Email" required>
                 <label for="name" class="form__label">Email</label>
             </div>
             <div class="form-group">
-                <input type="text" class="form__input" name="MatKhauDangKy" id="" placeholder="Mật khẩu" required>
+                <input type="password" class="form__input" name="MatKhauDangKy" id="" placeholder="Mật khẩu" required>
                 <label for="name" class="form__label">Mật khẩu</label>
             </div>
             <div class="form-group">
-                <input type="text" class="form__input" name=""id="" placeholder="Nhập lại mật khẩu" required>
+                <input type="password" class="form__input" name=""id="" placeholder="Nhập lại mật khẩu" required>
                 <label for="name" class="form__label">Nhập lại mật khẩu</label>
             </div>
             <button type="submit" class="form__btn u-margin-bottom-small" name="Register" Value="RegUser">Đăng ký</button>
