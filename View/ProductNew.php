@@ -16,7 +16,7 @@
                                         <img class="box__new-png--img" src="img/NEW (1).png" alt="new.png">
                                     </div>
                                     <div class="box__img">
-                                        <a href="#"><img src="img/new-product-1.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                        <a href="#"><img src="img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
                                     </div>
                                     <div class="box__detail">
                                         <div class="box__detail--name">

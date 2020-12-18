@@ -467,7 +467,7 @@ body {
         .box-product__detail--name {
           font-size: .8rem; } }
     .box-product__detail--start {
-      color: yellow;
+      color: orange;
       margin-bottom: 2rem; }
       @media (max-width: 600px) {
         .box-product__detail--start {
@@ -648,6 +648,92 @@ body {
   margin: 2rem;
   margin-left: 40%; }
 
+.detail {
+  padding: 5rem 0;
+  border-bottom: 1px solid rgba(206, 215, 216, 0.5); }
+  .detail__img {
+    width: 100%; }
+    .detail__img-big {
+      transition: all 0.2s; }
+      .detail__img-big:hover {
+        transform: scale(1.05); }
+    .detail__img-small {
+      position: relative;
+      margin-top: 3rem; }
+  .detail-list {
+    display: flex; }
+    .detail-list__group {
+      list-style: none;
+      transition: all 0.2s;
+      border: 1px solid #5a73fc;
+      padding: .3rem; }
+      .detail-list__group:not(:last-child) {
+        margin-right: 1rem; }
+      .detail-list__group:hover {
+        box-shadow: 0rem 0rem 2rem rgba(90, 115, 252, 0.4);
+        transform: scale(1.1); }
+  .detail-name-evaluate {
+    border-bottom: 1px solid #ced7d8; }
+    .detail-name-evaluate__name {
+      position: relative;
+      width: 100%;
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700; }
+  .detail-price {
+    font-family: "Montserrat", sans-serif;
+    position: relative;
+    margin-top: 1rem; }
+    .detail-price__old {
+      font-size: 1.5rem; }
+    .detail-price__promotional {
+      font-weight: 700;
+      font-size: 2rem; }
+  .detail-parameter {
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+    margin-top: 2rem; }
+    .detail-parameter-left {
+      padding-right: 5rem; }
+      .detail-parameter-left__list {
+        list-style: none; }
+      .detail-parameter-left__group {
+        font-size: 1.2rem;
+        font-weight: 700; }
+    .detail-parameter-right__list {
+      list-style: none; }
+    .detail-parameter-right__group {
+      font-size: 1.2rem;
+      font-weight: 500; }
+  .detail-buy {
+    font-family: "Montserrat", sans-serif;
+    margin-top: 2rem;
+    display: flex; }
+    .detail-buy button {
+      width: 2.5rem;
+      height: 2.5rem;
+      padding: .5rem;
+      border: none;
+      border-radius: .5rem;
+      font-weight: 700; }
+    .detail-buy input {
+      width: 4rem;
+      height: 2.5rem; }
+    .detail-buy__amount {
+      font-size: 1.25rem;
+      font-weight: 500;
+      padding-right: 1rem; }
+  .detail-order {
+    margin-top: 2rem; }
+
+.description {
+  margin-top: 2rem; }
+  .description-product {
+    margin-top: 1rem; }
+    .description-product__list {
+      font-size: 1.2rem;
+      line-height: 2.5rem; }
+
 .intro-product {
   width: 100%;
   position: relative;
@@ -671,3 +757,7 @@ body {
 
 .laptop-dell {
   margin-top: 5rem; }
+
+.detail-product {
+  margin-top: 5rem;
+  border-top: 1px solid #ced7d8; }
