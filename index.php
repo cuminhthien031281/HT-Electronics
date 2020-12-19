@@ -34,7 +34,8 @@
         case "Admin": 
             
             break;
-
+        case "Dell": 
+            include_once './View/Dell/Laptop-Dell/laptop-dell.php';
         default: 
             break;
     }
