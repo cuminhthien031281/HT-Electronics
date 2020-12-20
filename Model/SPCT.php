@@ -6,7 +6,6 @@
         private $DonGia;
         private $SoLuong;
         private $HMTDMName;
-
         public function __construct($NameInputSPCT, $DonGia, $SoLuong, $HMTDMName) 
         {
             parent::__construct();
@@ -19,7 +18,7 @@
         public function upload() {
             $UploadSPCT = $this->_pdo->prepare("INSERT INTO sanphamchitietcuahang(TenSPCT, HMTDM_Id, DonGia, SoLuong) VALUES (?, ?, ?, ?)");
             $UploadSPCT->bindParam(1, $this->NameInputSPCT);
-            $UploadSPCT->bindParam(2, $this->_result);
+            $UploadSPCT->bindParam(2, $this->_result['HMTDM_Id']);
             $UploadSPCT->bindParam(3, $this->DonGia);
             $UploadSPCT->bindParam(4, $this->SoLuong);
             $UploadSPCT->execute();
@@ -28,7 +27,7 @@
         }
 
         public function find_id() {
-            $FindIDHMTDMName = $this->_pdo->prepare("SELECT HMTDM_Id WHERE TenHMTDM = ?");
+            $FindIDHMTDMName = $this->_pdo->prepare("SELECT HMTDM_Id FROM hangmaytinhcuadanhmuc WHERE TenHMTDM = ?");
             $FindIDHMTDMName->bindParam(1, $this->HMTDMName);
             $FindIDHMTDMName->execute();
             $this->_result = $FindIDHMTDMName->fetch();
