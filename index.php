@@ -32,7 +32,7 @@
             include_once './Controller/Logout.php';
             break;
         case "Admin": 
-            
+            include_once './Admin/DashboardAdmin.php';
             break;
         case "Dell": 
             include_once './View/Dell/Laptop-Dell/laptop-dell.php';
