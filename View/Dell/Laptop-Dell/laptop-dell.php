@@ -13,35 +13,29 @@
                     $QuerySP->DisplayProductForID();
                     $SanPham = $QuerySP->getDisplayProduct();
             ?>
-            <?php foreach($SanPham as $SanPhams) {
-                    ; 
-            ?>
-                    <?php if($SanPhams['Status'] == 1) {
+            <?php foreach($SanPham as $SanPhams) {?>
+                        <?php 
                                 $QuerySP->queryTableImageSPCTTID($SanPhams['SPCT_Id']);  
                                 $HinhAnhSanPham = $QuerySP->getImageSource();
-                    ?>
-                            <div class="box-product">
-                                    <div class="box-product__img">
-                                        <img src="Public/ImageSPCT/<?php echo $HinhAnhSanPham['Full'];?>" class="d-block w-100" alt="dell-1">
+                        ?>
+                                <div class="box-product">
+                                        <div class="box-product__img">
+                                            <img src="Public/ImageSPCT/<?php echo $HinhAnhSanPham['Full'];?>" class="d-block w-100" alt="dell-1">
+                                        </div>
+                                    <div class="box-product__detail">
+                                        <a href="#" class="box-product__detail--name"><?php echo $SanPhams['TenSPCT'];?></a>
+                                        <div class="box-product__detail--start">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <del class="font-box-product-old">18,000,000₫</del>
+                                        <div class="box-product__detail--price-new"><?php echo $SanPhams['DonGia'];?>₫</div>
                                     </div>
-                                <div class="box-product__detail">
-                                    <a href="#" class="box-product__detail--name"><?php echo $SanPhams['TenSPCT'];?></a>
-                                    <div class="box-product__detail--start">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <i class="far fa-star"></i>
-                                    </div>
-                                    <del class="font-box-product-old">18,000,000₫</del>
-                                    <div class="box-product__detail--price-new"><?php echo $SanPhams['DonGia'];?>₫</div>
                                 </div>
-                            </div>
-            <?php } else { ?>
-                    <h1>Khong co san pham nao o day</h1>
-            <?php }
-            }
-            ?>
+            <?php } ?>
         </div>
     </section>
 

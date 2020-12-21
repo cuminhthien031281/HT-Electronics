@@ -37,7 +37,7 @@
             $TimKiemHinhAnhTheoSPCT_ID = $this->_pdo->prepare("SELECT Full FROM hinhanhsanphamchitiet WHERE SPCT_Id = ?");
             $TimKiemHinhAnhTheoSPCT_ID->bindParam(1, $SPCT_Id);
             $TimKiemHinhAnhTheoSPCT_ID->execute();
-            $this->ImageSource = $TimKiemHinhAnhTheoSPCT_ID->fetchAll();
+            $this->ImageSource = $TimKiemHinhAnhTheoSPCT_ID->fetch();
             $TimKiemHinhAnhTheoSPCT_ID->closeCursor();
         }
         //Tim kiem SPCT_Id bang ten
