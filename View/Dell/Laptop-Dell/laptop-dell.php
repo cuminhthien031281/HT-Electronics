@@ -1,135 +1,47 @@
 <?php include_once "./View/Head.php";?>
 <?php include_once "./View/Header.php";?>
+<?php include_once './Model/QuerySP.php';?>
     <section class="laptop-dell">
         <div class="container">
             <h3 class="">Dell</h3>
-            <div class="box-product">
-                <div class="box-product__img">
-                    <a href="#"><img src="public/img/product-dell-1.jpg" class="d-block w-100" alt="dell-1"></a>
-                </div>
-                <div class="box-product__detail">
-                    <a href="#" class="box-product__detail--name">Dell Inspiron 17 3793 2020 Premium 17.3” FHD Laptop Notebook Computer, 10th Gen 4-Core Intel Core i5-1035G1 1.0 GHz, 16GB RAM</a>
-                    <div class="box-product__detail--start">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <del class="font-box-product-old">18,000,000₫</del>
-                    <div class="box-product__detail--price-new">12.000.000₫</div>
-                </div>
-            </div>
-            <div class="box-product">
-                <div class="box-product__img">
-                    <a href="#"><img src="public/img/product-dell-1.jpg" class="d-block w-100" alt="dell-1"></a>
-                </div>
-                <div class="box-product__detail">
-                    <a href="#" class="box-product__detail--name">Dell Inspiron 17 3793 2020 Premium 17.3” FHD Laptop Notebook Computer, 10th Gen 4-Core Intel Core i5-1035G1 1.0 GHz, 16GB RAM</a>
-                    <div class="box-product__detail--start">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <del class="font-box-product-old">18,000,000₫</del>
-                    <div class="box-product__detail--price-new">12.000.000₫</div>
-                </div>
-            </div>
-            <div class="box-product">
-                <div class="box-product__img">
-                    <a href="#"><img src="public/img/product-dell-1.jpg" class="d-block w-100" alt="dell-1"></a>
-                </div>
-                <div class="box-product__detail">
-                    <a href="#" class="box-product__detail--name">Dell Inspiron 17 3793 2020 Premium 17.3” FHD Laptop Notebook Computer, 10th Gen 4-Core Intel Core i5-1035G1 1.0 GHz, 16GB RAM</a>
-                    <div class="box-product__detail--start">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <del class="font-box-product-old">18,000,000₫</del>
-                    <div class="box-product__detail--price-new">12.000.000₫</div>
-                </div>
-            </div>
-            <div class="box-product">
-                <div class="box-product__img">
-                    <a href="#"><img src="public/img/product-dell-1.jpg" class="d-block w-100" alt="dell-1"></a>
-                </div>
-                <div class="box-product__detail">
-                    <a href="#" class="box-product__detail--name">Dell Inspiron 17 3793 2020 Premium 17.3” FHD Laptop Notebook Computer, 10th Gen 4-Core Intel Core i5-1035G1 1.0 GHz, 16GB RAM</a>
-                    <div class="box-product__detail--start">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <del class="font-box-product-old">18,000,000₫</del>
-                    <div class="box-product__detail--price-new">12.000.000₫</div>
-                </div>
-            </div>
-            <div class="box-product">
-                <div class="box-product__img">
-                    <a href="#"><img src="public/img/product-dell-1.jpg" class="d-block w-100" alt="dell-1"></a>
-                </div>
-                <div class="box-product__detail">
-                    <a href="#" class="box-product__detail--name">Dell Inspiron 17 3793 2020 Premium 17.3” FHD Laptop Notebook Computer, 10th Gen 4-Core Intel Core i5-1035G1 1.0 GHz, 16GB RAM</a>
-                    <div class="box-product__detail--start">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <del class="font-box-product-old">18,000,000₫</del>
-                    <div class="box-product__detail--price-new">12.000.000₫</div>
-                </div>
-            </div>
-            <div class="box-product">
-                <div class="box-product__img">
-                    <a href="#"><img src="public/img/product-dell-1.jpg" class="d-block w-100" alt="dell-1"></a>
-                </div>
-                <div class="box-product__detail">
-                    <a href="#" class="box-product__detail--name">Dell Inspiron 17 3793 2020 Premium 17.3” FHD Laptop Notebook Computer, 10th Gen 4-Core Intel Core i5-1035G1 1.0 GHz, 16GB RAM</a>
-                    <div class="box-product__detail--start">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <del class="font-box-product-old">18,000,000₫</del>
-                    <div class="box-product__detail--price-new">12.000.000₫</div>
-                </div>
-            </div>
-            <div class="box-product">
-                <div class="box-product__img">
-                    <a href="#"><img src="public/img/product-dell-1.jpg" class="d-block w-100" alt="dell-1"></a>
-                </div>
-                <div class="box-product__detail">
-                    <a href="#" class="box-product__detail--name">Dell Inspiron 17 3793 2020 Premium 17.3” FHD Laptop Notebook Computer, 10th Gen 4-Core Intel Core i5-1035G1 1.0 GHz, 16GB RAM</a>
-                    <div class="box-product__detail--start">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <del class="font-box-product-old">18,000,000₫</del>
-                    <div class="box-product__detail--price-new">12.000.000₫</div>
-                </div>
-            </div>
-            <div class="pagination">
-                <ul class="pagination-numbers">
-                    <li class="pagination-numbers__group"><a href="laptop-dell.html" class="pagination-numbers__link pagination-numbers__current">1</a></li>
-                    <li class="pagination-numbers__group"><a href="laptop-dell-2.html" class="pagination-numbers__link">2</a></li>
-                    <li class="pagination-numbers__group"><a href="laptop-dell-3.html" class="pagination-numbers__link">3</a></li>
-                    <li class="pagination-numbers__group"><a href="laptop-dell-4.html" class="pagination-numbers__link">4</a></li>
-                </ul>
-            </div>
+            <?php 
+                
+                    $CheckTenHMTDM = $_GET['Action'];
+                    
+                    $QuerySP = new QuerySP();
+                    $QuerySP->findIDForHMTDM($CheckTenHMTDM);
+                    $QuerySP->DisplayProductForID();
+                    $SanPham = $QuerySP->getDisplayProduct();
+            ?>
+            <?php foreach($SanPham as $SanPhams) {
+                    ; 
+            ?>
+                    <?php if($SanPhams['Status'] == 1) {
+                                $QuerySP->queryTableImageSPCTTID($SanPhams['SPCT_Id']);  
+                                $HinhAnhSanPham = $QuerySP->getImageSource();
+                    ?>
+                            <div class="box-product">
+                                    <div class="box-product__img">
+                                        <img src="Public/ImageSPCT/<?php echo $HinhAnhSanPham['Full'];?>" class="d-block w-100" alt="dell-1">
+                                    </div>
+                                <div class="box-product__detail">
+                                    <a href="#" class="box-product__detail--name"><?php echo $SanPhams['TenSPCT'];?></a>
+                                    <div class="box-product__detail--start">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <del class="font-box-product-old">18,000,000₫</del>
+                                    <div class="box-product__detail--price-new"><?php echo $SanPhams['DonGia'];?>₫</div>
+                                </div>
+                            </div>
+            <?php } else { ?>
+                    <h1>Khong co san pham nao o day</h1>
+            <?php }
+            }
+            ?>
         </div>
     </section>
 
