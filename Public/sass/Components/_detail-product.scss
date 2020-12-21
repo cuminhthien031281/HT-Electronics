@@ -1,6 +1,7 @@
 .detail {
+    font-size: 1.2rem;
     padding: 5rem 0;
-    border-bottom: 1px solid rgba($color-grey, .5);
+    border-bottom: 1px solid rgba($color-black, 0.3);
     &__img {
         width: 100%;
         &-big {
@@ -24,6 +25,7 @@
             transition: all 0.2s;
             border: 1px solid $color-primary;
             padding: .3rem;
+            cursor: pointer;
             &:hover {
                 box-shadow: 0rem 0rem 2rem rgba($color-primary, 0.4);
                 transform: scale(1.1);
@@ -31,12 +33,11 @@
         }
     }
     &-name-evaluate {
-        border-bottom: 1px solid $color-grey;
+        border-bottom: 1px solid rgba($color-black, 0.3);
         &__name {
             position: relative;
             width: 100%;
             font-family: "Montserrat", sans-serif;
-            font-size: 1.6rem;
             font-weight: 700;
         }
     }
@@ -44,12 +45,10 @@
         font-family: "Montserrat", sans-serif;
         position: relative;
         margin-top: 1rem;
-        &__old {
-            font-size: 1.5rem;
-        }
+        &__old {}
         &__promotional {
+            font-size: 1.6rem;
             font-weight: 700;
-            font-size: 2rem;
         }
     }
     &-parameter {
@@ -62,7 +61,6 @@
                 list-style: none;
             }
             &__group {
-                font-size: 1.2rem;
                 font-weight: 700;
             }
         }
@@ -71,7 +69,6 @@
                 list-style: none;
             }
             &__group {
-                font-size: 1.2rem;
                 font-weight: 500;
             }
         }
@@ -93,13 +90,33 @@
             height: 2.5rem;
         }
         &__amount {
-            font-size: 1.25rem;
             font-weight: 500;
             padding-right: 1rem;
         }
     }
     &-order {
         margin-top: 2rem;
+    }
+    &-product-similar {
+        padding: 2rem;
+        border-bottom: 1px solid rgba($color-black, 0.3);
+        &__name {
+            margin-left: 2rem;
+            &--text {
+                color: $color-primary;
+                font-weight: 700;
+            }
+        }
+    }
+    &-openMenu {
+        font-size: 2rem;
+        position: fixed;
+        margin-top: 1rem;
+        border-radius: 0rem 1rem 1rem 0rem;
+        padding: 1rem 1rem 1rem 2rem;
+        cursor: pointer;
+        background-color: $color-primary;
+        transition: all .4s;
     }
 }
 
@@ -108,8 +125,97 @@
     &-product {
         margin-top: 1rem;
         &__list {
-            font-size: 1.2rem;
             line-height: 2.5rem;
         }
+    }
+}
+
+.category-product {
+    position: fixed;
+    width: 13%;
+    top: 2rem;
+    background-color: $color-white;
+    font-family: 'Andika New Basic', sans-serif;
+    border: 2px solid $color-grey;
+    margin-top: 2rem;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .4);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transform: translateX(-50rem);
+    z-index: 100;
+    &-title {
+        margin-top: 2rem;
+        &__name {
+            font-weight: 700;
+        }
+        &-group {
+            margin-bottom: 1rem;
+            &__list {
+                list-style: none;
+                line-height: 2rem;
+            }
+            &__link {
+                color: $color-black;
+            }
+        }
+    }
+    &__name {
+        font-weight: 700;
+        padding: 1rem;
+        &::after {
+            content: "";
+            width: 100%;
+            background-color: transparent;
+            display: block;
+            height: 1px;
+            border-top: 1px solid $color-black;
+            top: 50%;
+            margin-top: -1px;
+        }
+    }
+    &__close {
+        font-size: 1.5rem;
+        position: absolute;
+        right: 1rem;
+        cursor: pointer;
+        text-decoration: none;
+    }
+}
+
+.opinion {
+    position: relative;
+    width: 100%;
+    margin-top: 2rem;
+    &-rating {
+        width: 100%;
+    }
+    &-comment {
+        padding-top: 2rem;
+    }
+}
+
+.star-widget {
+    position: relative;
+    width: 20%;
+    @include respond (phone) {
+        width: 50%;
+    }
+    & input {
+        display: none;
+        &:not(:checked)~label:hover,
+        &:not(:checked)~label:hover~label {
+            color: #fd4;
+        }
+        &:checked~label {
+            color: #fd4;
+        }
+    }
+    & label {
+        position: relative;
+        font-size: 2rem;
+        padding: .5rem;
+        margin-bottom: 1rem;
+        transition: all .2s ease;
+        float: right;
     }
 }

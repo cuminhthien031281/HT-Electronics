@@ -3,7 +3,7 @@
             <div class="product-new-name">
                 <h3 class="margin-bottom-small product-new-name__text">Sản phẩm mới</h3>
             </div>
-            <div id="carouselExampleControls" class="carousel slide" data-wrap="false" data-ride="carousel" data-interval="false">
+            <div id="carouselExampleControls" class="carousel slide" data-wrap="false"  style="padding: 2rem 3rem; box-shadow: none;" data-ride="carousel" data-interval="false">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="row">
@@ -331,11 +331,11 @@
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" style="max-width: 0rem;" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" style="margin-left: 3rem; background-color: black; padding: 4.5rem 1.5rem;" aria-hidden="true"></span>
+                    <span class="carousel-control-prev-icon" style="margin-left: 3rem; background-color: black; padding: 2rem 1.5rem;" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </a>
                 <a class="carousel-control-next" href="#carouselExampleControls" style="max-width: 0rem;" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" style="margin-left: -3rem;background-color: black; padding: 4.5rem 1.5rem;" aria-hidden="true"></span>
+                    <span class="carousel-control-next-icon" style="margin-left: -3rem;background-color: black; padding: 2rem 1.5rem;" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
             </div>
