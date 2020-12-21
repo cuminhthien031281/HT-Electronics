@@ -1,5 +1,6 @@
 <?php 
     include_once './Model/SPCT.php';
+    include_once './Model/QuerySP.php';
     class AdminController {
         public function UploadTTSP($TenSPCT, $TenHMTDM, $DonGia, $SoLuong ,$ValueUpload) {
             if(isset($ValueUpload) == "SubmitTTSP") {
@@ -14,11 +15,32 @@
                 }
             }
         }
-        public function UploadHinhAnh($SPCT_Id, $ValueUpload) {
-            if(isset($ValueUpload) == "") {
-                
+        public function UploadHinhAnh($TenSP, $ValueUpload, $File) {
+            if(isset($ValueUpload) == "SubmitImageSanPham") {
+                $SPCT = new QuerySP();
+                $SPCT->findIdForSPCT($TenSP);
+                if($SPCT->uploadImg($File)) {
+                    header("Location: ./?Action=Admin&UploadTT=success");
+                    exit();
+                } else {
+                    header("Location: ./?Action=Admin&UploadTT=failed");
+                    exit();
+                }
             }
-        }   
+        }
+        
+        public function UploadStatusCuaSanPham($SPCT_Id, $Value, $ValueUpload) {
+            $SPCT = new QuerySP();
+            if(isset($ValueUpload) == "UpdateSPCTStt") {
+                if($SPCT->updateStatus($SPCT_Id, $Value)) {
+                    header("Location: ./?Action=Admin&UploadTT=success");
+                    exit();
+                } else {
+                    header("Location: ./?Action=Admin&UploadTT=failed");
+                    exit();
+                }
+            }
+        }
     }
 
 ?>

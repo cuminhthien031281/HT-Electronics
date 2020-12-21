@@ -11,15 +11,9 @@
         <input type="number" name="DonGia">
         <h2>So luong</h2>
         <input type="number" name="SoLuong">
-        <h2>Hinh anh</h2>
         <button type="submit" name="SubmitTTSP" value="SubmitTTSP">Upload</button>
     </form>
 
-    <form action="?Action=Admin&Actionsp=uploadhinhanhcuasanpham" method="POST" enctype="multipart/form-data">
-        <h2>Hinh Anh cua san pham</h2>
-        <input type="file" name="file">
-        <button type="submit" name="SubmitHinhAnh" value="SubmitImageSanPham">Submit Image</button>
-    </form>
 
 
 

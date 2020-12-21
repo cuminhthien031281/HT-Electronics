@@ -23,7 +23,18 @@
                 include_once 'UploadHinhAnhSP.php';
                 break;
             case "uploadhinhanhcuasanpham": 
-                $SPCT_Id = $_GET['SPCT_Id'];
+                $Image = $_FILES['file'];
+                $TenSP = $_POST['TenSP'];
+                $ValueSubmit = $_POST['SubmitHinhAnh'];    
+                $AdminController = new AdminController();
+                $AdminController->UploadHinhAnh($TenSP, $ValueSubmit, $Image);
+                break;
+            case "activesp": 
+                $SPCT_Id = $_POST['SPCT_Id'];
+                $Value = $_POST['Value'];
+                $ValueUpload = $_POST['Update'];
+                $AdminController = new AdminController();
+                $AdminController->UploadStatusCuaSanPham($SPCT_Id,$Value, $ValueUpload);
                 break;
             default: 
                 break;

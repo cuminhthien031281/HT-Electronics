@@ -34,7 +34,7 @@
             $FindIDHMTDMName->closeCursor();
             return 1;
         }
-
+        
         public function uploadImg($SPCT_Id, $ImageSubmit) {
             $fileName = $ImageSubmit['name'];
             $fileSize = $ImageSubmit['size'];
