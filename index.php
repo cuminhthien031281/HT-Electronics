@@ -36,6 +36,16 @@
             break;
         case "Dell": 
             include_once './View/Dell/Laptop-Dell/laptop-dell.php';
+            break;
+        case "Asus": 
+            include_once './View/Asus/Laptop-Asus/laptop-asus.php';
+            break;
+        case "Lenovo": 
+            include_once './View/Lenovo/Laptop-Lenovo/laptop-lenovo.php';
+            break;
+        case "Macbook": 
+            include_once './View/Macbook/Laptop-Macbook/laptop-macbook.php';
+            break;
         default: 
             break;
     }

@@ -34,7 +34,7 @@
         }
         //Query hinh anh cua san pham theo SPCT_Id
         public function queryTableImageSPCTTID($SPCT_Id) {
-            $TimKiemHinhAnhTheoSPCT_ID = $this->_pdo->prepare("SELECT Full FROM hinhanhsanphamchitiet WHERE SPCT_Id = ?");
+            $TimKiemHinhAnhTheoSPCT_ID = $this->_pdo->prepare("SELECT * FROM hinhanhsanphamchitiet WHERE SPCT_Id = ?");
             $TimKiemHinhAnhTheoSPCT_ID->bindParam(1, $SPCT_Id);
             $TimKiemHinhAnhTheoSPCT_ID->execute();
             $this->ImageSource = $TimKiemHinhAnhTheoSPCT_ID->fetch();
