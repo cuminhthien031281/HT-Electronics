@@ -58,6 +58,19 @@
             }
 
         }
+        public function SetKhuyenMaiChoSanPham($LoaiKhuyenMai, $SPCT_Id, $NgayBatDau, $NgayKetThuc, $ValueSubmit) {
+            $ChuongTrinhKhuyenMai = new Khuyenmai();
+            $KhuyenMaiId = $ChuongTrinhKhuyenMai->find_KhuyenMaiID_QuaTen($LoaiKhuyenMai);
+            if(isset($ValueSubmit) == "SubmitKM") {
+                if($ChuongTrinhKhuyenMai->ApDungLoaiKhuyenMaiChoSanPham($KhuyenMaiId['KhuyenMai_Id'],$SPCT_Id,$NgayBatDau,$NgayKetThuc)) {
+                    header("Location: ./?Action=Admin&UploadTT=sucess");
+                    exit();
+                } else {
+                    header("Location: ./?Action=Admin&UploadTT=failed");
+                    exit();
+                }
+            }
+        }
     }
 
 ?>

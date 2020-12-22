@@ -1,5 +1,6 @@
 <?php include_once './View/Head.php';?>
 <?php include_once './Model/QuerySP.php';?>
+<?php include_once './Model/Khuyenmai.php';?>
 
     <?php $SPCT = new QuerySP();
             $SPCT->queryTableSPCT();
@@ -17,6 +18,7 @@
                 <td>HinhAnh</td>
                 <td>Upload Hinh anh</td>
                 <td>Update status san pham</td>
+                <td>Ap dung khuyen mai cho san pham</td>
             </tr>
         </thead>
         <tbody>
@@ -36,7 +38,7 @@
                                         <button type="submit" name="SubmitHinhAnh" value="SubmitImageSanPham">Them Hinh anh</button>
                                     </form>
                                 </td>
-            </tr>
+           
                     <?php 
                             } else {
                     ?>
@@ -71,7 +73,32 @@
                                     <button type="submit" name="Update" value="UpdateSPCTStt">Deactive San pham</button>
                                 </form>
                             </td>
-                    <?php } ?>            
+                    <?php } ?>
+                    <?php $KhuyenMai = new Khuyenmai();
+                           $KhuyenMai->find_SPCTID_TrongApDungKhuyenMai($DisplaySPCTs['SPCT_Id']);
+                           $Rowcount = $KhuyenMai->getRowCount();
+                           if($Rowcount > 0) {
+                    ?>
+                                <td>
+                                    <h1>Da ap dung chuong trinh khuyen mai</h1>
+                                </td>     
+                    <?php 
+                           } else {
+                    ?>  
+                                <td>
+                                    <form action="?Action=Admin&Actionsp=apdungchuongtrinhkhuyenmai" method="POST">
+                                        <h1>Nhap vao ten loai khuyen mai: </h1>
+                                        <input type="text" name="LoaiKhuyenMai">
+                                        <input type="hidden" name="SPCT_Id" value="<?php echo $DisplaySPCTs['SPCT_Id']?>">
+                                        <h1>Ngay bat dau:</h1>
+                                        <input type="datetime-local" name="NgayBatDau">
+                                        <h1>Ngay ket thuc:</h1>
+                                        <input type="datetime-local" name="NgayKetThuc">
+                                        <button type="submit" name="SubmitChuongTrinhKM" value="SubmitKM">Ok</button>
+                                    </form>
+                                </td>
+                    <?php   }?>
+            </tr>       
         <?php 
         }
         ?>

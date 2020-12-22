@@ -8,6 +8,10 @@
         private $HMTDM_Id;
         private $DisplayProduct;
         private $ImageSource;
+        private $RowCount;
+        public function getRowCount() {
+            return $this->RowCount;
+        }
         public function getImageSource() {
             return $this->ImageSource;
         }
@@ -38,6 +42,7 @@
             $TimKiemHinhAnhTheoSPCT_ID->bindParam(1, $SPCT_Id);
             $TimKiemHinhAnhTheoSPCT_ID->execute();
             $this->ImageSource = $TimKiemHinhAnhTheoSPCT_ID->fetch();
+            $this->RowCount = $TimKiemHinhAnhTheoSPCT_ID->rowCount();
             $TimKiemHinhAnhTheoSPCT_ID->closeCursor();
         }
         //Tim kiem SPCT_Id bang ten

@@ -46,6 +46,16 @@
                 $AdminController = new AdminController();
                 $AdminController->UploadTTKhuyenMai($LoaiKhuyenMai,$PhanTramKhuyenMai,$ValueSubmit);
                 break;
+            case "apdungchuongtrinhkhuyenmai":
+                $LoaiKhuyenMai = $_POST['LoaiKhuyenMai'];
+                $SPCT_Id = $_POST['SPCT_Id'];
+                $NgayBatDau = $_POST['NgayBatDau'];
+                $NgayKetThuc = $_POST['NgayKetThuc'];
+                $ValueSubmit = $_POST['SubmitChuongTrinhKM'];
+                print_r($_POST);
+                $AdminController = new AdminController();
+                $AdminController->SetKhuyenMaiChoSanPham($LoaiKhuyenMai, $SPCT_Id, $NgayBatDau, $NgayKetThuc,$ValueSubmit);
+                break;
             default: 
                 break;
         }

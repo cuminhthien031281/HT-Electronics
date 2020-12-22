@@ -17,11 +17,20 @@
                         <?php 
                                 $QuerySP->queryTableImageSPCTTID($SanPhams['SPCT_Id']);  
                                 $HinhAnhSanPham = $QuerySP->getImageSource();
+                                $RowCount = $QuerySP->getRowCount();
+                                if($RowCount > 0) {
                         ?>
                                     <div class="box-product">
                                             <div class="box-product__img">
-                                                <img src="Public/ImageSPCT/<?php echo $HinhAnhSanPham['Full'];?>" class="d-block w-100" alt="dell-1">
+                                                <img src="Public/ImageSPCT/<?php echo $HinhAnhSanPham['Full'];?>" class="d-block w-100" alt="<?php echo $Sanphams['TenSPCT'];?>">
                                             </div>
+                            <?php 
+                                } else { 
+                            ?>
+                                    <h1>Chua co hinh anh</h1>
+                            <?php 
+                                }
+                            ?>
                                         <div class="box-product__detail">
                                             <a href="#" class="box-product__detail--name"><?php echo $SanPhams['TenSPCT'];?></a>
                                             <div class="box-product__detail--start">
