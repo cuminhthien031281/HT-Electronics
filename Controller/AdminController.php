@@ -1,6 +1,7 @@
 <?php 
     include_once './Model/SPCT.php';
     include_once './Model/QuerySP.php';
+    include_once './Model//Khuyenmai.php';
     class AdminController {
         public function UploadTTSP($TenSPCT, $TenHMTDM, $DonGia, $SoLuong ,$ValueUpload) {
             if(isset($ValueUpload) == "SubmitTTSP") {
@@ -40,6 +41,22 @@
                     exit();
                 }
             }
+        }
+
+        public function UploadTTKhuyenMai($LoaiKhuyenMai, $PhanTramKhuyenMai, $ValueUpload) {
+            $ChuongTrinhKhuyenMai = new KhuyenMai();
+            $ChuongTrinhKhuyenMai->setLoaiKhuyenMai($LoaiKhuyenMai);
+            $ChuongTrinhKhuyenMai->setPhanTramKhuyenMai($PhanTramKhuyenMai);
+            if(isset($ValueUpload) == "SubmitTTKM") {
+                if($ChuongTrinhKhuyenMai->InsertChuongTrinhKhuyenMai()) {
+                    header("Location: ./?Action=Admin&UploadTT=success");
+                    exit();
+                } else {
+                    header("Location: ./?Action=Admin&UploadTT=failed");
+                    exit();
+                }
+            }
+
         }
     }
 

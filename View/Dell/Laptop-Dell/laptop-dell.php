@@ -31,8 +31,8 @@
                                             <i class="fas fa-star-half-alt"></i>
                                             <i class="far fa-star"></i>
                                         </div>
-                                        <del class="font-box-product-old">18,000,000₫</del>
-                                        <div class="box-product__detail--price-new"><?php echo $SanPhams['DonGia'];?>₫</div>
+                                        <del class="font-box-product-old"><?php echo $SanPhams['DonGia'];?>₫</del>
+                                        <div class="box-product__detail--price-new">90000₫</div>
                                     </div>
                                 </div>
             <?php } ?>

@@ -428,9 +428,10 @@ body {
     z-index: 1;
     visibility: hidden; }
     .box__add-to-card--text {
+      font-size: 1.4rem;
       position: absolute;
       text-align: center;
-      top: 32%;
+      top: 25%;
       left: 13%;
       text-transform: uppercase;
       text-decoration: none !important;
@@ -442,10 +443,10 @@ body {
       transition: all .2s; }
       .box__add-to-card--text:hover {
         color: #fff;
-        top: 30%; }
+        top: 23%; }
       .box__add-to-card--text:active {
         color: #fff;
-        top: 31%; }
+        top: 24%; }
 
 .box-product {
   position: relative;

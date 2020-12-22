@@ -36,6 +36,16 @@
                 $AdminController = new AdminController();
                 $AdminController->UploadStatusCuaSanPham($SPCT_Id,$Value, $ValueUpload);
                 break;
+            case "uploadkhuyenmai":
+                include_once 'UploadKhuyenMai.php';
+                break;
+            case "UploadTTKM": 
+                $LoaiKhuyenMai = $_POST['LoaiKhuyenMai'];
+                $PhanTramKhuyenMai = $_POST['PhanTramKhuyenMai'];
+                $ValueSubmit = $_POST['ValueSubmit'];
+                $AdminController = new AdminController();
+                $AdminController->UploadTTKhuyenMai($LoaiKhuyenMai,$PhanTramKhuyenMai,$ValueSubmit);
+                break;
             default: 
                 break;
         }
