@@ -3,7 +3,7 @@
 <?php include_once './Model/QuerySP.php'; ?>
 <section class="laptop-dell">
     <div class="container">
-        <h3 class="">Dell</h3>
+        <h3 class="">Asus</h3>
         <?php
 
         $CheckTenHMTDM = $_GET['Action'];
@@ -22,7 +22,7 @@
             ?>
                 <div class="box-product">
                     <div class="box-product__img">
-                        <a href="?Action=<?php echo $SanPhams['SPCT_Id']; ?>"><img src="Public/ImageSPCT/<?php echo $HinhAnhSanPham['Full']; ?>" class="d-block w-100" alt="dell-1"></a>
+                        <a href="?Action=<?php echo $SanPhams['SPCT_Id']; ?>"><img src="Public/ImageSPCT/<?php echo $HinhAnhSanPham['Full']; ?>" class="d-block w-100" alt="<?php echo $Sanphams['TenSPCT']; ?>"></a>
                     </div>
                 <?php
             } else {
@@ -40,8 +40,8 @@
                         <i class="fas fa-star-half-alt"></i>
                         <i class="far fa-star"></i>
                     </div>
-                    <del class="font-box-product-old"><?php echo $SanPhams['DonGia']; ?>₫</del>
-                    <div class="box-product__detail--price-new">90000₫</div>
+                    <del class="font-box-product-old">18,000,000₫</del>
+                    <div class="box-product__detail--price-new"><?php echo $SanPhams['DonGia']; ?>₫</div>
                 </div>
                 </div>
             <?php } ?>

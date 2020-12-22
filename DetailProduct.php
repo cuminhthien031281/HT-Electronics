@@ -1,5 +1,5 @@
-<?php include_once 'View/Head.php';?>
-<?php include_once 'View/Header.php';?>
+<?php include_once 'View/Head.php'; ?>
+<?php include_once 'View/Header.php'; ?>
 <section class="detail-product">
     <div id="content">
         <a onClick="openSlideMenu()">
@@ -10,28 +10,33 @@
         <a class="category-product__close" onClick="closeSlideMenu()">
             <i class="fas fa-times"></i>
         </a>
-        <h2 class="category-product__name">Danh mục</h2>
+        <h2 class="category-product__name">San Pham</h2>
         <div class="category-product-title">
-            <h3 class="category-product-title__name">Laptop</h3>
-            <ul class="category-product-title-group">
-                <li class="category-product-title-group__list"><a href="#" class="category-product-title-group__link">Dell</a></li>
-                <li class="category-product-title-group__list"><a href="#" class="category-product-title-group__link">Asus</a></li>
-                <li class="category-product-title-group__list"><a href="#" class="category-product-title-group__link">Lenovo</a></li>
-                <li class="category-product-title-group__list"><a href="#" class="category-product-title-group__link">Macbook</a></li>
-            </ul>
-            <h3 class="category-product-title__name">PC-Gaming</h3>
-            <ul class="category-product-title-group">
-                <li class="category-product-title-group__list"><a href="#" class="category-product-title-group__link">PC-Dell</a></li>
-                <li class="category-product-title-group__list"><a href="#" class="category-product-title-group__link">PC-Asus</a></li>
-                <li class="category-product-title-group__list"><a href="#" class="category-product-title-group__link">PC-Lenovo</a></li>
-            </ul>
-            <h3 class="category-product-title__name">Linh kiện</h3>
-            <ul class="category-product-title-group">
-                <li class="category-product-title-group__list"><a href="#" class="category-product-title-group__link">Ram</a></li>
-                <li class="category-product-title-group__list"><a href="#" class="category-product-title-group__link">Rom</a></li>
-                <li class="category-product-title-group__list"><a href="#" class="category-product-title-group__link">Đế tỏa nhiệt</a></li>
-                <li class="category-product-title-group__list"><a href="#" class="category-product-title-group__link">Bô mạch</a></li>
-            </ul>
+            <?php
+            include_once './Model/DMSP.php';
+            $DMSP_Obj = new DMSP();
+            $DMSP = $DMSP_Obj->GetDMSP();
+            $HMTDM = $DMSP_Obj->GetHMTDM();
+            ?>
+            <?php
+            foreach ($DMSP as $DMSPs) {
+            ?>
+                <h3 class='font-p adt-left-title'><?php echo $DMSPs['DMSP']; ?></h1>
+                    <ul class="adt-left-title">
+                        <?php
+                        //Loop into child of DMSP
+                        foreach ($HMTDM as $HMTDMs) {
+                            if ($HMTDMs['DMSP_Id'] == $DMSPs['DMSP_Id']) {
+                        ?>
+                                <li class="adt-left__group"><a href="?Action=<?php echo $HMTDMs['TenHMTDM']; ?>" class="adt-left__link"><?php echo $HMTDMs['TenHMTDM']; ?></a></li>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </ul>
+                <?php
+            }
+                ?>
         </div>
     </div>
     <div class="detail">
@@ -63,8 +68,8 @@
                 <div class="col-6">
                     <div class="detail-name-evaluate">
                         <span class="detail-name-evaluate__name">
-                2019 Dell G3 Gaming Laptop Computer| 15.6" FHD Screen| 9th Gen Intel Quad-Core i5-9300H up to 4.1GHz| 8GB DDR4| 512GB PCIE SSD| GeForce GTX 1660 Ti 6GB| USB 3.0| HDMI| Windows 10
-                </span>
+                            2019 Dell G3 Gaming Laptop Computer| 15.6" FHD Screen| 9th Gen Intel Quad-Core i5-9300H up to 4.1GHz| 8GB DDR4| 512GB PCIE SSD| GeForce GTX 1660 Ti 6GB| USB 3.0| HDMI| Windows 10
+                        </span>
                         <div class="box-product__detail--start">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -377,5 +382,5 @@
     </div>
 </section>
 <script src="./Public/js/slide-left.js"></script>
-<?php include_once 'View/Footer.php';?>
-<?php include_once 'View/EndHead.php';?>
+<?php include_once 'View/Footer.php'; ?>
+<?php include_once 'View/EndHead.php'; ?>

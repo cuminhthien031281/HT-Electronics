@@ -46,6 +46,29 @@
         case "Macbook": 
             include_once './View/Macbook/Laptop-Macbook/laptop-macbook.php';
             break;
+        case "PC-Asus": 
+            include_once './View/Asus/PC-Asus/pc-asus.php';
+            break;
+        case "PC-Dell": 
+            include_once './View/Dell/PC-Dell/pc-dell.php';
+        case "PC-Lenovo": 
+            include_once './View/Lenovo/PC-Lenovo/pc-lenovo.php';
+            break;
+        case "PC-Macbook": 
+            include_once './View/Macbook/PC-Macbook/pc-macbook.php';
+            break;
+        case "Ram": 
+            include_once './View/LinhKien/Ram/ram.php';
+            break;
+        case "Rom": 
+            include_once './View/LinhKien/Rom/rom.php';
+            break;
+        case "BoMach": 
+            include_once './View/LinhKien/BoMach/bomach.php';
+            break;
+        case "DeToaNhiet": 
+            include_once './View/LinhKien/DeToaNhiet/detoanhiet.php';
+            break;
         default: 
             break;
     }
