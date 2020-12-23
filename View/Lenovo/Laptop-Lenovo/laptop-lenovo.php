@@ -22,7 +22,7 @@
                         ?>
                                     <div class="box-product">
                                             <div class="box-product__img">
-                                            <a href="?Action=<?php echo $SanPhams['SPCT_Id'];?>"><img src="Public/ImageSPCT/<?php echo $HinhAnhSanPham['Full'];?>" class="d-block w-100" alt="<?php echo $Sanphams['TenSPCT'];?>"></a>
+                                            <a href="?Action=ChiTietSanPham&Id=<?php echo $SanPhams['SPCT_Id'];?>"><img src="Public/ImageSPCT/<?php echo $HinhAnhSanPham['Full'];?>" class="d-block w-100" alt="<?php echo $Sanphams['TenSPCT'];?>"></a>
                                             </div>
                             <?php 
                                 } else { 
@@ -32,7 +32,7 @@
                                 }
                             ?>
                                         <div class="box-product__detail">
-                                            <a href="?Action=<?php echo $SanPhams['SPCT_Id'];?>" class="box-product__detail--name"><?php echo $SanPhams['TenSPCT'];?></a>
+                                            <a href="?Action=ChiTietSanPham&Id=<?php echo $SanPhams['SPCT_Id'];?>" class="box-product__detail--name"><?php echo $SanPhams['TenSPCT'];?></a>
                                             <div class="box-product__detail--start">
                                                 <i class="fas fa-star"></i>
                                                 <i class="fas fa-star"></i>

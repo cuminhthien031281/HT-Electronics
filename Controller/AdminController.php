@@ -2,6 +2,7 @@
     include_once './Model/SPCT.php';
     include_once './Model/QuerySP.php';
     include_once './Model//Khuyenmai.php';
+    include_once './Model/NoiDungChiTietSP.php';
     class AdminController {
         public function UploadTTSP($TenSPCT, $TenHMTDM, $DonGia, $SoLuong ,$ValueUpload) {
             if(isset($ValueUpload) == "SubmitTTSP") {
@@ -63,11 +64,28 @@
             $KhuyenMaiId = $ChuongTrinhKhuyenMai->find_KhuyenMaiID_QuaTen($LoaiKhuyenMai);
             if(isset($ValueSubmit) == "SubmitKM") {
                 if($ChuongTrinhKhuyenMai->ApDungLoaiKhuyenMaiChoSanPham($KhuyenMaiId['KhuyenMai_Id'],$SPCT_Id,$NgayBatDau,$NgayKetThuc)) {
-                    header("Location: ./?Action=Admin&UploadTT=sucess");
+                    header("Location: ./?Action=Admin&UploadTT=success");
                     exit();
                 } else {
                     header("Location: ./?Action=Admin&UploadTT=failed");
                     exit();
+                }
+            }
+        }
+        public function uploadThongTinSP($TenSP, $Hang, $HeDieuHanh, $Chip, $ManHinh, $Ram, $ValueUpload) {
+            $NoiDungChiTiet = new NoiDungChiTiet();
+            $NoiDungChiTiet->timSPCTId($TenSP);
+            $SPCT_Id = $NoiDungChiTiet->getSPCT_Id();
+            $RowCount = $NoiDungChiTiet->getRowCount();
+            if($RowCount > 0) {
+                if(isset($ValueUpload) == "SubmitThongSoKiThuat") {
+                    if($NoiDungChiTiet->themVaoBangNoiDungSPCT($SPCT_Id, $Hang, $HeDieuHanh, $Chip, $ManHinh, $Ram)) {
+                        header("Location: ./?Action=Admin&UploadTT=success");
+                        exit();
+                    } else {
+                        header("Location: ./?Action=Admin&UploadTT=failed");
+                        exit();
+                    }
                 }
             }
         }

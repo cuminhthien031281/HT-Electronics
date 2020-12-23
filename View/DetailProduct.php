@@ -1,5 +1,9 @@
 <?php include_once 'View/Head.php'; ?>
 <?php include_once 'View/Header.php'; ?>
+<?php $SPCT_Id = $_GET['Id'];
+    include_once './Model/NoiDungChiTietSP.php';
+    $NoiDungSP = new NoiDungChiTiet();
+?>
 <section class="detail-product">
     <div id="content">
         <a onClick="openSlideMenu()">
@@ -45,7 +49,9 @@
                 <div class="col-6">
                     <div class="detail__img">
                         <div class="detail__img-big">
-                            <img src="./Public/img/new-product-2.jpg" class="d-block w-100" alt="" id="ProductImg">
+                            <?php $Image = $NoiDungSP->HienThiHinhAnhSPCT($SPCT_Id);
+                            ?>
+                            <img src="/HT-Electronics/Public/ImageSPCT/<?php echo $Image['Full'];?>" class="d-block w-100" alt="" id="ProductImg">
                         </div>
                         <div class="detail__img-small">
                             <ul class="detail-list">
@@ -67,8 +73,11 @@
                 </div>
                 <div class="col-6">
                     <div class="detail-name-evaluate">
+                        <?php $TenSPCT = $NoiDungSP->HienThiTenSPCT($SPCT_Id);
+                            
+                        ?>
                         <span class="detail-name-evaluate__name">
-                            2019 Dell G3 Gaming Laptop Computer| 15.6" FHD Screen| 9th Gen Intel Quad-Core i5-9300H up to 4.1GHz| 8GB DDR4| 512GB PCIE SSD| GeForce GTX 1660 Ti 6GB| USB 3.0| HDMI| Windows 10
+                            <?php echo $TenSPCT['TenSPCT'];?>
                         </span>
                         <div class="box-product__detail--start">
                             <i class="fas fa-star"></i>
@@ -89,18 +98,21 @@
                             </ul>
                         </div>
                         <div class="detail-parameter-right">
+                            <?php $NoiDungSPCT = $NoiDungSP->HienThiNoiDungSPCT($SPCT_Id);
+                            ?>
                             <ul class="detail-parameter-right__list">
-                                <li class="detail-parameter-right__group">Dell</li>
-                                <li class="detail-parameter-right__group">Windows 10</li>
-                                <li class="detail-parameter-right__group">Intel</li>
-                                <li class="detail-parameter-right__group">15.6 Inches</li>
-                                <li class="detail-parameter-right__group">8 GB</li>
+                                <li class="detail-parameter-right__group"><?php echo $NoiDungSPCT['Hang'];?></li>
+                                <li class="detail-parameter-right__group"><?php echo $NoiDungSPCT['HeDieuHanh'];?></li>
+                                <li class="detail-parameter-right__group"><?php echo $NoiDungSPCT['Chip'];?></li>
+                                <li class="detail-parameter-right__group"><?php echo $NoiDungSPCT['ManHinh'];?></li>
+                                <li class="detail-parameter-right__group"><?php echo $NoiDungSPCT['Ram'];?></li>
                             </ul>
                         </div>
                     </div>
                     <div class="detail-price">
+                        <?php $GiaSPCT = $NoiDungSP->HienThigiaSPCT($SPCT_Id)?>
                         <del class="detail-price__old">13,540,00đ</del>
-                        <div class="detail-price__promotional" id="price">12,000,000đ</div>
+                        <div class="detail-price__promotional" id="price"><?php echo $GiaSPCT['DonGia'];?></div>
                     </div>
                     <div class="detail-buy">
                         <label class="detail-buy__amount">Số lượng:</label>
@@ -139,7 +151,7 @@
                         <div class="col-lg-2">
                             <div class="box">
                                 <div class="box__img">
-                                    <a href="#"><img src="img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
                                 </div>
                                 <div class="box__detail">
                                     <div class="box__detail--name">
@@ -161,7 +173,7 @@
 
 
                                 <div class="box__img">
-                                    <a href="#"><img src="img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
                                 </div>
                                 <div class="box__detail">
                                     <div class="box__detail--name">
@@ -183,7 +195,7 @@
 
 
                                 <div class="box__img">
-                                    <a href="#"><img src="img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
                                 </div>
                                 <div class="box__detail">
                                     <div class="box__detail--name">
@@ -205,7 +217,7 @@
 
 
                                 <div class="box__img">
-                                    <a href="#"><img src="img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
                                 </div>
                                 <div class="box__detail">
                                     <div class="box__detail--name">
@@ -227,7 +239,7 @@
 
 
                                 <div class="box__img">
-                                    <a href="#"><img src="img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
                                 </div>
                                 <div class="box__detail">
                                     <div class="box__detail--name">
@@ -249,7 +261,7 @@
 
 
                                 <div class="box__img">
-                                    <a href="#"><img src="img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
                                 </div>
                                 <div class="box__detail">
                                     <div class="box__detail--name">
@@ -273,7 +285,7 @@
                         <div class="col-lg-2">
                             <div class="box">
                                 <div class="box__img">
-                                    <a href="#"><img src="img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
                                 </div>
                                 <div class="box__detail">
                                     <div class="box__detail--name">
@@ -295,7 +307,7 @@
 
 
                                 <div class="box__img">
-                                    <a href="#"><img src="img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
                                 </div>
                                 <div class="box__detail">
                                     <div class="box__detail--name">
@@ -317,7 +329,7 @@
 
 
                                 <div class="box__img">
-                                    <a href="#"><img src="img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
                                 </div>
                                 <div class="box__detail">
                                     <div class="box__detail--name">
