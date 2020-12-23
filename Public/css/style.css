@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
 .header {
-  position: relative;
+  position: sticky;
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  z-index: 100;
+  background-color: #fff; }
   @media (max-width: 600px) {
     .header {
       display: inline-block; } }
@@ -816,7 +818,6 @@ body {
 .category-product {
   position: fixed;
   width: 13%;
-  top: 2rem;
   background-color: #fff;
   font-family: 'Andika New Basic', sans-serif;
   border: 2px solid #ced7d8;

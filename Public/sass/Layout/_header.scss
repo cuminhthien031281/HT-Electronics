@@ -1,7 +1,9 @@
 .header {
-    position: relative;
+    position: sticky;
     display: flex;
     justify-content: space-between;
+    z-index: 100;
+    background-color: $color-white;
     @include respond(phone) {
         display: inline-block;
     }

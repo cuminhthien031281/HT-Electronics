@@ -47,4 +47,17 @@
                     </div>
             </li>
         </ul>
-    </header>
+</header>
+<script>
+    var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+        document.getElementById("header").style.top = "0";
+        document.getElementById("header").style.transition = "all .5s";
+    } else {
+        document.getElementById("header").style.top = "-90px";
+    }
+    prevScrollpos = currentScrollPos;
+}
+</script>
