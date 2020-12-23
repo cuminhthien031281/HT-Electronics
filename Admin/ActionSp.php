@@ -52,9 +52,22 @@
                 $NgayBatDau = $_POST['NgayBatDau'];
                 $NgayKetThuc = $_POST['NgayKetThuc'];
                 $ValueSubmit = $_POST['SubmitChuongTrinhKM'];
-                print_r($_POST);
                 $AdminController = new AdminController();
                 $AdminController->SetKhuyenMaiChoSanPham($LoaiKhuyenMai, $SPCT_Id, $NgayBatDau, $NgayKetThuc,$ValueSubmit);
+                break;
+            case "uploadthongsokithuat":
+                include_once 'UploadThongSoKiThuat.php';
+                break;
+            case "uploadthongsosp": 
+                $TenSanPham = $_POST['TenSanPham'];
+                $Hang = $_POST['Hang'];
+                $HeDieuHanh = $_POST['HeDieuHanh'];
+                $Chip = $_POST['Chip'];
+                $ManHinh =$_POST['ManHinh'];
+                $Ram = $_POST['Ram'];
+                $ValueSubmit = $_POST['SubmitThongSo'];
+                $AdminController = new AdminController();
+                $AdminController->uploadThongTinSP($TenSanPham, $Hang, $HeDieuHanh, $Chip, $ManHinh, $Ram, $ValueSubmit);
                 break;
             default: 
                 break;

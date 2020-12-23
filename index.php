@@ -69,6 +69,9 @@
         case "DeToaNhiet": 
             include_once './View/LinhKien/DeToaNhiet/detoanhiet.php';
             break;
+        case "ChiTietSanPham": 
+            include_once './View/DetailProduct.php';
+            break;
         default: 
             break;
     }
