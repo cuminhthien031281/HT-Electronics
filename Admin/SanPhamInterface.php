@@ -28,7 +28,8 @@ $ImageSPCT = $SPCT->getQueryTableHinhAnhSPCT();
                 <td><?php echo $DisplaySPCTs['DonGia']; ?></td>
                 <td><?php echo $DisplaySPCTs['SoLuong']; ?></td>
                 <?php foreach ($ImageSPCT as $ImageSPCTs) {
-                    if ($ImageSPCTs['SPCT_Id'] == $DisplaySPCTs['SPCT_Id']) {
+                    
+                        if ($ImageSPCTs['SPCT_Id'] == $DisplaySPCTs['SPCT_Id']) {
                 ?>
                         <td><img style="width: 150px;" src="Public/ImageSPCT/<?php echo $ImageSPCTs['Full']; ?>" alt="SPCT IMG"></td>
                         <td>
@@ -40,16 +41,16 @@ $ImageSPCT = $SPCT->getQueryTableHinhAnhSPCT();
                         </td>
 
                     <?php
-                    } else {
+                        } else {
                     ?>
-                        <td>Chua co hinh anh</td>
-                        <td>
-                            <form action="?Action=Admin&Actionsp=uploadhinhanhcuasanpham" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="TenSP" value="<?php echo $DisplaySPCTs['TenSPCT'] ?>">
-                                <input type="file" name="file">
-                                <button type="submit" name="SubmitHinhAnh" value="SubmitImageSanPham">Them Hinh anh</button>
-                            </form>
-                        </td>
+                            <td>Chua co hinh anh</td>
+                            <td>
+                                <form action="?Action=Admin&Actionsp=uploadhinhanhcuasanpham" method="POST" enctype="multipart/form-data">
+                                    <input type="hidden" name="TenSP" value="<?php echo $DisplaySPCTs['TenSPCT'] ?>">
+                                    <input type="file" name="file">
+                                    <button type="submit" name="SubmitHinhAnh" value="SubmitImageSanPham">Them Hinh anh</button>
+                                </form>
+                            </td>
 
                 <?php
                     }

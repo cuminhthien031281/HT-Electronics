@@ -151,7 +151,7 @@
                         <div class="col-lg-2">
                             <div class="box">
                                 <div class="box__img">
-                                    <a href="#"><img src="img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
                                 </div>
                                 <div class="box__detail">
                                     <div class="box__detail--name">
@@ -173,7 +173,7 @@
 
 
                                 <div class="box__img">
-                                    <a href="#"><img src="img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
                                 </div>
                                 <div class="box__detail">
                                     <div class="box__detail--name">
@@ -195,7 +195,7 @@
 
 
                                 <div class="box__img">
-                                    <a href="#"><img src="img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
                                 </div>
                                 <div class="box__detail">
                                     <div class="box__detail--name">
@@ -217,7 +217,7 @@
 
 
                                 <div class="box__img">
-                                    <a href="#"><img src="img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
                                 </div>
                                 <div class="box__detail">
                                     <div class="box__detail--name">
@@ -239,7 +239,7 @@
 
 
                                 <div class="box__img">
-                                    <a href="#"><img src="img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
                                 </div>
                                 <div class="box__detail">
                                     <div class="box__detail--name">
@@ -261,7 +261,7 @@
 
 
                                 <div class="box__img">
-                                    <a href="#"><img src="img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
                                 </div>
                                 <div class="box__detail">
                                     <div class="box__detail--name">
@@ -285,7 +285,7 @@
                         <div class="col-lg-2">
                             <div class="box">
                                 <div class="box__img">
-                                    <a href="#"><img src="img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
                                 </div>
                                 <div class="box__detail">
                                     <div class="box__detail--name">
@@ -307,7 +307,7 @@
 
 
                                 <div class="box__img">
-                                    <a href="#"><img src="img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
                                 </div>
                                 <div class="box__detail">
                                     <div class="box__detail--name">
@@ -329,7 +329,7 @@
 
 
                                 <div class="box__img">
-                                    <a href="#"><img src="img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
                                 </div>
                                 <div class="box__detail">
                                     <div class="box__detail--name">
