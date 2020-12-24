@@ -69,6 +69,9 @@
                 $AdminController = new AdminController();
                 $AdminController->uploadThongTinSP($TenSanPham, $Hang, $HeDieuHanh, $Chip, $ManHinh, $Ram, $ValueSubmit);
                 break;
+            case "test": 
+                include_once './View/test.php';
+                break;
             default: 
                 break;
         }

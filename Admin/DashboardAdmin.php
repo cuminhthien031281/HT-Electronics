@@ -8,6 +8,7 @@
     <a href="?Action=Admin&Actionsp=xemsanpham" style="display: block;">Upload hinh anh cua san pham</a>
     <a href="?Action=Admin&Actionsp=uploadkhuyenmai" style="display: block;">Upload khuyen mai moi</a>
     <a href="?Action=Admin&Actionsp=uploadthongsokithuat" style="display: block;">Upload thong so ki thuat cho san pham</a>
+    <a href="?Action=Admin&Actionsp=test">Test</a>
     <a href="?Action=Logout">Logout</a>
 <?php include_once './View/Footer.php'; ?>
 <?php include_once './View/EndHead.php'; ?>

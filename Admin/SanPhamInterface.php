@@ -7,6 +7,10 @@ $SPCT->queryTableSPCT();
 $DisplaySPCT = $SPCT->getQuerySanPhamChiTiet();
 $SPCT->queryTableImageSPCT();
 $ImageSPCT = $SPCT->getQueryTableHinhAnhSPCT();
+$ArrayImage = array();
+foreach($ImageSPCT as $ImageSPCTs) {
+    $ArrayImage[] = $ImageSPCTs['SPCT_Id'];
+}
 ?>
 
 <table>
@@ -27,20 +31,26 @@ $ImageSPCT = $SPCT->getQueryTableHinhAnhSPCT();
                 <td><?php echo $DisplaySPCTs['TenSPCT']; ?></td>
                 <td><?php echo $DisplaySPCTs['DonGia']; ?></td>
                 <td><?php echo $DisplaySPCTs['SoLuong']; ?></td>
-                <?php foreach ($ImageSPCT as $ImageSPCTs) {
+                <?php 
                     
-                        if ($ImageSPCTs['SPCT_Id'] == $DisplaySPCTs['SPCT_Id']) {
+                        if (in_array($DisplaySPCTs['SPCT_Id'], $ArrayImage)) {
+                            foreach($ImageSPCT as $ImageSPCTs) {
+                                if($ImageSPCTs['SPCT_Id'] == $DisplaySPCTs['SPCT_Id']) {
                 ?>
-                        <td><img style="width: 150px;" src="Public/ImageSPCT/<?php echo $ImageSPCTs['Full']; ?>" alt="SPCT IMG"></td>
-                        <td>
-                            <form action="?Action=Admin&Actionsp=uploadhinhanhcuasanpham" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="TenSP" value="<?php echo $DisplaySPCTs['TenSPCT'] ?>">
-                                <input type="file" name="file">
-                                <button type="submit" name="SubmitHinhAnh" value="SubmitImageSanPham">Them Hinh anh</button>
-                            </form>
-                        </td>
-
+                                    <td><img style="width: 150px;" src="Public/ImageSPCT/<?php echo $ImageSPCTs['Full']; ?>" alt="SPCT IMG"></td>
+                                    
                     <?php
+                                } 
+                            }
+                    ?>
+                                    <td>
+                                        <form action="?Action=Admin&Actionsp=uploadhinhanhcuasanpham" method="POST" enctype="multipart/form-data">
+                                            <input type="hidden" name="TenSP" value="<?php echo $DisplaySPCTs['TenSPCT'] ?>">
+                                            <input type="file" name="file">
+                                            <button type="submit" name="SubmitHinhAnh" value="SubmitImageSanPham">Them Hinh anh</button>
+                                        </form>
+                                    </td> 
+                    <?php       
                         } else {
                     ?>
                             <td>Chua co hinh anh</td>
@@ -48,13 +58,13 @@ $ImageSPCT = $SPCT->getQueryTableHinhAnhSPCT();
                                 <form action="?Action=Admin&Actionsp=uploadhinhanhcuasanpham" method="POST" enctype="multipart/form-data">
                                     <input type="hidden" name="TenSP" value="<?php echo $DisplaySPCTs['TenSPCT'] ?>">
                                     <input type="file" name="file">
-                                    <button type="submit" name="SubmitHinhAnh" value="SubmitImageSanPham">Them Hinh anh</button>
+                                    <button type="submit" name="SubmitHinhAnh" value="SubmitImageSanPham">Them Hinh anh Moi</button>
                                 </form>
                             </td>
 
                 <?php
                     }
-                }
+                
                 ?>
                 <?php if ($DisplaySPCTs['Status'] == 0) { ?>
                     <td>Chua active</td>
