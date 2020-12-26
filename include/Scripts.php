@@ -14,6 +14,7 @@ if (isset($_SESSION['Login_Status']) && $_SESSION['Login_Status'] != '') {
 <?php
 
     unset($_SESSION['Login_Status']);
+    unset($_SESSION['Login_Status_Code']);
 }
 
 ?>
