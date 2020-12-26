@@ -43,6 +43,15 @@
             $TimKiemKhuyenMaiId->closeCursor();
             return $StoreValue;
         }
+
+        //Lay ra gia tri trong chuong trinh khuyen mai 
+        public function queryApDungKhuyenMaiTable() {
+            $TimKiemKhuyenMaiId = $this->_pdo->prepare("SELECT * FROM apdungkhuyenmai");
+            $TimKiemKhuyenMaiId->execute();
+            $StoreValue = $TimKiemKhuyenMaiId->fetchAll();
+            $TimKiemKhuyenMaiId->closeCursor();
+            return $StoreValue;
+        }
         //Tim Kiem SPCT_Id thong qua ham tim id qua ten san pham 
         public function ApDungLoaiKhuyenMaiChoSanPham($KhuyenMai_Id, $SPCT_Id, $NgayBatDau, $NgayKetThuc) {
             $ApDungKhuyenMaiChoSanPham = $this->_pdo->prepare("INSERT INTO apdungkhuyenmai(KhuyenMai_Id, SPCT_Id, NgayBatDau, NgayKetThuc) VALUES (?, ?, ?, ?)");

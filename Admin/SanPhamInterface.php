@@ -11,6 +11,13 @@ $ArrayImage = array();
 foreach($ImageSPCT as $ImageSPCTs) {
     $ArrayImage[] = $ImageSPCTs['SPCT_Id'];
 }
+
+$KhuyenMai = new Khuyenmai();
+$KhuyenMaiId = $KhuyenMai->queryApDungKhuyenMaiTable();
+$KhuyenMaiArray = array();
+foreach($KhuyenMaiId as $KhuyenMaiIds) {
+    $KhuyenMaiArray[] = $KhuyenMaiIds['SPCT_Id'];
+}
 ?>
 
 <table>
@@ -86,29 +93,28 @@ foreach($ImageSPCT as $ImageSPCTs) {
                         </form>
                     </td>
                 <?php } ?>
-                <?php $KhuyenMai = new Khuyenmai();
-                $KhuyenMai->find_SPCTID_TrongApDungKhuyenMai($DisplaySPCTs['SPCT_Id']);
-                $Rowcount = $KhuyenMai->getRowCount();
-                if ($Rowcount > 0) {
+                <?php 
+                
+                    if (in_array($DisplaySPCTs['SPCT_Id'], $KhuyenMaiArray)) {
                 ?>
-                    <td>
-                        <h1>Da ap dung chuong trinh khuyen mai</h1>
-                    </td>
+                        <td>
+                            <h1>Da ap dung chuong trinh khuyen mai</h1>
+                        </td>
                 <?php
-                } else {
+                    } else {
                 ?>
-                    <td>
-                        <form action="?Action=Admin&Actionsp=apdungchuongtrinhkhuyenmai" method="POST">
-                            <h1>Nhap vao ten loai khuyen mai: </h1>
-                            <input type="text" name="LoaiKhuyenMai">
-                            <input type="hidden" name="SPCT_Id" value="<?php echo $DisplaySPCTs['SPCT_Id'] ?>">
-                            <h1>Ngay bat dau:</h1>
-                            <input type="datetime-local" name="NgayBatDau">
-                            <h1>Ngay ket thuc:</h1>
-                            <input type="datetime-local" name="NgayKetThuc">
-                            <button type="submit" name="SubmitChuongTrinhKM" value="SubmitKM">Ok</button>
-                        </form>
-                    </td>
+                        <td>
+                            <form action="?Action=Admin&Actionsp=apdungchuongtrinhkhuyenmai" method="POST">
+                                <h1>Nhap vao ten loai khuyen mai: </h1>
+                                <input type="text" name="LoaiKhuyenMai">
+                                <input type="hidden" name="SPCT_Id" value="<?php echo $DisplaySPCTs['SPCT_Id'] ?>">
+                                <h1>Ngay bat dau:</h1>
+                                <input type="datetime-local" name="NgayBatDau">
+                                <h1>Ngay ket thuc:</h1>
+                                <input type="datetime-local" name="NgayKetThuc">
+                                <button type="submit" name="SubmitChuongTrinhKM" value="SubmitKM">Ok</button>
+                            </form>
+                        </td>
                 <?php   } ?>
             </tr>
         <?php
