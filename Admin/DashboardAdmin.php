@@ -11,4 +11,5 @@
     <a href="?Action=Admin&Actionsp=test">Test</a>
     <a href="?Action=Logout">Logout</a>
 <?php include_once './View/Footer.php'; ?>
+<?php include('include/Scripts.php');?>
 <?php include_once './View/EndHead.php'; ?>

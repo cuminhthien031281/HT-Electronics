@@ -1,7 +1,4 @@
 <?php include_once 'Head.php';?>
-<?php if(isset($_GET['status'])=="RegSuccess"){?>
-        <script>alert('Login with your register.');</script>
-<?php }?>
     <div class="container">
         <div class="logo">
             <a href="#"><img src="Public/img/new.png" alt="Logo" class="logo__form"></a>
@@ -24,4 +21,5 @@
     </div>
 
 <?php include_once 'Footer.php';?>
+<?php include('include/Scripts.php');?>
 <?php include_once 'EndHead.php';?>

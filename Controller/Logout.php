@@ -1,5 +1,5 @@
 <?php             
             session_unset();
             session_destroy();
-            header('Location: ./?Action=Home&Logout=success');
+            header('Location: ./?Action=Home');
 ?>

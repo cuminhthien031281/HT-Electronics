@@ -6,6 +6,7 @@
 <?php include_once 'ProductNew.php';?>
 <?php include_once 'ProductHighlights.php';?>
 <?php include_once 'Footer.php';?>
+<?php include('include/Scripts.php');?>
 <?php include_once 'EndHead.php';?>
 
 

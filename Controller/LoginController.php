@@ -4,6 +4,7 @@
     include_once './Sanitizie/Sanitizie.php';
     class LoginController {
         public function Login($UserNameInput, $Password, $ValuePost) {
+            $SessionUser = new Session();
             if(isset($ValuePost)) {
                 //Change this
                 $UserNameAfterClean = clean($UserNameInput);
@@ -13,19 +14,23 @@
                 $KhachHangObj->SetUsrName($UserNameAfterClean);
                 $KhachHangObj->SetPassword($PasswordAfterClean);
                 if($KhachHangObj->Login()) {
-                    $SessionUser = new Session();
                     $SessionUser->SetSession("UserName",$KhachHangObj->GetUserName());
                     $SessionUser->SetSession("KhachHang_Id", $KhachHangObj->GetResultLogin("KhachHang_Id"));
-                    
                     $RoleUser = $KhachHangObj->GetResultLogin("Role");
                     if($RoleUser == 0) {
-                        header('Location: ./?Action=Home&Login=Success');
+                        $SessionUser->SetSession("Login_Status", "Login Success");
+                        $SessionUser->SetSession("Login_Status_Code", "success");
+                        header('Location: ./?Action=Home');
                     } else {
+                        $SessionUser->SetSession("Login_Status", "Login Success");
+                        $SessionUser->SetSession("Login_Status_Code", "success");
                         header('Location: ./?Action=Admin');
                     }
-                    
                 } else {
-                    header("Location: ./?Action=Home&Login=Failed");
+                    unset($_SESSION['UserName']);
+                    $SessionUser->SetSession("Login_Status", "Password or username wrong");
+                    $SessionUser->SetSession("Login_Status_Code", "warning");
+                    header("Location: ./?Action=Login");
                 }
             }
         }
