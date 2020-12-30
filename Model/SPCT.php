@@ -48,7 +48,7 @@
                 if($fileError == 0) {
                     if($fileSize<1000000) {
                         $fileNameNew = "SPCT". $SPCT_Id .$fileExt[0]."." .$fileActualExt;
-                        $fileDestination = 'Public/ImageSPCT/'.$fileNameNew;
+                        $fileDestination = '/HT-Electronics/Public/ImageSPCT/'.$fileNameNew;
                         move_uploaded_file($fileTmpName, $fileDestination);
                         // Set status
                         $ImgName1 = $fileExt[0];

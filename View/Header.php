@@ -19,7 +19,7 @@
                     } else {
                         echo '<img class="header-content__link--img header-content__group-user" src="Public/ImageUser/profile'. $ImgCheckObj->getImgName() .'.'. $ImgCheckObj->getImgType().'">';
                     }
-            ?>
+                    ?>
                         <?php echo '<h1 class="header-content__link--username header-content__group-user">'.$_SESSION['UserName'].'</h1>'; ?>
                     </li>
                     

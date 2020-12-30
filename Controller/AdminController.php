@@ -3,16 +3,22 @@
     include_once './Model/QuerySP.php';
     include_once './Model//Khuyenmai.php';
     include_once './Model/NoiDungChiTietSP.php';
+    include_once './Model/Session.php';
     class AdminController {
         public function UploadTTSP($TenSPCT, $TenHMTDM, $DonGia, $SoLuong ,$ValueUpload) {
             if(isset($ValueUpload) == "SubmitTTSP") {
                 $SPCT = new SPCT($TenSPCT,$DonGia, $SoLuong, $TenHMTDM);
                 $SPCT->find_id();
+                $SanPhamSession = new Session();
                 if($SPCT->upload()) {
-                    header('Location: ./?Action=Admin&UploadTT=success');
+                    $SanPhamSession->SetSession("Upload_status", "Success upload");
+                    $SanPhamSession->SetSession("Upload_Code","success");
+                    header('Location: ./?Action=SanPhamAdmin');
                     exit();
                 } else {
-                    header('Location: ./?Action=Admin&UploadTT=failed');
+                    $SanPhamSession->SetSession("Upload_status", "Failed upload");
+                    $SanPhamSession->SetSession("Upload_Code","failed");
+                    header('Location: ./?Action=SanPhamAdmin');
                     exit();
                 }
             }
@@ -20,12 +26,17 @@
         public function UploadHinhAnh($TenSP, $ValueUpload, $File) {
             if(isset($ValueUpload) == "SubmitImageSanPham") {
                 $SPCT = new QuerySP();
+                $HinhAnHSession = new Session();
                 $SPCT->findIdForSPCT($TenSP);
                 if($SPCT->uploadImg($File)) {
-                    header("Location: ./?Action=Admin&UploadTT=success");
+                    $HinhAnHSession->SetSession("Status_HinhAnh", "Upload Success");
+                    $HinhAnHSession->SetSession("Status_Code", "success");
+                    header("Location: ./?Action=SanPhamAdmin");
                     exit();
                 } else {
-                    header("Location: ./?Action=Admin&UploadTT=failed");
+                    $HinhAnHSession->SetSession("Status_HinhAnh", "Upload Failed");
+                    $HinhAnHSession->SetSession("Status_Code", "failed");
+                    header("Location: ./?Action=SanPhamAdmin");
                     exit();
                 }
             }
@@ -34,11 +45,16 @@
         public function UploadStatusCuaSanPham($SPCT_Id, $Value, $ValueUpload) {
             $SPCT = new QuerySP();
             if(isset($ValueUpload) == "UpdateSPCTStt") {
+                $StatusSession = new Session();
                 if($SPCT->updateStatus($SPCT_Id, $Value)) {
-                    header("Location: ./?Action=Admin&UploadTT=success");
+                    $StatusSession->SetSession("Status", "Success");
+                    $StatusSession->SetSession("Status_Code", "success");
+                    header("Location: ./?Action=SanPhamAdmin");
                     exit();
                 } else {
-                    header("Location: ./?Action=Admin&UploadTT=failed");
+                    $StatusSession->SetSession("Status", "Failed");
+                    $StatusSession->SetSession("Status_Code", "failed");
+                    header("Location: ./?Action=SanPhamAdmin");
                     exit();
                 }
             }

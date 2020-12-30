@@ -2,6 +2,7 @@
     session_start();    
     include_once './Controller/LoginController.php';
     include_once './Controller/RegisterController.php';
+    include_once './Controller/AdminController.php';
     $actView = isset($_GET['Action']) ? $_GET['Action'] : "Home";
     switch ($actView) {
         case "Home": 
@@ -32,7 +33,24 @@
             include_once './Controller/Logout.php';
             break;
         case "Admin": 
-            include_once './Admin/DashboardAdmin.php';
+            include_once './Admin/Home.php';
+            break;
+        case "SanPhamAdmin": 
+            include_once './Admin/SanPhamContent.php';
+            break;
+        case "uploadhinhanhcuasanpham": 
+            $Image = $_FILES['file'];
+            $TenSP = $_POST['TenSP'];
+            $ValueSubmit = $_POST['SubmitHinhAnh'];    
+            $AdminController = new AdminController();
+            $AdminController->UploadHinhAnh($TenSP, $ValueSubmit, $Image);
+            break;
+        case "ActiveSP": 
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $Value = $_POST['Value'];
+            $ValueUpload = $_POST['Update'];
+            $AdminController = new AdminController();
+            $AdminController->UploadStatusCuaSanPham($SPCT_Id,$Value, $ValueUpload);
             break;
         case "Dell": 
             include_once './View/Dell/Laptop-Dell/laptop-dell.php';

@@ -93,7 +93,7 @@
                 if($fileError == 0) {
                     if($fileSize<1000000) {
                         $fileNameNew = "SPCT". $this->SPCT_Id['SPCT_Id'] .$fileExt[0]."." .$fileActualExt;
-                        $fileDestination = 'Public/ImageSPCT/'.$fileNameNew;
+                        $fileDestination = './Public/ImageSPCT/'.$fileNameNew;
                         move_uploaded_file($fileTmpName, $fileDestination);
                         // Set status
                         $ImgName1 = $fileExt[0];
