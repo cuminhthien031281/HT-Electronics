@@ -3,7 +3,7 @@
             <img src="Public/img/new.png" alt="Logo" class="header__logo">
         </div>
         <ul class="header-content u-center-text">
-            <li class="header-content__group"><a href="index.html" class="header-content__link header-content__link--home">Trang chủ</a></li>
+            <li class="header-content__group"><a href="?Action=Home" class="header-content__link header-content__link--home">Trang chủ</a></li>
             <li class="header-content__group"><a href="#" class="header-content__link">Sản phẩm</a></li>
             <?php 
                 if(isset($_SESSION['UserName'])) {
@@ -22,9 +22,14 @@
                     ?>
                         <?php echo '<h1 class="header-content__link--username header-content__group-user">'.$_SESSION['UserName'].'</h1>'; ?>
                     </li>
-                    
+                    <?php 
+                        $count= 0;
+                        if(isset($_SESSION['cart'])) {
+                            $count= count($_SESSION['cart']);
+                        }
+                    ?>
                     <li class="header-content__group header-content-cart">
-                        <a href="#" class="header-content__link"><i class="fas fa-shopping-cart header-content__link--cart"></i>giỏ hàng</a>
+                        <a href="?Action=GioHang" class="header-content__link"><i class="fas fa-shopping-cart header-content__link--cart"></i>giỏ hàng +<?php echo $count;?></a>
                     </li>
                     
                     <a href="?Action=Logout">Logout</a>

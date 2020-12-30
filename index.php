@@ -3,6 +3,7 @@
     include_once './Controller/LoginController.php';
     include_once './Controller/RegisterController.php';
     include_once './Controller/AdminController.php';
+    include_once './Controller/BuyProductController.php';
     $actView = isset($_GET['Action']) ? $_GET['Action'] : "Home";
     switch ($actView) {
         case "Home": 
@@ -89,6 +90,24 @@
             break;
         case "ChiTietSanPham": 
             include_once './View/DetailProduct.php';
+            break;
+        case "GioHang": 
+            include_once './View/MyCart.php';
+            break;
+        case "AddToCart": 
+            $Post = $_POST['ThemVaoGio'];
+            $id_sp = $_POST['id_sp'];
+            $ten_sp = $_POST['ten_sp'];
+            $gia_sp = $_POST['gia'];
+            $Quantity = $_POST['quantity_SP'];
+            $AddTocart = new BuyProductController();
+            $AddTocart->themVaoGioHang($Post, $id_sp, $gia_sp, $ten_sp, $Quantity);
+            break;
+        case "removeProduct":
+            $Post = $_POST['Remove_Item'];
+            $ten_sp = $_POST['ten_sp'];
+            $RemoveCart = new BuyProductController();
+            $RemoveCart->xoaGiohang($Post, $ten_sp);
             break;
         default: 
             break;

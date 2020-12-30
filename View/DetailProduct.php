@@ -116,13 +116,25 @@
                     </div>
                     <div class="detail-buy">
                         <label class="detail-buy__amount">Số lượng:</label>
-                        <button class="minus-btn disabled">-</button>
-                        <input type="text" value="1" id="quantity">
-                        <button class="plus-btn">+</button>
+                        <!-- Get quantity -->
+                        <form action="" method="GET">
+                            <button class="minus-btn disabled">-</button>
+                            <input type="text" value="1" id="quantity">
+                            <button class="plus-btn">+</button>
+                        </form>
+                        
                     </div>
                     <div class="detail-order">
                         <button type="submit" class="form__btn">Đặt hàng</button>
-                        <button type="submit" class="form__btn form__btn--add-to-card">Thêm vào giỏ hàng</button>
+                        <form action="?Action=AddToCart" method="post">
+                            
+                            <input type="number" name="quantity_SP" min="1" max="10" id="quantity">
+                            
+                            <input type="hidden" name="id_sp" value="<?php echo $SPCT_Id;?>">
+                            <input type="hidden" name="ten_sp" value="<?php echo $TenSPCT['TenSPCT'];?>">
+                            <input type="hidden" name="gia" value="<?php echo $GiaSPCT['DonGia'];?>">
+                            <button type="submit" name="ThemVaoGio" value="ThemSanPham" class="form__btn form__btn--add-to-card">Thêm vào giỏ hàng</button>
+                        </form>
                     </div>
                     <div class="description">
                         <h3 class="description__name">Mô tả sản phẩm</h3>
