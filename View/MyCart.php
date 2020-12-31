@@ -103,12 +103,12 @@
             <br>
             <form action="">
                 <div class="form-check">
-                    <input type="radio" class="form-check-input" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                    <input type="radio" class="form-check-input" name="flexRadioDefault" value="CashOnDelivery" id="flexRadioDefault2" checked>
                     <label for="flexRadioDefault2" class="form-check-label">
                         Cash On Delivery
                     </label>
 
-                    <input type="radio" class="form-check-input" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                    <input type="radio" class="form-check-input" name="flexRadioDefault" value="CashOnCard" id="flexRadioDefault2" checked>
                     <label for="flexRadioDefault2" class="form-check-label">
                         Cash On Card
                     </label>
