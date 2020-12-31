@@ -105,6 +105,24 @@
                 }
             }
         }
+
+        public function xoaSanPham($SPCT_Id, $ValueSubmit) {
+            $XoaSanPham = new QuerySP();
+            $XoaSanPhamSession = new Session();
+            if(isset($ValueSubmit)) {
+                if($XoaSanPham->xoaSanPham($SPCT_Id) == 1) {
+                    $XoaSanPhamSession->SetSession("Status", "Success");
+                    $XoaSanPhamSession->SetSession("Status_Code", "success");
+                    header("Location: ./?Action=SanPhamAdmin");
+                    exit();
+                } else {
+                    $XoaSanPhamSession->SetSession("Status", "Failed");
+                    $XoaSanPhamSession->SetSession("Status_Code", "failed");
+                    header("Location: ./?Action=SanPhamAdmin");
+                    exit();
+                }
+            }
+        }
     }
 
 ?>

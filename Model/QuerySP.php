@@ -112,6 +112,14 @@
                 }
             }
         }
+
+        public function xoaSanPham($SPCT_Id) {
+            $XoaSanPham = $this->_pdo->prepare("DELETE FROM sanphamchitietcuahang WHERE SPCT_Id = ?");
+            $XoaSanPham->bindParam(1, $SPCT_Id);
+            $XoaSanPham->execute();
+            $XoaSanPham->closeCursor();
+            return 1;
+        }
     }
 
 

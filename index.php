@@ -39,6 +39,15 @@
         case "SanPhamAdmin": 
             include_once './Admin/SanPhamContent.php';
             break;
+        case "uploadsanpham": 
+            $TenSPCT = $_POST['TenSPCT'];
+            $TenHMTDM = $_POST['TenHMTDM'];
+            $DonGia = $_POST['DonGia'];
+            $SoLuong = $_POST['SoLuong'];
+            $ValueSubmit = $_POST['SubmitTTSP'];
+            $AdminController = new AdminController();
+            $AdminController->UploadTTSP($TenSPCT, $TenHMTDM, $DonGia, $SoLuong, $ValueSubmit);
+            break;
         case "uploadhinhanhcuasanpham": 
             $Image = $_FILES['file'];
             $TenSP = $_POST['TenSP'];
@@ -52,6 +61,12 @@
             $ValueUpload = $_POST['Update'];
             $AdminController = new AdminController();
             $AdminController->UploadStatusCuaSanPham($SPCT_Id,$Value, $ValueUpload);
+            break;
+        case "RemoveSP": 
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $Value = $_POST['RemoveSP'];
+            $AdminController = new AdminController();
+            $AdminController->xoaSanPham($SPCT_Id, $Value);
             break;
         case "Dell": 
             include_once './View/Dell/Laptop-Dell/laptop-dell.php';

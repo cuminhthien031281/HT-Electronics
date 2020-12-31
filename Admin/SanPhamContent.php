@@ -2,8 +2,11 @@
 include_once 'SlideBar.php';
 include_once 'TopBar.php';
 include_once './Model/QuerySP.php';
+include_once './Model/DMSP.php';
 
 $SPCT = new QuerySP();
+$DMSP = new DMSP();
+$HMTDM = $DMSP->GetHMTDM();
 $SPCT->queryTableSPCT();
 $DisplaySPCT = $SPCT->getQuerySanPhamChiTiet();
 $SPCT->queryTableImageSPCT();
@@ -62,51 +65,37 @@ foreach ($ImageSPCT as $ImageSPCTs) {
                                 <td><?php echo $DisplaySPCTs['TenSPCT']; ?></td>
                                 <td><?php echo $DisplaySPCTs['DonGia']; ?></td>
                                 <td><?php echo $DisplaySPCTs['SoLuong']; ?></td>
+                                
                                 <?php
-
                                 if (in_array($DisplaySPCTs['SPCT_Id'], $ArrayImage)) {
+                                    
                                     foreach ($ImageSPCT as $ImageSPCTs) {
                                         if ($ImageSPCTs['SPCT_Id'] == $DisplaySPCTs['SPCT_Id']) {
                                 ?>
                                             <td><img style="width: 150px;" src="/HT-Electronics/Public/ImageSPCT/<?php echo $ImageSPCTs['Full']; ?>" alt="SPCT IMG"></td>
 
-                                    <?php
+                                <?php
                                         }
                                     }
-                                    ?>
+                                ?>
                                     <td>
-                                        <!--<form action="?Action=Admin&Actionsp=uploadhinhanhcuasanpham" method="POST" enctype="multipart/form-data">
-                                            <input type="hidden" name="TenSP" value="Echo">
+                                        <form action="?Action=uploadhinhanhcuasanpham" method="POST" enctype="multipart/form-data">
+                                            <input type="hidden" name="TenSP" value="<?php echo $DisplaySPCTs['TenSPCT']; ?>">
                                             <input type="file" name="file">
-                                            <button type="submit" name="SubmitHinhAnh" value="SubmitImageSanPham">Them Hinh anh</button>
-                                        </form>-->
-                                        
-                                                        <form action="?Action=uploadhinhanhcuasanpham" method="POST" enctype="multipart/form-data">
-                                                            <input type="hidden" name="TenSP" value="<?php echo $DisplaySPCTs['TenSPCT']; ?>">
-                                                            <input type="file" name="file">
-                                                            <button class="btn btn-success" type="submit" name="SubmitHinhAnh" value="SubmitImageSanPham" class="btn btn-success">Them Hinh anh</button>
-                                                        </form>
-                                                    
+                                            <button class="btn btn-success" type="submit" name="SubmitHinhAnh" value="SubmitImageSanPham" class="btn btn-success">Them Hinh anh</button>
+                                        </form>
                                     </td>
                                 <?php
                                 } else {
                                 ?>
                                     <td>Chua co hinh anh</td>
                                     <td>
-                                        <!--<form action="?Action=Admin&Actionsp=uploadhinhanhcuasanpham" method="POST" enctype="multipart/form-data">
-                                    <input type="hidden" name="TenSP" value="echo">
-                                    <input type="file" name="file">
-                                    <button type="submit" name="SubmitHinhAnh" value="SubmitImageSanPham">Them Hinh anh Moi</button>
-                                </form>-->
-                                        
-                                                        <form action="?Action=uploadhinhanhcuasanpham" method="POST" enctype="multipart/form-data">
-                                                            <input type="hidden" name="TenSP" value="<?php echo $DisplaySPCTs['TenSPCT']; ?>">
-                                                            <input type="file" name="file">
-                                                            <button class="btn btn-danger" type="submit" name="SubmitHinhAnh" value="SubmitImageSanPham" class="btn btn-success">Them Hinh anh</button>
-                                                        </form>
-                                                    
+                                        <form action="?Action=uploadhinhanhcuasanpham" method="POST" enctype="multipart/form-data">
+                                            <input type="hidden" name="TenSP" value="<?php echo $DisplaySPCTs['TenSPCT']; ?>">
+                                            <input type="file" name="file">
+                                            <button class="btn btn-danger" type="submit" name="SubmitHinhAnh" value="SubmitImageSanPham" class="btn btn-success">Them Hinh anh</button>
+                                        </form>       
                                     </td>
-
                                 <?php
                                 }
 
@@ -114,40 +103,31 @@ foreach ($ImageSPCT as $ImageSPCTs) {
                                 <?php if ($DisplaySPCTs['Status'] == 0) { ?>
                                     <td>Chua active</td>
                                     <td>
-                                        <!--<form action="?Action=Admin&Actionsp=activesp" method="POST">
-                            <input type="hidden" name="SPCT_Id" value="Echo">
-                            <input type="hidden" name="Value" value="1">
-                            <button type="submit" name="Update" value="UpdateSPCTStt">Active San pham</button>
-                        </form>-->
-                                        
-                                                        <form action="?Action=ActiveSP" method="POST">
-                                                            <input type="hidden" name="SPCT_Id" value="<?php echo $DisplaySPCTs['SPCT_Id'];?>">
-                                                            <input type="hidden" name="Value" value="1">
-                                                            <button class="btn btn-success" type="submit" name="Update" value="UpdateSPCTStt">Active San pham</button>
-                                                        </form>
-                                                    
+                                        <form action="?Action=ActiveSP" method="POST">
+                                            <input type="hidden" name="SPCT_Id" value="<?php echo $DisplaySPCTs['SPCT_Id'];?>">
+                                            <input type="hidden" name="Value" value="1">
+                                            <button class="btn btn-success" type="submit" name="Update" value="UpdateSPCTStt">Active San pham</button>
+                                        </form>
                                     </td>
 
                                 <?php } else { ?>
                                             <td>Da Active</td>
                                             <td>
-                                        <!--<form action="?Action=Admin&Actionsp=activesp" method="POST">
-                            <input type="hidden" name="SPCT_Id" value="Echo">
-                            <input type="hidden" name="Value" value="0">
-                            <button type="submit" name="Update" value="UpdateSPCTStt">Deactive San pham</button>
-                        </form>-->
-                                            
-
-                                                        
-                                                            <form action="?Action=ActiveSP" method="POST">
-                                                                <input type="hidden" name="SPCT_Id" value="<?php echo $DisplaySPCTs['SPCT_Id'];?>">
-                                                                <input type="hidden" name="Value" value="0">
-                                                                <button class="btn btn-danger" type="submit" name="Update" value="UpdateSPCTStt">DeActive San pham</button>
-                                                            </form>
-                                                        
+                                                <form action="?Action=ActiveSP" method="POST">
+                                                    <input type="hidden" name="SPCT_Id" value="<?php echo $DisplaySPCTs['SPCT_Id'];?>">
+                                                    <input type="hidden" name="Value" value="0">
+                                                    <button class="btn btn-danger" type="submit" name="Update" value="UpdateSPCTStt">DeActive San pham</button>
+                                                </form>
                                             </td>
                                 <?php } ?>
-                                <td><button class="btn btn-danger">Xoa san pham</button></td>
+                                <td>
+                                    <form action="?Action=RemoveSP" method="POST">
+                                        <input type="hidden" name="SPCT_Id" value="<?php echo $DisplaySPCTs['SPCT_Id'];?>">
+                                        <button class="btn btn-danger" type="submit" name="RemoveSP" value="Xoa">Xoa san pham</button>
+                                    </form>
+                                    
+                            
+                                </td>
                                 <td><button class="btn btn-warning">Chinh sua san pham</button></td>
                                 <td><button class="btn btn-success">Them thong tin ki thuat</button></td>
                                 <td><button class="btn btn-warning">Sua thong tin ki thuat</button></td>
@@ -170,8 +150,12 @@ foreach ($ImageSPCT as $ImageSPCTs) {
                                 <form action="?Action=uploadsanpham" method="POST">
                                     <h2>TenSPCT</h2>
                                     <input type="text" name="TenSPCT">
-                                    <h2>Ten Hang may tinh danh muc</h2>
-                                    <input type="text" name="TenHMTDM">
+                                    <h2>Hang may tinh danh muc</h2>
+                                    <select name="TenHMTDM">
+                                    <?php foreach($HMTDM as $HMTDMs) {?>
+                                            <option value="<?php echo $HMTDMs['TenHMTDM'];?>"><?php echo $HMTDMs['TenHMTDM'];?></option>
+                                    <?php } ?>
+                                    </select>
                                     <h2>Don gia</h2>
                                     <input type="number" name="DonGia">
                                     <h2>So luong</h2>
