@@ -88,8 +88,8 @@
                                 ";
                             
                             }
-                        }
                     ?>
+                    
 
                     
                 </tbody>
@@ -101,7 +101,7 @@
             <h4>Total: </h4>
             <h5 class="text-right"><?php echo $total;?></h5>
             <br>
-            <form action="">
+            <form action="?Action=Purchase_UI" method="post">
                 <div class="form-check">
                     <input type="radio" class="form-check-input" name="flexRadioDefault" value="CashOnDelivery" id="flexRadioDefault2" checked>
                     <label for="flexRadioDefault2" class="form-check-label">
@@ -114,11 +114,14 @@
                     </label>
                 </div>
                 <br>
-                <button class="btn btn-primary btn-block">Make purchase</button>
+                <button class="btn btn-primary btn-block" type="submit" name="MakePurchase" value="purchase">Make purchase</button>
             </form>
         </div>
         
     </div>
+    <?php
+        } 
+    ?>
 </div>
     
 <?php include_once 'EndHead.php';?>

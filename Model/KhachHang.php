@@ -7,10 +7,18 @@
         private $_imgName;
         private $_imgType;
         private $_resultUserReg;
-
+        private $_typeDelive;
         public function __construct()
         {
             parent::__construct();
+        }
+        //Set type delivery 
+        public function SetTypeDelive($typeDelive) {
+            $this->_typeDelive = $typeDelive;
+        }
+
+        public function GetTypeDelive() {
+            return $this->_typeDelive;
         }
         //Set $username.
         public function SetUsrName($Username) {

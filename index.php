@@ -109,6 +109,10 @@
             $RemoveCart = new BuyProductController();
             $RemoveCart->xoaGiohang($Post, $ten_sp);
             break;
+        case "Purchase_UI":
+            $_SESSION['Delivery_type'] = $_POST['flexRadioDefault'];
+            include_once './View/checkout.php';
+            break;
         default: 
             break;
     }

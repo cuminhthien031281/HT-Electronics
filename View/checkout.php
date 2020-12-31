@@ -72,7 +72,7 @@
                     <label for="fname">Card on delivery</label>
 
                     <label for="cdelivery">You choose card on delivery</label>
-                    <input type="text" id="cdelivery" name="cdelivery" value="Cash on delivery" readonly>
+                    <input type="text" id="cdelivery" name="cdelivery" value="<?php echo $_SESSION['Delivery_type'];?>" readonly>
                 <?php } ?>
             </div>
             <label><input type="checkbox" checked="checked" name="sameadr">Shipping address same as billing</label>
