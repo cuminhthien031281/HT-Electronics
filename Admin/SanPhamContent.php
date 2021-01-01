@@ -128,7 +128,34 @@ foreach ($ImageSPCT as $ImageSPCTs) {
                                     
                             
                                 </td>
-                                <td><button class="btn btn-warning">Chinh sua san pham</button></td>
+                                <td>
+                                    <!--<button class="btn btn-warning" data-toggle="modal" data-target="#ChinhSuaSanPham">Chinh sua san pham</button>
+                                    <div class="modal fade" role="dialog" id="ChinhSuaSanPham">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Chinh sua san pham</h3>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>-->
+                                
+                            <div class="modal-body">
+                                <form action="?Action=ChinhSuaSanPham" method="post">
+                                    <input type="hidden" name="SPCT_Id" value="<?php echo $DisplaySPCTs['SPCT_Id']?>">
+                                    <h2>Ten SPCT:</h2>
+                                    <input type="text" name="TenSPCT">
+                                    <h2>Don Gia:</h2>
+                                    <input type="number" name="DonGia">
+                                    <h2>So Luong:</h2>
+                                    <input type="number" name="SoLuong">
+                                    <button class="btn btn-warning" type="submit" name="chinhsua" value="chinhsua">Chinh sua san pham</button>
+                                </form>
+                            </div>
+                        <!--
+                        </div>
+                    </div>
+
+                </div>-->
+                                </td>
                                 <td><button class="btn btn-success">Them thong tin ki thuat</button></td>
                                 <td><button class="btn btn-warning">Sua thong tin ki thuat</button></td>
                             </tr>

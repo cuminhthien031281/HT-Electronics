@@ -41,7 +41,11 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Xử lý sản phẩm: </h6>
-            <a class="collapse-item" href="?Action=SanPhamAdmin">Sản phẩm</a>
+            <a class="collapse-item" href="?Action=SanPhamAdmin">Thêm, xóa, chỉnh sửa SP</a>
+            <a class="collapse-item" href="">Thêm, xóa, chỉnh sửa TTKT</a>
+            <a class="collapse-item" href="">Thêm, xóa, chỉnh sửa TTCT</a>
+            <a class="collapse-item" href="">Hiển thị sản phẩm </a>
+            
           </div>
         </div>
       </li>
@@ -55,8 +59,8 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Xử lý khuyến mãi: </h6>
-            <a class="collapse-item" href="utilities-color.html">Thêm khuyến mãi mới</a>
-            <a class="collapse-item" href="utilities-border.html">Khuyến mãi cho sản phẩm</a>
+            <a class="collapse-item" href="utilities-color.html">Thêm, xóa, sửa khuyến mãi</a>
+            <a class="collapse-item" href="utilities-border.html">Áp dụng khuyến mãi</a>
           </div>
         </div>
       </li>
@@ -76,18 +80,19 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBinhLuan" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
-          <span>Quản lý bình luận, đánh giá</span>
+          <span>Xem, xóa bình luận</span>
         </a>
-        <div id="collapseBinhLuan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Xử lý bình luận, đánh giá: </h6>
-            <a class="collapse-item" href="utilities-color.html">Xem bình luận</a>
-            <a class="collapse-item" href="utilities-color.html">Xem đánh giá</a>
+      </li>
 
-          </div>
-        </div>
+      
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse"  aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Xem, xóa đánh giá</span>
+        </a>
       </li>
 
       <li class="nav-item">
@@ -95,6 +100,19 @@
           <i class="fas fa-fw fa-wrench"></i>
           <span>Hỗ trợ khách hàng</span>
         </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseQuangCao" aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Quản lý quảng cáo</span>
+        </a>
+        <div id="collapseQuangCao" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Xử lý đơn hàng: </h6>
+            <a class="collapse-item" href="utilities-color.html">Xem và duyệt đơn</a>
+          </div>
+        </div>
       </li>
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">

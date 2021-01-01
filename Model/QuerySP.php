@@ -120,6 +120,21 @@
             $XoaSanPham->closeCursor();
             return 1;
         }
+
+        public function updateSP($SPCT_Id, $TenSPCT, $DonGia, $SoLuong) {
+            $UpdateSP = $this->_pdo->prepare("UPDATE sanphamchitietcuahang SET TenSPCT = ?, DonGia = ?, SoLuong = ? WHERE SPCT_Id = ?");
+            $UpdateSP->bindParam(1, $TenSPCT);
+            $UpdateSP->bindParam(2, $DonGia);
+            $UpdateSP->bindParam(3, $SoLuong);
+            $UpdateSP->bindParam(4, $SPCT_Id);
+            if($UpdateSP->execute()) {
+                return 1;
+            } else {
+                return 0;
+            }
+            $UpdateSP->closeCursor();
+            
+        }
     }
 
 

@@ -37,7 +37,10 @@
             include_once './Admin/Home.php';
             break;
         case "SanPhamAdmin": 
-            include_once './Admin/SanPhamContent.php';
+            include_once './Admin/QuanLySanPham/ThemXoaChinhSuaSP.php';
+            break;
+        case "ChinhSuaSanPham_UI": 
+            include_once './Admin/QuanLySanPham/ChinhSuaSanPhamUI.php';
             break;
         case "uploadsanpham": 
             $TenSPCT = $_POST['TenSPCT'];
@@ -67,6 +70,15 @@
             $Value = $_POST['RemoveSP'];
             $AdminController = new AdminController();
             $AdminController->xoaSanPham($SPCT_Id, $Value);
+            break;
+        case "ChinhSuaSanPham": 
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $TenSPCT = $_POST['TenSPCT'];
+            $DonGia = $_POST['DonGia'];
+            $SoLuong = $_POST['SoLuong'];
+            $ValueSubmit = $_POST['chinhsua'];
+            $AdminController = new AdminController();
+            $AdminController->updateThongTinSanPham($SPCT_Id, $TenSPCT, $SoLuong, $DonGia,$ValueSubmit);
             break;
         case "Dell": 
             include_once './View/Dell/Laptop-Dell/laptop-dell.php';

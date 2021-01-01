@@ -1,14 +1,18 @@
 <?php 
-            include_once './Model/QuerySP.php';
-            $SPCT_Id = $_POST['SPCT_Id'];
-            $Value = $_POST['RemoveSP'];
-            $querySP = new QuerySP();
+        include_once './Model/QuerySP.php';
+        $SPCT_Id = $_POST['SPCT_Id'];
+        $TenSPCT = $_POST['TenSPCT'];
+        $DonGia = $_POST['DonGia'];
+        $SoLuong = $_POST['SoLuong'];
+
+        print_r($_POST);
+        //$QuerySP = new QuerySP();
+        //if($QuerySP->updateSP($SPCT_Id, $TenSPCT, $DonGia, $SoLuong) == 1) {
+            //echo "success";
+        //} else {
+            //echo "failed";
+        //}
             
-            if($querySP->xoaSanPham($SPCT_Id) == 1) {
-                echo "success";
-            } else {
-                echo "failed";
-            }
             
 
 ?>

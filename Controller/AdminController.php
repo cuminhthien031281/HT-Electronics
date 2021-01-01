@@ -123,6 +123,24 @@
                 }
             }
         }
+
+        public function updateThongTinSanPham($SPCT_Id, $TenSPCT, $SoLuong, $DonGia, $ValueSubmit) {
+            $UpdateThongTin = new QuerySP();
+            $UpdateThongTinSession = new Session();
+            if(isset($ValueSubmit)) {
+                if($UpdateThongTin->updateSP($SPCT_Id, $TenSPCT, $DonGia, $SoLuong) == 1) {
+                    $UpdateThongTinSession->SetSession("Status", "Success");
+                    $UpdateThongTinSession->SetSession("Status_Code", "success");
+                    header("Location: ./?Action=SanPhamAdmin");
+                    exit();
+                } else {
+                    $UpdateThongTinSession->SetSession("Status", "Failed");
+                    $UpdateThongTinSession->SetSession("Status_Code", "failed");
+                    header("Location: ./?Action=SanPhamAdmin");
+                    exit();
+                }
+            }
+        }
     }
 
 ?>
