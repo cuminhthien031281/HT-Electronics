@@ -39,7 +39,7 @@
         }
 
         public function xoaGiohang($Post, $ten_sp) {
-            if(isset($_POST[$Post])) {
+            if(isset($Post)) {
                 foreach($_SESSION['cart'] as $key=>$value) {
                     if($value['ten_sp'] == $ten_sp) {
                         unset($_SESSION['cart'][$key]);
@@ -55,7 +55,7 @@
 
         public function muahang($Post, $type_delivery) {
             $SessionDelivery = new Session();
-            if(isset($_POST[$Post])) {
+            if(isset($Post)) {
                 $SessionDelivery->SetSession("Delivery_type", $type_delivery);
                 echo "<script>
                     window.location.href='/HT-Electronics/?Action=Purchase_UI';
