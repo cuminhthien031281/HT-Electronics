@@ -80,6 +80,90 @@
             $AdminController = new AdminController();
             $AdminController->updateThongTinSanPham($SPCT_Id, $TenSPCT, $SoLuong, $DonGia,$ValueSubmit);
             break;
+        case "ThemXoaChinhSuaTTCT": 
+            include_once './Admin/QuanLySanPham/ThemXoaChinhSuaTTCT.php';
+            break;
+        case "ThemThongTin":
+            include_once './Admin/QuanLySanPham/ThemThongTin.php';
+            break;
+        case "ThemThongTinSanPham": 
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $Hang = $_POST['Hang'];
+            $HeDieuHanh = $_POST['HeDieuhanh'];
+            $Chip = $_POST['Chip'];
+            $ManHinh = $_POST['ManHinh'];
+            $Ram = $_POST['Ram'];
+            $ValueSubmit = $_POST['themthongtin'];
+            $ThemThongTinSanPham = new AdminController();
+            $ThemThongTinSanPham->uploadThongTinSP($SPCT_Id, $Hang, $HeDieuHanh, $Chip, $ManHinh, $Ram, $ValueSubmit);
+            break;
+        case "ThemXoaChinhSuaND":
+            include_once './Admin/QuanLySanPham/ThemXoaChinhSuaNoiDung.php'; 
+            break;
+        case "ThemNoiDung": 
+            include_once './Admin/QuanLySanPham/ThemNoiDungUI.php';
+            break;
+        case "ThemNoiDungSP": 
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $NoiDung_1 = $_POST['NoiDung_1'];
+            $NoiDung_2 = $_POST['NoiDung_2'];
+            $NoiDung_3 = $_POST['NoiDung_3'];
+            $NoiDung_4 = $_POST['NoiDung_4'];
+            $ValueSubmit = $_POST['themnoidung'];
+            $AdminController = new AdminController();
+            $AdminController->themNoiDungSP($SPCT_Id, $NoiDung_1, $NoiDung_2, $NoiDung_3, $NoiDung_4, $ValueSubmit);
+            break;
+        case "XoaNoiDung":
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $ValueSubmit = $_POST['xoanoidung'];
+            $AdminController = new AdminController();
+            $AdminController->xoaNoiDungSP($SPCT_Id, $ValueSubmit);
+            break;
+        case "ChinhSuaNoiDung":
+            include_once './Admin/QuanLySanPham/SuaNoiDungUI.php';
+            break;
+        case "SuaNoiDungSP": 
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $NoiDung_1 = $_POST['NoiDung_1'];
+            $NoiDung_2 = $_POST['NoiDung_2'];
+            $NoiDung_3 = $_POST['NoiDung_3'];
+            $NoiDung_4 = $_POST['NoiDung_4'];
+            $ValueSubmit = $_POST['suanoidung'];
+            $AdminController = new AdminController();
+            $AdminController->suaNoiDungSP($SPCT_Id, $NoiDung_1, $NoiDung_2, $NoiDung_3, $NoiDung_4, $ValueSubmit);
+            break;
+        case "ThemXoaSuaKhuyenMai":
+            include_once './Admin/KhuyenMai/ThemXoaSuaKM.php'; 
+            break;
+        case "ChinhSuaKhuyenMai_UI": 
+            include_once './Admin/KhuyenMai/SuaKhuyenMai.php';
+            break;
+        case "SuaKhuyenMai":
+            $KhuyenMai_Id = $_POST['KhuyenMai_Id'];
+            $LoaiKhuyenMai = $_POST['LoaiKhuyenMai'];
+            $PhanTramKhuyenMai = $_POST['PhanTramKhuyenMai'];
+            $ValueSubmit = $_POST['suakhuyenmai'];
+            $AdminController = new AdminController();
+            $AdminController->suaChuongTrinhKM($KhuyenMai_Id, $LoaiKhuyenMai, $PhanTramKhuyenMai, $ValueSubmit);
+            break;
+        case "XoaKhuyenMai": 
+            $KhuyenMai_Id = $_POST['KhuyenMai_Id'];
+            $ValueSubmit = $_POST['xoakhuyenmai'];
+            $AdminController = new AdminController();
+            $AdminController->xoaChuongTrinhKM($KhuyenMai_Id, $ValueSubmit);
+            break;
+        case "ThemKhuyenMai_UI": 
+            include_once './Admin/KhuyenMai/ThemKhuyenMai.php';
+            break;
+        case "ThemKhuyenMai":
+            $LoaiKhuyenMai = $_POST['LoaiKhuyenMai'];
+            $PhanTramKhuyenMai = $_POST['PhanTramKhuyenMai'];
+            $ValueSubmit = $_POST['themkhuyenmai'];
+            $AdminController = new AdminController();
+            break;
+        case "HienThiSanPham": 
+            include_once './Admin/QuanLySanPham/HienThiSP.php';
+            break;
         case "Dell": 
             include_once './View/Dell/Laptop-Dell/laptop-dell.php';
             break;

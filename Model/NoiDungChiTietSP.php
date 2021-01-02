@@ -72,6 +72,47 @@
             $HienThiGiaSPCT->closeCursor();
             return $StoreValue;
         }
+
+        public function themNoiDungTheoID($SPCT_Id, $NoiDung_1, $NoiDung_2, $NoiDung_3, $NoiDung_4) {
+            $ThemNoiDungTheoId = $this->_pdo->prepare("INSERT INTO noidungtheoid(SPCT_Id, NoiDung_1, NoiDung_2, NoiDung_3, NoiDung_4) VALUES (?, ?, ?, ?, ?)");
+            $ThemNoiDungTheoId->bindParam(1, $SPCT_Id);
+            $ThemNoiDungTheoId->bindParam(2, $NoiDung_1);
+            $ThemNoiDungTheoId->bindParam(3, $NoiDung_2);
+            $ThemNoiDungTheoId->bindParam(4, $NoiDung_3);
+            $ThemNoiDungTheoId->bindParam(5, $NoiDung_4);
+            $ThemNoiDungTheoId->execute();
+            $ThemNoiDungTheoId->closeCursor();
+            return 1;
+        }
+
+        public function getNoiDungTheoID($SPCT_Id) {
+            $GetNoiDungTheoID = $this->_pdo->prepare("SELECT * FROM noidungtheoid WHERE SPCT_Id = ?");
+            $GetNoiDungTheoID->bindParam(1, $SPCT_Id);
+            $GetNoiDungTheoID->execute();
+            $StoreValue = $GetNoiDungTheoID->fetch();
+            $GetNoiDungTheoID->closeCursor();
+            return $StoreValue;
+        }
+
+        public function xoaNoiDungSP($SPCT_Id) {
+            $XoaSanPham = $this->_pdo->prepare("DELETE FROM noidungtheoid WHERE SPCT_Id = ?");
+            $XoaSanPham->bindParam(1, $SPCT_Id);
+            $XoaSanPham->execute();
+            $XoaSanPham->closeCursor();
+            return 1;
+        }
+
+        public function suaNoiDungSP($SPCT_Id, $NoiDung_1, $NoiDung_2, $NoiDung_3, $NoiDung_4) {
+            $suaNoiDungSP = $this->_pdo->prepare("UPDATE noidungtheoid SET NoiDung_1 = ?, NoiDung_2 = ?, NoiDung_3 = ?, NoiDung_4 = ? WHERE SPCT_Id = ?");
+            $suaNoiDungSP->bindParam(1, $NoiDung_1);
+            $suaNoiDungSP->bindParam(2, $NoiDung_2);
+            $suaNoiDungSP->bindParam(3, $NoiDung_3);
+            $suaNoiDungSP->bindParam(4, $NoiDung_4);
+            $suaNoiDungSP->bindParam(5, $SPCT_Id);
+            $suaNoiDungSP->execute();
+            $suaNoiDungSP->closeCursor();
+            return 1;
+        }
     }
 
 ?>

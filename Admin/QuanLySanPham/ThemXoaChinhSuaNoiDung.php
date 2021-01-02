@@ -2,12 +2,13 @@
     include_once './Admin/Head.php';
     include_once './Admin/SlideBar.php';
     include_once './Admin/TopBar.php';
+    include_once './Model/NoiDungChiTietSP.php';
     include_once './Model/QuerySP.php';
     include_once './Model/DMSP.php';
-    include_once './Model/NoiDungChiTietSP.php';
+
     $SPCT = new QuerySP();
     $DMSP = new DMSP();
-    $NoiDungChiTietSP = new NoiDungChiTiet();
+    $ThongTinchiTiet = new NoiDungChiTiet();
     $HMTDM = $DMSP->GetHMTDM();
     $SPCT->queryTableSPCT();
     $DisplaySPCT = $SPCT->getQuerySanPhamChiTiet();
@@ -17,14 +18,17 @@
     foreach ($ImageSPCT as $ImageSPCTs) {
         $ArrayImage[] = $ImageSPCTs['SPCT_Id'];
     }
+    
+    
 ?>
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page heading -->
-    <h1 class="h3 mb-2 text-gray-800">Thông tin chi tiết của sản phẩm</h1>
+    <h1 class="h3 mb-2 text-gray-800">Nội dung</h1>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            Thêm, xóa, chỉnh sửa thông tin chi tiết
+            Thêm, xóa, chỉnh sửa nội dung
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -33,26 +37,24 @@
                         <tr>
                             <th>Tên sản phẩm</th>
                             <th>Hình ảnh</th>
-                            <th>Hãng</th>
-                            <th>Hệ điều hành</th>
-                            <th>Chip</th>
-                            <th>Màn hình</th>
-                            <th>Ram</th>
-                            <th>Chỉnh sửa thông tin</th>
-                            <th>Xóa thông tin</th>
+                            <th>Nội dung 1</th>
+                            <th>Nội dung 2</th>
+                            <th>Nội dung 3</th>
+                            <th>Nội dung 4</th>
+                            <th>hành động </th>
+                            <th>Xóa nội dung</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Tên sản phẩm</th>
                             <th>Hình ảnh</th>
-                            <th>Hãng</th>
-                            <th>Hệ điều hành</th>
-                            <th>Chip</th>
-                            <th>Màn hình</th>
-                            <th>Ram</th>
-                            <th>Chỉnh sửa thông tin</th>
-                            <th>Xóa thông tin</th>
+                            <th>Nội dung 1</th>
+                            <th>Nội dung 2</th>
+                            <th>Nội dung 3</th>
+                            <th>Nội dung 4</th>
+                            <th>hành động </th>
+                            <th>Xóa nội dung</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -78,35 +80,34 @@
                                       }
                         ?>
                         <?php 
-                                    $NoiDungQuery = $NoiDungChiTietSP->HienThiNoiDungSPCT($DisplaySPCTs['SPCT_Id']);
+                                    $NoiDungQuery = $ThongTinchiTiet->getNoiDungTheoID($DisplaySPCTs['SPCT_Id']);
                                     if(!$NoiDungQuery) {
                         ?>
                                         <td>Chưa có</td>
                                         <td>Chưa có</td>
                                         <td>Chưa có</td>
                                         <td>Chưa có</td>
-                                        <td>Chưa có</td>
+                                        
                                         <!-- Hiển thị form thêm thông tin và get Id của sản phẩm -->
-                                        <td><a href="?Action=ThemThongTin&Id=<?php echo $DisplaySPCTs['SPCT_Id'];?>"><button class="btn btn-success">Thêm thông tin</button></a></td>
+                                        <td><a href="?Action=ThemNoiDung&Id=<?php echo $DisplaySPCTs['SPCT_Id'];?>"><button class="btn btn-success">Thêm nội dung</button></a></td>
                                         
                         <?php
                                     } else {
                         ?>
 
-                                        <td><?php echo $NoiDungQuery['Hang']; ?></td>
-                                        <td><?php echo $NoiDungQuery['HeDieuHanh']; ?></td>
-                                        <td><?php echo $NoiDungQuery['Chip']; ?></td>
-                                        <td><?php echo $NoiDungQuery['ManHinh']; ?></td>
-                                        <td><?php echo $NoiDungQuery['Ram']; ?></td>
+                                        <td><?php echo $NoiDungQuery['NoiDung_1']; ?></td>
+                                        <td><?php echo $NoiDungQuery['NoiDung_2']; ?></td>
+                                        <td><?php echo $NoiDungQuery['NoiDung_3']; ?></td>
+                                        <td><?php echo $NoiDungQuery['NoiDung_4']; ?></td>
                                         <!-- Hien thi form chỉnh sửa thông tin và get Id của sản phẩm -->
-                                        <td><a href="?Action=ChinhSuaThongTin&Id=<?php echo $DisplaySPCTs['SPCT_Id'];?>"><button class="btn btn-warning">Sửa thông tin</button></a></td>
+                                        <td><a href="?Action=ChinhSuaNoiDung&Id=<?php echo $DisplaySPCTs['SPCT_Id'];?>"><button class="btn btn-warning">Sửa nội dung</button></a></td>
                         <?php 
                                     }
                         ?>
                                         <td>
-                                            <form action="?Action=XoaThongTin" method="post">
+                                            <form action="?Action=XoaNoiDung" method="post">
                                                 <input type="hidden" name="SPCT_Id" value="<?php echo $DisplaySPCTs['SPCT_Id'];?>">
-                                                <button class="btn btn-danger"type="submit" name="xoathongtin" value="xoathongtin">Xóa thông tin</button>
+                                                <button class="btn btn-danger"type="submit" name="xoanoidung" value="xoanoidung">Xóa nội dung</button>
                                             </form>
                                         </td>      
                             </tr>

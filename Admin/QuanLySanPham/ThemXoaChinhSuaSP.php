@@ -56,14 +56,16 @@
                                 <td><?php echo $DisplaySPCTs['TenSPCT']; ?></td>
                                 <td><?php echo $DisplaySPCTs['DonGia']; ?></td>
                                 <td><?php echo $DisplaySPCTs['SoLuong']; ?></td>
+                                <td>
                                 <?php if(in_array($DisplaySPCTs['SPCT_Id'], $ArrayImage)) {
                                         foreach ($ImageSPCT as $ImageSPCTs) {
                                             if ($ImageSPCTs['SPCT_Id'] == $DisplaySPCTs['SPCT_Id']) {
                                 ?>
-                                                <td><img style="width: 150px;" src="/HT-Electronics/Public/ImageSPCT/<?php echo $ImageSPCTs['Full']; ?>" alt="SPCT IMG"></td>
+                                                <img style="width: 150px;" src="/HT-Electronics/Public/ImageSPCT/<?php echo $ImageSPCTs['Full']; ?>" alt="SPCT IMG">
                                 <?php       } 
                                         } //End for each $ImageSPCT
                                 ?>
+                                </td>
                                         <td>
                                             <form action="?Action=uploadhinhanhcuasanpham" method="POST" enctype="multipart/form-data">
                                                 <input type="hidden" name="TenSP" value="<?php echo $DisplaySPCTs['TenSPCT']; ?>">

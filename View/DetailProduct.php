@@ -114,16 +114,7 @@
                         <del class="detail-price__old">13,540,00đ</del>
                         <div class="detail-price__promotional" id="price"><?php echo $GiaSPCT['DonGia'];?></div>
                     </div>
-                    <div class="detail-buy">
-                        <label class="detail-buy__amount">Số lượng:</label>
-                        <!-- Get quantity -->
-                        <form action="" method="GET">
-                            <button class="minus-btn disabled">-</button>
-                            <input type="text" value="1" id="quantity">
-                            <button class="plus-btn">+</button>
-                        </form>
-                        
-                    </div>
+                    
                     <div class="detail-order">
                         <button type="submit" class="form__btn">Đặt hàng</button>
                         <form action="?Action=AddToCart" method="post">
@@ -136,16 +127,18 @@
                             <button type="submit" name="ThemVaoGio" value="ThemSanPham" class="form__btn form__btn--add-to-card">Thêm vào giỏ hàng</button>
                         </form>
                     </div>
+                    <?php $NoiDungTheoID = $NoiDungSP->getNoiDungTheoID($SPCT_Id)?>
                     <div class="description">
                         <h3 class="description__name">Mô tả sản phẩm</h3>
                         <ul class="description-product">
-                            <li class="description-product__list">Bộ xử lý Intel Core i5-9300H thế hệ thứ 9 mạnh mẽ @ 2,40GHz (4 lõi, 8M bộ nhớ đệm, tối đa 4,10 GHz), với nền tảng điện áp cực thấp và xử lý lõi tứ, tám hướng, cung cấp năng lượng hiệu quả cao tối đa để đi. Công nghệ Intel Turbo
-                                Boost cung cấp thêm năng lượng động khi bạn cần.</li>
-                            <li class="description-product__list">15,6 inch FHD (1920 x 1080) Đèn nền LED chống lóa không cảm ứng Màn hình WVA Viền hẹp có màu sắc và độ rõ nét ấn tượng. Đồ họa NVIDIA GeForce GTX 1660 Ti được hỗ trợ bởi bộ nhớ video 6GB GDDR6 chuyên dụng cho GPU tiên tiến,
-                                cực nhanh để cung cấp năng lượng cho các trò chơi của bạn.</li>
-                            <li class="description-product__list">Bộ nhớ DDR4 8GB 2666MHz cho đa nhiệm toàn năng; 512GB M.2 NVMe PCIe SSD cho hiệu suất nhanh hơn và độ tin cậy tốt hơn; Ổ cứng SSD Pci-e rất phù hợp cho các ứng dụng chơi game lớn, nhiều máy chủ, sao lưu hàng ngày, v.v.</li>
-                            <li class="description-product__list">802.11 Wireless-AC + Bluetooth, 1 x USB 3.0, 2 x USB 2.0, 1 x HDMI</li>
-                            <li class="description-product__list">Windows 10 Home 64-bit; backlit keyboard for easy typing in dim or dark locations.Windows 10 Home 64-bit; bàn phím có đèn nền để dễ dàng đánh máy ở những vị trí mờ hoặc tối.</li>
+                            <?php if(!$NoiDungTheoID) {?>
+                                <li class="description-product__list">Không có mô tả sản phẩm </li>
+                            <?php } else { ?>
+                                <li class="description-product__list"><?php echo $NoiDungTheoID['NoiDung_1'];?></li>
+                                <li class="description-product__list"><?php echo $NoiDungTheoID['NoiDung_2'];?></li>
+                                <li class="description-product__list"><?php echo $NoiDungTheoID['NoiDung_3'];?></li>
+                                <li class="description-product__list"><?php echo $NoiDungTheoID['NoiDung_4'];?></li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>

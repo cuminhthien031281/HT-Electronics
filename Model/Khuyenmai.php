@@ -24,7 +24,7 @@
             $InsertTableChuongTrinhKhuyenMai->bindParam(2, $this->PhanTramKhuyenMai);
             $InsertTableChuongTrinhKhuyenMai->execute();
             $InsertTableChuongTrinhKhuyenMai->closeCursor();
-            return 1;
+            return $InsertTableChuongTrinhKhuyenMai;
         }
         //Tim kiem trong apdung khuyen mai table
         public function find_SPCTID_TrongApDungKhuyenMai($SPCT_Id) {
@@ -62,6 +62,33 @@
             $ApDungKhuyenMaiChoSanPham->execute();
             $ApDungKhuyenMaiChoSanPham->closeCursor();
             return 1;
+        }
+
+        public function queryChuongTrinhKhuyenMai() {
+            $QueryChuongTrinhKhuyenmai = $this->_pdo->prepare("SELECT * FROM chuongtrinhkhuyenmai");
+            $QueryChuongTrinhKhuyenmai->execute();
+            $Storevalue = $QueryChuongTrinhKhuyenmai->fetchAll();
+            $QueryChuongTrinhKhuyenmai->closeCursor();
+            return $Storevalue;
+        }
+
+        public function suaChuongTrinhKhuyenMai($KhuyenMaiId, $LoaiKhuyenMai, $PhanTramKhuyenMai) {
+            $SuaChuongTrinhKhuyenMai = $this->_pdo->prepare("UPDATE chuongtrinhkhuyenmai(LoaiKhuyenMai, PhanTramKhuyenMai) VALUES(?, ?) WHERE KhuyenMai_Id = ?");
+            $SuaChuongTrinhKhuyenMai->bindParam(1, $LoaiKhuyenMai);
+            $SuaChuongTrinhKhuyenMai->bindParam(2, $PhanTramKhuyenMai);
+            $SuaChuongTrinhKhuyenMai->bindParam(3, $KhuyenMaiId);
+            $SuaChuongTrinhKhuyenMai->execute();
+            $SuaChuongTrinhKhuyenMai->closeCursor();
+            return $SuaChuongTrinhKhuyenMai;
+            
+        }
+
+        public function xoaChuongTrinhKhuyenMai($KhuyenMai_Id) {
+            $XoaKhuyenMai = $this->_pdo->prepare("DELETE FROM chuongtrinhkhuyenmai WHERE KhuyenMai_Id = ?");
+            $XoaKhuyenMai->bindParam(1, $KhuyenMai_Id);
+            $XoaKhuyenMai->execute();
+            $XoaKhuyenMai->closeCursor();
+            return $XoaKhuyenMai;
         }
 
     }

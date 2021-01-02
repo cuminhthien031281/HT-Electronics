@@ -42,9 +42,9 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Xử lý sản phẩm: </h6>
             <a class="collapse-item" href="?Action=SanPhamAdmin">Thêm, xóa, chỉnh sửa SP</a>
-            <a class="collapse-item" href="">Thêm, xóa, chỉnh sửa TTKT</a>
-            <a class="collapse-item" href="">Thêm, xóa, chỉnh sửa TTCT</a>
-            <a class="collapse-item" href="">Hiển thị sản phẩm </a>
+            <a class="collapse-item" href="?Action=ThemXoaChinhSuaTTCT">Thêm, chỉnh sửa TTCT</a>
+            <a class="collapse-item" href="?Action=ThemXoaChinhSuaND">Thêm, xóa, chỉnh sửa nội dung</a>
+            <a class="collapse-item" href="?Action=HienThiSanPham">Hiển thị sản phẩm</a>
             
           </div>
         </div>
@@ -59,7 +59,7 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Xử lý khuyến mãi: </h6>
-            <a class="collapse-item" href="utilities-color.html">Thêm, xóa, sửa khuyến mãi</a>
+            <a class="collapse-item" href="?Action=ThemXoaSuaKhuyenMai">Thêm, xóa, sửa khuyến mãi</a>
             <a class="collapse-item" href="utilities-border.html">Áp dụng khuyến mãi</a>
           </div>
         </div>

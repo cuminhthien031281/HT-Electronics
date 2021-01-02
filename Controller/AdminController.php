@@ -4,6 +4,7 @@
     include_once './Model//Khuyenmai.php';
     include_once './Model/NoiDungChiTietSP.php';
     include_once './Model/Session.php';
+
     class AdminController {
         public function UploadTTSP($TenSPCT, $TenHMTDM, $DonGia, $SoLuong ,$ValueUpload) {
             if(isset($ValueUpload) == "SubmitTTSP") {
@@ -49,12 +50,12 @@
                 if($SPCT->updateStatus($SPCT_Id, $Value)) {
                     $StatusSession->SetSession("Status", "Success");
                     $StatusSession->SetSession("Status_Code", "success");
-                    header("Location: ./?Action=SanPhamAdmin");
+                    header("Location: ./?Action=HienThiSanPham");
                     exit();
                 } else {
                     $StatusSession->SetSession("Status", "Failed");
                     $StatusSession->SetSession("Status_Code", "failed");
-                    header("Location: ./?Action=SanPhamAdmin");
+                    header("Location: ./?Action=HienThiSanPham");
                     exit();
                 }
             }
@@ -62,14 +63,19 @@
 
         public function UploadTTKhuyenMai($LoaiKhuyenMai, $PhanTramKhuyenMai, $ValueUpload) {
             $ChuongTrinhKhuyenMai = new KhuyenMai();
+            $ChuongTrinhKhuyenMaiSession = new Session();
             $ChuongTrinhKhuyenMai->setLoaiKhuyenMai($LoaiKhuyenMai);
             $ChuongTrinhKhuyenMai->setPhanTramKhuyenMai($PhanTramKhuyenMai);
-            if(isset($ValueUpload) == "SubmitTTKM") {
+            if(isset($ValueUpload)) {
                 if($ChuongTrinhKhuyenMai->InsertChuongTrinhKhuyenMai()) {
-                    header("Location: ./?Action=Admin&UploadTT=success");
+                    $ChuongTrinhKhuyenMaiSession->SetSession("Status", "Success");
+                    $ChuongTrinhKhuyenMaiSession->SetSession("Status_Code", "success");
+                    header("Location: ./?Action=ThemXoaSuaKhuyenMai");
                     exit();
                 } else {
-                    header("Location: ./?Action=Admin&UploadTT=failed");
+                    $ChuongTrinhKhuyenMaiSession->SetSession("Status", "Failed");
+                    $ChuongTrinhKhuyenMaiSession->SetSession("Status_Code", "failed");
+                    header("Location: ./?Action=ThemXoaSuaKhuyenMai");
                     exit();
                 }
             }
@@ -88,22 +94,22 @@
                 }
             }
         }
-        public function uploadThongTinSP($TenSP, $Hang, $HeDieuHanh, $Chip, $ManHinh, $Ram, $ValueUpload) {
+        public function uploadThongTinSP($SPCT_Id, $Hang, $HeDieuHanh, $Chip, $ManHinh, $Ram, $ValueUpload) {
             $NoiDungChiTiet = new NoiDungChiTiet();
-            $NoiDungChiTiet->timSPCTId($TenSP);
-            $SPCT_Id = $NoiDungChiTiet->getSPCT_Id();
-            $RowCount = $NoiDungChiTiet->getRowCount();
-            if($RowCount > 0) {
-                if(isset($ValueUpload) == "SubmitThongSoKiThuat") {
-                    if($NoiDungChiTiet->themVaoBangNoiDungSPCT($SPCT_Id, $Hang, $HeDieuHanh, $Chip, $ManHinh, $Ram)) {
-                        header("Location: ./?Action=Admin&UploadTT=success");
+            $NoiDungChiTietSession = new Session();
+                if(isset($ValueUpload)) {
+                    if($NoiDungChiTiet->themVaoBangNoiDungSPCT($SPCT_Id, $Hang, $HeDieuHanh, $Chip, $ManHinh, $Ram) == 1) {
+                        $NoiDungChiTietSession->SetSession("Status", "Success");
+                        $NoiDungChiTietSession->SetSession("Status_Code", "success");
+                        header("Location: ./?Action=ThemXoaChinhSuaTTCT");
                         exit();
                     } else {
-                        header("Location: ./?Action=Admin&UploadTT=failed");
+                        $NoiDungChiTietSession->SetSession("Status", "Failed");
+                        $NoiDungChiTietSession->SetSession("Status_Code", "failed");
+                        header("Location: ./?Action=ThemXoaChinhSuaTTCT");
                         exit();
                     }
                 }
-            }
         }
 
         public function xoaSanPham($SPCT_Id, $ValueSubmit) {
@@ -137,6 +143,96 @@
                     $UpdateThongTinSession->SetSession("Status", "Failed");
                     $UpdateThongTinSession->SetSession("Status_Code", "failed");
                     header("Location: ./?Action=SanPhamAdmin");
+                    exit();
+                }
+            }
+        }
+        
+        public function themNoiDungSP($SPCT_Id, $NoiDung_1, $NoiDung_2, $NoiDung_3, $NoiDung_4, $ValueSubmit) {
+            $ThemNoiDungSP = new NoiDungChiTiet();
+            $ThemNoiDungSp = new Session();
+            if(isset($ValueSubmit)) {
+                if($ThemNoiDungSP->themNoiDungTheoID($SPCT_Id, $NoiDung_1, $NoiDung_2, $NoiDung_3, $NoiDung_4) == 1) {
+                    $ThemNoiDungSp->SetSession("Status", "Success");
+                    $ThemNoiDungSp->SetSession("Status_Code", "success");
+                    header("Location: ./?Action=ThemXoaChinhSuaND");
+                    exit();
+                } else {
+                    $ThemNoiDungSp->SetSession("Status", "Failed");
+                    $ThemNoiDungSp->SetSession("Status_Code", "failed");
+                    header("Location: ./?Action=ThemXoaChinhSuaND");
+                    exit();
+                }
+            }
+        }
+
+        public function xoaNoiDungSP($SPCT_Id, $ValueSubmit) {
+            $XoaNoiDungSP = new NoiDungChiTiet();
+            $XoaNoiDungSPSession = new Session();
+            if(isset($ValueSubmit)) {
+                if($XoaNoiDungSP->xoaNoiDungSP($SPCT_Id) == 1) {
+                    $XoaNoiDungSPSession->SetSession("Status", "Success");
+                    $XoaNoiDungSPSession->SetSession("Status_Code", "success");
+                    header("Location: ./?Action=ThemXoaChinhSuaND");
+                    exit();
+                } else {
+                    $XoaNoiDungSPSession->SetSession("Status", "Failed");
+                    $XoaNoiDungSPSession->SetSession("Status_Code", "failed");
+                    header("Location: ./?Action=ThemXoaChinhSuaND");
+                    exit();
+                }
+            }
+        }
+
+        public function suaNoiDungSP($SPCT_Id, $NoiDung_1, $NoiDung_2, $NoiDung_3, $NoiDung_4, $ValueSubmit) {
+            $SuaNoiDungSP = new NoiDungChiTiet();
+            $SuaNoiDungSPSession = new Session();
+            if(isset($ValueSubmit)) {
+                if($SuaNoiDungSP->suaNoiDungSP($SPCT_Id, $NoiDung_1, $NoiDung_2, $NoiDung_3, $NoiDung_4)) {
+                    $SuaNoiDungSPSession->SetSession("Status", "Success");
+                    $SuaNoiDungSPSession->SetSession("Status_Code", "success");
+                    header("Location: ./?Action=ThemXoaChinhSuaND");
+                    exit();
+                }else {
+                    $SuaNoiDungSPSession->SetSession("Status", "Failed");
+                    $SuaNoiDungSPSession->SetSession("Status_Code", "failed");
+                    header("Location: ./?Action=ThemXoaChinhSuaND");
+                    exit();
+                }
+            }
+        }
+
+        public function suaChuongTrinhKM($KhuyenMaiId, $LoaiKhuyenMai, $PhanTramKhuyenMai, $ValueSubmit) {
+            $SuaKhuyenMai = new Khuyenmai();
+            $SuaKhuyenMaiSession = new Session();
+            if(isset($ValueSubmit)) {
+                if($SuaKhuyenMai->suaChuongTrinhKhuyenMai($KhuyenMaiId, $LoaiKhuyenMai, $PhanTramKhuyenMai)) {
+                    $SuaKhuyenMaiSession->SetSession("Status", "Success");
+                    $SuaKhuyenMaiSession->SetSession("Status_Code", "success");
+                    header("Location: ./?Action=ThemXoaSuaKhuyenMai");
+                    exit();
+                } else {
+                    $SuaKhuyenMaiSession->SetSession("Status", "Failed");
+                    $SuaKhuyenMaiSession->SetSession("Status_Code", "failed");
+                    header("Location: ./?Action=ThemXoaSuaKhuyenMai");
+                    exit();
+                }
+            }
+        }
+
+        public function xoaChuongTrinhKM($KhuyenMaiId, $ValueSubmit) {
+            $XoaKhuyenMai = new Khuyenmai();
+            $XoaKhuyenMaiSession = new Session();
+            if(isset($ValueSubmit)) {
+                if($XoaKhuyenMai->xoaChuongTrinhKhuyenMai($KhuyenMaiId)) {
+                    $XoaKhuyenMaiSession->SetSession("Status", "Success");
+                    $XoaKhuyenMaiSession->SetSession("Status_Code", "success");
+                    header("Location: ./?Action=ThemXoaSuaKhuyenMai");
+                    exit();
+                } else {
+                    $XoaKhuyenMaiSession->SetSession("Status", "Failed");
+                    $XoaKhuyenMaiSession->SetSession("Status_Code", "failed");
+                    header("Location: ./?Action=ThemXoaSuaKhuyenMai");
                     exit();
                 }
             }
