@@ -60,7 +60,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Xử lý khuyến mãi: </h6>
             <a class="collapse-item" href="?Action=ThemXoaSuaKhuyenMai">Thêm, xóa, sửa khuyến mãi</a>
-            <a class="collapse-item" href="utilities-border.html">Áp dụng khuyến mãi</a>
+            <a class="collapse-item" href="?Action=ApDungKM">Áp dụng khuyến mãi</a>
           </div>
         </div>
       </li>

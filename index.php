@@ -160,6 +160,36 @@
             $PhanTramKhuyenMai = $_POST['PhanTramKhuyenMai'];
             $ValueSubmit = $_POST['themkhuyenmai'];
             $AdminController = new AdminController();
+            $AdminController->UploadTTKhuyenMai($LoaiKhuyenMai, $PhanTramKhuyenMai, $ValueSubmit);
+            break;
+        case "ApDungKM":
+            include_once './Admin/KhuyenMai/ApDungKhuyenMai.php'; 
+            break;
+        case "ApDungChuongTrinhKM_UI":
+            include_once './Admin/KhuyenMai/ApDungChuongTrinhKM_UI.php';
+            break;
+        case "ApDungKhuyenMai": 
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $KhuyenMai_Id = $_POST['KhuyenMai_Id'];
+            $NgayBatDau = $_POST['NgayBatDau'];
+            $NgayKetThuc = $_POST['NgayKetThuc'];
+            $ValueSubmit = $_POST['apdungkhuyenmai'];
+            $AdminController = new AdminController();
+            $AdminController->SetKhuyenMaiChoSanPham($KhuyenMai_Id,$SPCT_Id, $NgayBatDau, $NgayKetThuc, $ValueSubmit);
+            break;
+        case "TatApDungCtrinh": 
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $Status = $_POST['Status'];
+            $ValueSubmit = $_POST['TatApDungKM'];
+            $AdminController = new AdminController();
+            $AdminController->tatCtrinhKM($SPCT_Id, $Status, $ValueSubmit);
+            break;
+        case "BatCtrinhKM": 
+            $Status = $_POST['Status'];
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $ValueSubmit = $_POST['BatApDungKM'];
+            $AdminController = new AdminController();
+            $AdminController->batCtrinhKM($SPCT_Id, $Status, $ValueSubmit);
             break;
         case "HienThiSanPham": 
             include_once './Admin/QuanLySanPham/HienThiSP.php';

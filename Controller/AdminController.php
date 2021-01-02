@@ -81,15 +81,20 @@
             }
 
         }
-        public function SetKhuyenMaiChoSanPham($LoaiKhuyenMai, $SPCT_Id, $NgayBatDau, $NgayKetThuc, $ValueSubmit) {
+        public function SetKhuyenMaiChoSanPham($KhuyenMai_Id, $SPCT_Id, $NgayBatDau, $NgayKetThuc, $ValueSubmit) {
             $ChuongTrinhKhuyenMai = new Khuyenmai();
-            $KhuyenMaiId = $ChuongTrinhKhuyenMai->find_KhuyenMaiID_QuaTen($LoaiKhuyenMai);
-            if(isset($ValueSubmit) == "SubmitKM") {
-                if($ChuongTrinhKhuyenMai->ApDungLoaiKhuyenMaiChoSanPham($KhuyenMaiId['KhuyenMai_Id'],$SPCT_Id,$NgayBatDau,$NgayKetThuc)) {
-                    header("Location: ./?Action=Admin&UploadTT=success");
+            $ChuongTrinhKhuyenMaiSession = new Session();
+            
+            if(isset($ValueSubmit)) {
+                if($ChuongTrinhKhuyenMai->ApDungLoaiKhuyenMaiChoSanPham($KhuyenMai_Id,$SPCT_Id,$NgayBatDau,$NgayKetThuc)) {
+                    $ChuongTrinhKhuyenMaiSession->SetSession("Status", "Success");
+                    $ChuongTrinhKhuyenMaiSession->SetSession("Status_Code", "success");
+                    header("Location: ./?Action=ApDungKM");
                     exit();
                 } else {
-                    header("Location: ./?Action=Admin&UploadTT=failed");
+                    $ChuongTrinhKhuyenMaiSession->SetSession("Status", "Failed");
+                    $ChuongTrinhKhuyenMaiSession->SetSession("Status_Code", "failed");
+                    header("Location: ./?Action=ApDungKM");
                     exit();
                 }
             }
@@ -233,6 +238,42 @@
                     $XoaKhuyenMaiSession->SetSession("Status", "Failed");
                     $XoaKhuyenMaiSession->SetSession("Status_Code", "failed");
                     header("Location: ./?Action=ThemXoaSuaKhuyenMai");
+                    exit();
+                }
+            }
+        }
+
+        public function tatCtrinhKM($SPCT_Id, $Status, $ValueSubmit) {
+            $TatCtrinhKM = new Khuyenmai();
+            $TatCtrinhKMSession = new Session();
+            if(isset($ValueSubmit)) {
+                if($TatCtrinhKM->tatCtrinhKM($SPCT_Id, $Status)) {
+                    $TatCtrinhKMSession->SetSession("Status", "Success");
+                    $TatCtrinhKMSession->SetSession("Status_Code", "success");
+                    header("Location: ./?Action=ApDungKM");
+                    exit();
+                }else {
+                    $TatCtrinhKMSession->SetSession("Status", "Failed");
+                    $TatCtrinhKMSession->SetSession("Status_Code", "failed");
+                    header("Location: ./?Action=ApDungKM");
+                    exit();
+                }
+            }
+        }
+
+        public function batCtrinhKM($SPCT_Id, $Status, $ValueSubmit) {
+            $batCtrinhKM = new Khuyenmai();
+            $batCtrinhKMSession = new Session();
+            if(isset($ValueSubmit)) {
+                if($batCtrinhKM->batCtrinhKM($SPCT_Id, $Status)) {
+                    $batCtrinhKMSession->SetSession("Status", "Success");
+                    $batCtrinhKMSession->SetSession("Status_Code", "success");
+                    header("Location: ./?Action=ApDungKM");
+                    exit();
+                }else {
+                    $batCtrinhKMSession->SetSession("Status", "Failed");
+                    $batCtrinhKMSession->SetSession("Status_Code", "failed");
+                    header("Location: ./?Action=ApDungKM");
                     exit();
                 }
             }

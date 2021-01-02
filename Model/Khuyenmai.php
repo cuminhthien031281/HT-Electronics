@@ -61,7 +61,7 @@
             $ApDungKhuyenMaiChoSanPham->bindParam(4, $NgayKetThuc);
             $ApDungKhuyenMaiChoSanPham->execute();
             $ApDungKhuyenMaiChoSanPham->closeCursor();
-            return 1;
+            return $ApDungKhuyenMaiChoSanPham;
         }
 
         public function queryChuongTrinhKhuyenMai() {
@@ -73,7 +73,7 @@
         }
 
         public function suaChuongTrinhKhuyenMai($KhuyenMaiId, $LoaiKhuyenMai, $PhanTramKhuyenMai) {
-            $SuaChuongTrinhKhuyenMai = $this->_pdo->prepare("UPDATE chuongtrinhkhuyenmai(LoaiKhuyenMai, PhanTramKhuyenMai) VALUES(?, ?) WHERE KhuyenMai_Id = ?");
+            $SuaChuongTrinhKhuyenMai = $this->_pdo->prepare("UPDATE chuongtrinhkhuyenmai SET LoaiKhuyenMai = ?, PhanTramKhuyenMai = ?  WHERE KhuyenMai_Id = ?");
             $SuaChuongTrinhKhuyenMai->bindParam(1, $LoaiKhuyenMai);
             $SuaChuongTrinhKhuyenMai->bindParam(2, $PhanTramKhuyenMai);
             $SuaChuongTrinhKhuyenMai->bindParam(3, $KhuyenMaiId);
@@ -91,6 +91,32 @@
             return $XoaKhuyenMai;
         }
 
+        public function timTenChuongTrinhKhuyenMai($KhuyenMai_Id) {
+            $TimTenCtrinhkhuyenmai = $this->_pdo->prepare("SELECT LoaiKhuyenMai FROM chuongtrinhkhuyenmai WHERE KhuyenMai_Id = ?");
+            $TimTenCtrinhkhuyenmai->bindParam(1, $KhuyenMai_Id);
+            $TimTenCtrinhkhuyenmai->execute();
+            $StoreValue = $TimTenCtrinhkhuyenmai->fetch();
+            $TimTenCtrinhkhuyenmai->closeCursor();
+            return $StoreValue;
+        }
+
+        public function tatCtrinhKM($SPCT_Id, $Status) {
+            $TatCtrinhKM = $this->_pdo->prepare("UPDATE apdungkhuyenmai SET Status = ? WHERE SPCT_Id = ?");
+            $TatCtrinhKM->bindParam(1, $Status);
+            $TatCtrinhKM->bindParam(2, $SPCT_Id);
+            $TatCtrinhKM->execute();
+            $TatCtrinhKM->closeCursor();
+            return $TatCtrinhKM;
+        }
+
+        public function batCtrinhKM($SPCT_Id, $Status) {
+            $batCtrinhKM = $this->_pdo->prepare("UPDATE apdungkhuyenmai SET Status = ? WHERE SPCT_Id = ?");
+            $batCtrinhKM->bindParam(1, $Status);
+            $batCtrinhKM->bindParam(2, $SPCT_Id);
+            $batCtrinhKM->execute();
+            $batCtrinhKM->closeCursor();
+            return $batCtrinhKM;
+        }
     }
 
 ?>

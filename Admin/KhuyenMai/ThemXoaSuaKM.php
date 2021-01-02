@@ -23,7 +23,7 @@
                             <th>Phần trăm khuyến mãi</th>
                             <th>Xóa khuyến mãi</th>
                             <th>Sửa khuyến mãi</th>
-                            <th>Thêm khuyến mãi mới</th>
+                            
                         </tr>
                     </thead>
                     <tfoot>
@@ -32,28 +32,29 @@
                             <th>Phần trăm khuyến mãi</th>
                             <th>Xóa khuyến mãi</th>
                             <th>Sửa khuyến mãi</th>
-                            <th>Thêm khuyến mãi mới</th>
+                            
                         </tr>
                     </tfoot>
                     <tbody>
                         <?php foreach($Value as $Values) {?>
-                             <td><?php echo $Values['LoaiKhuyenMai'];?></td>
-                             <td><?php echo $Values['PhanTramKhuyenMai'];?></td>
-                             <td>
-                                <form action="?Action=XoaKhuyenMai" method="post">
-                                    <input type="hidden" name="SPCT_Id" value="<?php echo $Values['KhuyenMai_Id'];?>">
-                                    <button class="btn btn-danger"type="submit" name="xoakhuyenmai" value="xoakhuyenmai">Xóa khuyến mãi</button>
-                                </form>
-                            </td>
-                            <td>
-                                <a href="?Action=ChinhSuaKhuyenMai_UI&Id=<?php echo $Values['KhuyenMai_Id'];?>"><button class="btn btn-warning">Sửa khuyến mãi</button></a>
-                            </td>
+                             <tr>
+                                <td><?php echo $Values['LoaiKhuyenMai'];?></td>
+                                <td><?php echo $Values['PhanTramKhuyenMai'];?></td>
+                                <td>
+                                    <form action="?Action=XoaKhuyenMai" method="post">
+                                        <input type="hidden" name="KhuyenMai_Id" value="<?php echo $Values['KhuyenMai_Id'];?>">
+                                        <button class="btn btn-danger"type="submit" name="xoakhuyenmai" value="xoakhuyenmai">Xóa khuyến mãi</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <a href="?Action=ChinhSuaKhuyenMai_UI&Id=<?php echo $Values['KhuyenMai_Id'];?>"><button class="btn btn-warning">Sửa khuyến mãi</button></a>
+                                </td>
+                            </tr>
                         <?php }?>
-                            <td>
-                                <a href="?Action=ThemKhuyenMai_UI"><button class="btn btn-warning">Thêm khuyến mãi</button></a>
-                            </td>
+                            
                     </tbody>
                 </table>
+                <a href="?Action=ThemKhuyenMai_UI"><button class="btn btn-warning">Thêm khuyến mãi</button></a>
             </div>
         </div>
     </div>
