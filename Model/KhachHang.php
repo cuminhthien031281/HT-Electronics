@@ -126,6 +126,33 @@
             return false;
         }
 
+        public function muaHang($UserId, $FullName, $Email, $Address, $City, $Quan, $SoDienThoai, $ThanhToan_Id, $ThanhTien, $GioHang_Id) {
+            $MuaHangStatement = $this->_pdo->prepare("INSERT INTO diachigiaohang(
+                                                                        KhachHang_Id, 
+                                                                        Ten,
+                                                                        DiaChi, 
+                                                                        City, 
+                                                                        Quan, 
+                                                                        Sdt, 
+                                                                        Email, 
+                                                                        ThanhToan_Id, 
+                                                                        ThanhTien, 
+                                                                        GioHang_Id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $MuaHangStatement->bindParam(1, $UserId);
+            $MuaHangStatement->bindParam(2, $FullName);
+            $MuaHangStatement->bindParam(3, $Address);
+            $MuaHangStatement->bindParam(4, $City);
+            $MuaHangStatement->bindParam(5, $Quan);
+            $MuaHangStatement->bindParam(6, $SoDienThoai);
+            $MuaHangStatement->bindParam(7, $Email);
+            $MuaHangStatement->bindParam(8, $ThanhToan_Id);
+            $MuaHangStatement->bindParam(9, $ThanhTien);
+            $MuaHangStatement->bindParam(10, $GioHang_Id);
+            $MuaHangStatement->execute();
+            $MuaHangStatement->closeCursor();
+            return $MuaHangStatement;
+        }
+
         
     }
 ?>

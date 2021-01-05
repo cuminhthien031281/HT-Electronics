@@ -5,7 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="Public/css/checkout.css">
+    <style>
+        body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    padding: 8px;
+}
+
+
+h2 {
+    text-align: center;
+}
+
+
+
+* {
+    box-sizing: border-box;
+} 
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+
+.col-25 {
+    -ms-flex: 25%;
+    flex: 25%;
+}
+
+.col-50 {
+    -ms-flex: 50%;
+    flex: 50%;
+}
+
+.col-75 {
+    -ms-flex: 75%;
+    flex: 75%;
+}
+
+.col-25,.col-50,.col-75 {
+    padding: 0 16px;
+}
+
+.container {
+    background-color: #cfcccc85;
+    padding: 3px 18px 13px 18px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+}
+
+input[type=text] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border:  1px solid #ccc;
+    border-radius: 3px;
+}
+
+label {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 24px;
+}
+
+btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    border: none;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.btn:hover {
+    background-color: #4CAF59;
+}
+
+a{ 
+    border: 1px solid lightgray;
+}
+
+span.price {
+    float: right;
+    color: grey;
+}
+    </style>
 </head>
 <body>
     <h2>Responsive Checkout Form</h2>
@@ -16,6 +110,7 @@
                     <div class="row">
                         <div class="col-58">
                             <h3>Billing Address</h3>
+        <form action="?Action=DoCheckOut"></form>
             <label for="fname"><i class="fa fa-user"></i>Full Name</label>
             <input type="text" id="fname" name="firstname" placeholder="Input your name">
             
@@ -28,8 +123,7 @@
             <label for="city"><i class="fa fa-institution"></i>City</label>
             <input type="text" id="city" name="city" placeholder="Da Nang">
             
-            <label for="city"><i class="fa fa-institution"></i>City</label>
-            <input type="text" id="city" name="city" placeholder="Da Nang">
+            
             
             <div class="row">
                 <div class="col-50">
@@ -40,7 +134,7 @@
 
             <div class="col-50">
                 <h3>Payment</h3>
-                <?php if($_POST['flexRadioDefault'] == "CashOnCard") {?>
+                <?php if($_SESSION['Delivery_type'] == "CashOnCard") {?>
                     <label for="fname">Accepted Card</label>
                     <div class="icon-container">
                         <i class="fa fa-cc-visa" style="color: navy;"></i>
@@ -69,18 +163,28 @@
                         </div>
                     </div>
                 <?php } else {?>
-                    <label for="fname">Card on delivery</label>
-
                     <label for="cdelivery">You choose card on delivery</label>
                     <input type="text" id="cdelivery" name="cdelivery" value="<?php echo $_SESSION['Delivery_type'];?>" readonly>
                 <?php } ?>
             </div>
             <label><input type="checkbox" checked="checked" name="sameadr">Shipping address same as billing</label>
-            <input type="submit" value="Continue To checkbox" class="btn">
+           
             
                         </div>
                     </div>
-                </form>
+                    <?php
+                    $total = 0; 
+                    if(isset($_SESSION['cart'])) {
+                        foreach($_SESSION['cart'] as $key => $value) {
+                            $total += $value['gia'] * $value['quantity_SP'];
+                    ?>       
+                    <?php 
+                        }
+                    } 
+                    ?>
+            <input type="hidden" name="ThanhTien" value="<?php echo $total;?>">
+            <input type="submit" value="Buy" class="btn" name="DoCheckOut">
+         </form>
             </div>
         </div>
         <div class="col-25">
@@ -100,7 +204,7 @@
                             echo "<p><a href='#'>$value[ten_sp]</a><span class='price'>$value[gia]</span> x <span class='quantity'>$value[quantity_SP]</span></p>";    
                 ?>       
                 <?php 
-                        }
+                        } 
                     } 
                 ?>
                         <hr>

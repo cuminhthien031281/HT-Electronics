@@ -251,8 +251,18 @@
             $RemoveCart->xoaGiohang($Post, $ten_sp);
             break;
         case "Purchase_UI":
-            $_SESSION['Delivery_type'] = $_POST['flexRadioDefault'];
+            $TypePurchase = $_POST['flexRadioDefault'];
+            $Submit = $_POST['MakePurchase'];
+            $PurchaseProduct = new BuyProductController();
+            $PurchaseProduct->muahang($Submit, $TypePurchase);
+            break;
+        case "CheckOut":
             include_once './View/checkout.php';
+            break;
+        case "DoCheckOut": 
+            //Get all information need for handle checkout process
+            $KhachHangCheckOutController = new BuyProductController();
+            
             break;
         default: 
             break;

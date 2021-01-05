@@ -88,6 +88,7 @@
                                 ";
                             
                             }
+                        }
                     ?>
                     
 
@@ -99,29 +100,40 @@
     <div class="col-lg-3">
         <div class="border bg-light rounded p-4">
             <h4>Total: </h4>
-            <h5 class="text-right"><?php echo $total;?></h5>
+            <h5 class="text-right">
+            <?php
+            
+            
+                if($total == 0) {
+                    echo "Chua co san pham";
+                }
+            
+            
+            ?></h5>
             <br>
-            <form action="?Action=Purchase_UI" method="post">
-                <div class="form-check">
-                    <input type="radio" class="form-check-input" name="flexRadioDefault" value="CashOnDelivery" id="flexRadioDefault2" checked>
-                    <label for="flexRadioDefault2" class="form-check-label">
-                        Cash On Delivery
-                    </label>
+            <?php if($total != 0) { ?>
+                        <form action="?Action=Purchase_UI" method="post">
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" name="flexRadioDefault" value="CashOnDelivery" id="flexRadioDefault2" checked>
+                                <label for="flexRadioDefault2" class="form-check-label">
+                                Cash On Delivery
+                                </label>
 
-                    <input type="radio" class="form-check-input" name="flexRadioDefault" value="CashOnCard" id="flexRadioDefault2" checked>
-                    <label for="flexRadioDefault2" class="form-check-label">
-                        Cash On Card
-                    </label>
-                </div>
-                <br>
-                <button class="btn btn-primary btn-block" type="submit" name="MakePurchase" value="purchase">Make purchase</button>
-            </form>
+                                <input type="radio" class="form-check-input" name="flexRadioDefault" value="CashOnCard" id="flexRadioDefault2" checked>
+                                <label for="flexRadioDefault2" class="form-check-label">
+                                Cash On Card
+                                </label>
+                            </div>
+                            <br>
+                            <button class="btn btn-primary btn-block" type="submit" name="MakePurchase" value="purchase">Make purchase</button>
+                        </form>
+            <?php } else {?>
+                    <a href="?Action=Home"><button class="btn btn-warning btn-block">Bạn chưa có sản phẩm nào trong đây, quay lại trang chủ</button></a>
+            <?php } ?>
         </div>
         
     </div>
-    <?php
-        } 
-    ?>
+    
 </div>
     
 <?php include_once 'EndHead.php';?>

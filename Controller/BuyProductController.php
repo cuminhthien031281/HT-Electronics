@@ -4,6 +4,10 @@
     class BuyProductController {
 
         public function themVaoGioHang($Post, $id_sp, $gia, $ten_sp, $quantity) {
+            if($quantity == null ) {
+                $quantity = 1;
+            }
+            
             if(isset($Post)) {
                 if(!isset($_SESSION['UserName'])) {
                     echo "<script>alert('Login first');
@@ -33,7 +37,8 @@
                         echo "<script>window.location.href='/HT-Electronics/'</script>";
                     }
                 }
-        
+                
+                
                 
             }
         }
@@ -48,7 +53,7 @@
                             alert('Item removed');
                             window.location.href='/HT-Electronics/?Action=GioHang';
                         </script>";
-                    }
+                    } 
                 }
             }
         }
@@ -58,9 +63,16 @@
             if(isset($Post)) {
                 $SessionDelivery->SetSession("Delivery_type", $type_delivery);
                 echo "<script>
-                    window.location.href='/HT-Electronics/?Action=Purchase_UI';
+                    window.location.href='/HT-Electronics/?Action=CheckOut';
                 
                 </script>";
+            }
+        }
+
+        public function xuLyCheckOut($Post ) {
+            $KhachHangXuLyCheckOut = new KhachHang();
+            if(isset($Post)) {
+                
             }
         }
     }

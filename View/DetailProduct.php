@@ -99,18 +99,34 @@
                         </div>
                         <div class="detail-parameter-right">
                             <?php $NoiDungSPCT = $NoiDungSP->HienThiNoiDungSPCT($SPCT_Id);
+                                  if($NoiDungSPCT) {
                             ?>
-                            <ul class="detail-parameter-right__list">
-                                <li class="detail-parameter-right__group"><?php echo $NoiDungSPCT['Hang'];?></li>
-                                <li class="detail-parameter-right__group"><?php echo $NoiDungSPCT['HeDieuHanh'];?></li>
-                                <li class="detail-parameter-right__group"><?php echo $NoiDungSPCT['Chip'];?></li>
-                                <li class="detail-parameter-right__group"><?php echo $NoiDungSPCT['ManHinh'];?></li>
-                                <li class="detail-parameter-right__group"><?php echo $NoiDungSPCT['Ram'];?></li>
-                            </ul>
+                                        <ul class="detail-parameter-right__list">
+                                            <li class="detail-parameter-right__group"><?php echo $NoiDungSPCT['Hang'];?></li>
+                                            <li class="detail-parameter-right__group"><?php echo $NoiDungSPCT['HeDieuHanh'];?></li>
+                                            <li class="detail-parameter-right__group"><?php echo $NoiDungSPCT['Chip'];?></li>
+                                            <li class="detail-parameter-right__group"><?php echo $NoiDungSPCT['ManHinh'];?></li>
+                                            <li class="detail-parameter-right__group"><?php echo $NoiDungSPCT['Ram'];?></li>
+                                        </ul>
+                            <?php
+                                  } else {
+                            ?>
+                                        <ul class="detail-parameter-right__list">
+                                            <li class="detail-parameter-right__group">Chưa có</li>
+                                            <li class="detail-parameter-right__group">Chưa có</li>
+                                            <li class="detail-parameter-right__group">Chưa có</li>
+                                            <li class="detail-parameter-right__group">Chưa có</li>
+                                            <li class="detail-parameter-right__group">Chưa có</li>
+                                        </ul>
+                            <?php
+                                  } 
+                            ?>
                         </div>
                     </div>
                     <div class="detail-price">
-                        <?php $GiaSPCT = $NoiDungSP->HienThigiaSPCT($SPCT_Id)?>
+                        <?php $GiaSPCT = $NoiDungSP->HienThigiaSPCT($SPCT_Id); 
+                                                        
+                        ?>
                         <del class="detail-price__old">13,540,00đ</del>
                         <div class="detail-price__promotional" id="price"><?php echo $GiaSPCT['DonGia'];?></div>
                     </div>
