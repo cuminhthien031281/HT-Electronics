@@ -17,6 +17,7 @@
                     $SessionUser->SetSession("UserName",$KhachHangObj->GetUserName());
                     $SessionUser->SetSession("KhachHang_Id", $KhachHangObj->GetResultLogin("KhachHang_Id"));
                     $RoleUser = $KhachHangObj->GetResultLogin("Role");
+                    $SessionUser->SetSession("Role", $RoleUser);
                     if($RoleUser == 0) {
                         $SessionUser->SetSession("Login_Status", "Login Success");
                         $SessionUser->SetSession("Login_Status_Code", "success");

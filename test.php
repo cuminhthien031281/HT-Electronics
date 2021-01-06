@@ -1,67 +1,30 @@
-<?php 
-    include_once './Admin/Head.php';
-    include_once './Admin/SlideBar.php';
-    include_once './Admin/TopBar.php';
-    include_once './Model/QuerySP.php';
-    include_once './Model/DMSP.php';
-
-    $SPCT = new QuerySP();
-    $DMSP = new DMSP();
-    $HMTDM = $DMSP->GetHMTDM();
-    $SPCT->queryTableSPCT();
-    $DisplaySPCT = $SPCT->getQuerySanPhamChiTiet();
-    $SPCT->queryTableImageSPCT();
-    $ImageSPCT = $SPCT->getQueryTableHinhAnhSPCT();
-    $ArrayImage = array();
-    foreach ($ImageSPCT as $ImageSPCTs) {
-        $ArrayImage[] = $ImageSPCTs['SPCT_Id'];
-    }
-    //$result[] = array_diff_assoc($DisplaySPCT, $ImageSPCT);
-?>
-<!-- Begin Page Content -->
-<div class="container-fluid">
-    <?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <?php 
+        include_once './Controller/BuyProductController.php';
+        $fullname = $_POST['fullname'];
+        $email = $_POST['email'];
+        $Address = $_POST['Address'];
+        $city = $_POST['city'];
+        $quan = $_POST['quan'];
+        $UserId = $_POST['UserId'];
+        $PhoneNumber = $_POST['PhoneNumber'];
+        $Submit = $_POST['DoCheckOut'];
+        $sameadr = $_POST['sameadr'];
+        //Check kieu thanh toan
+        $cdelivery = $_POST['cdelivery'];
+        $Thanhtien = $_POST['ThanhTien'];
+        $resultSP = $_POST['resultSP'];
+        $resultquantity = $_POST['resultquantity'];
         
-        foreach($DisplaySPCT as $DisplaySPCTs) {
-            //echo "<pre>";
-            //print_r($DisplaySPCTs);
-            //echo "</pre>";
-            $arr[] = $DisplaySPCTs;
-        }
-        foreach($ImageSPCT as $ImageSPCTs => $value) {
-            $arr1[] = $value;
-        }
-        
-        print_r($arr1);
-        
-        
-    ?>
-</div>
-<!-- /.container-fluid -->
-</div>
-<!-- End of Main Content -->
-<!-- Footer -->
-<footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-        </div>
-    </div>
-</footer>
-<!-- End of Footer -->
-</div>
-<!-- End of Content Wrapper -->
-</div>
-<!-- End of Page Wrapper -->
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-
-<?php
-include('./include/Scripts_Upload_Img.php');
-include('./include/Scripts_Uoload_SP.php');
-include('./include/Scripts_Update_Stt.php');
-include_once './Admin/EndHead.php';
-
-?>
+        $KhachHangMua = new BuyProductController();
+        $KhachHangMua->xuLyCheckOutKhongCard($Submit,$UserId, $fullname, $email, $Address, $city, $quan, $PhoneNumber, $cdelivery, $Thanhtien, $sameadr, $resultSP, $resultquantity);
+        ?>
+</body>
+</html>

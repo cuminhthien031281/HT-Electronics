@@ -69,12 +69,69 @@
             }
         }
 
-        public function xuLyCheckOut($Post ) {
+        
+
+        public function xuLyCheckOutKhongCard($Post,$UserId, $Fullname, $Email, $Address, $City, $Quan, $SoDienThoai, $ThanhToan_Name, $ThanhTien, $SameAddr, $ArrayMaSP = array(), $ArrayQuantity = array()) {
             $KhachHangXuLyCheckOut = new KhachHang();
-            if(isset($Post)) {
-                
+            $xuLyCheckOutKhongCardSession = new Session();
+            $ThanhToan_Id = $KhachHangXuLyCheckOut->timKiemThanhToan($ThanhToan_Name)[0];
+            if(!isset($SameAddr)) {
+                $Status = 0;
+            } else {
+                $Status = 1;
             }
+            if(isset($Post)) {
+                for($i = 0; $i <sizeof($ArrayMaSP); $i++) {
+                    $KhachHangXuLyCheckOut->themVaoGioHangCheckOut($UserId, 
+                                                                   $ArrayMaSP[$i], 
+                                                                   $ArrayQuantity[$i]);
+                    
+                }
+                $GioHangID = $KhachHangXuLyCheckOut->getGioHangId($UserId)[0];
+                $KhachHangXuLyCheckOut->muaHang($UserId,$Fullname, $Email, $Address, $City, $Quan, $SoDienThoai, $ThanhToan_Id, $ThanhTien, $Status, $GioHangID);
+                unset($_SESSION['cart']);
+                $xuLyCheckOutKhongCardSession->SetSession("Status", "Success");
+                $xuLyCheckOutKhongCardSession->SetSession("Status_Code", "success");
+                header("Location: ./?Action=Home");
+                exit();
+            } else {
+                header("Location: ./?Action=error");
+                exit();
+            }
+
         }
+
+        public function xuLyCheckOutCard($Post,$UserId, $Fullname, $Email, $Address, $City, $Quan, $SoDienThoai, $ThanhToan_Name, $ThanhTien, $SameAddr, $ArrayMaSP = array(), $ArrayQuantity = array(),$cardname, $cardnumber, $expmonth, $expyear, $cvv) {
+            $KhachHangXuLyCheckOut = new KhachHang();
+            $xuLyCheckOutKhongCardSession = new Session();
+            $ThanhToan_Id = $KhachHangXuLyCheckOut->timKiemThanhToan($ThanhToan_Name)[0];
+            if(!isset($SameAddr)) {
+                $Status = 0;
+            } else {
+                $Status = 1;
+            }
+            if(isset($Post)) {
+                for($i = 0; $i <sizeof($ArrayMaSP); $i++) {
+                    $KhachHangXuLyCheckOut->themVaoGioHangCheckOut($UserId, 
+                                                                   $ArrayMaSP[$i], 
+                                                                   $ArrayQuantity[$i]);
+                    
+                }
+                $GioHangID = $KhachHangXuLyCheckOut->getGioHangId($UserId)[0];
+                $KhachHangXuLyCheckOut->muaHang($UserId,$Fullname, $Email, $Address, $City, $Quan, $SoDienThoai, $ThanhToan_Id, $ThanhTien, $Status, $GioHangID);
+                $KhachHangXuLyCheckOut->themVaoCreditCard($UserId, $cardname, $cardnumber, $expmonth, $expyear, $cvv);
+                unset($_SESSION['cart']);
+                $xuLyCheckOutKhongCardSession->SetSession("Status", "Success");
+                $xuLyCheckOutKhongCardSession->SetSession("Status_Code", "success");
+                header("Location: ./?Action=Home");
+                exit();
+            } else {
+                header("Location: ./?Action=error");
+                exit();
+            }
+            
+        }
+            
     }
 
 

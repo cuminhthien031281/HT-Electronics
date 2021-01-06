@@ -6,7 +6,7 @@
             <li class="header-content__group"><a href="?Action=Home" class="header-content__link header-content__link--home">Trang chủ</a></li>
             <li class="header-content__group"><a href="#" class="header-content__link">Sản phẩm</a></li>
             <?php 
-                if(isset($_SESSION['UserName'])) {
+                if(isset($_SESSION['UserName']) && $_SESSION['Role'] == 0) {
             ?>
             
                     <li class="header-content__group header-content__group-login">
@@ -36,6 +36,24 @@
                     <!--Style Username-logout-->
             
             <?php 
+                }else if(isset($_SESSION['UserName']) && $_SESSION['Role'] == 1) {
+            ?> 
+                    <li class="header-content__group header-content__group-login">
+                    <?php 
+                    include_once './Model/KhachHang.php';
+                    $ImgCheckObj = new KhachHang();
+                    if($ImgCheckObj->CheckImg($_SESSION['KhachHang_Id']) == true) {
+                        echo '<img class="header-content__link--img header-content__group-user" src="Public/ImageUser/profile'. $ImgCheckObj->getUsrID() . $ImgCheckObj->getImgName() . '.' . $ImgCheckObj->getImgType().'">';
+                    } else {
+                        echo '<img class="header-content__link--img header-content__group-user" src="Public/ImageUser/profile'. $ImgCheckObj->getImgName() .'.'. $ImgCheckObj->getImgType().'">';
+                    }
+                    ?>
+                        <?php echo '<h1 class="header-content__link--username header-content__group-user">'.$_SESSION['UserName'].'</h1>'; ?>
+                    </li>
+                    <a href="?Action=Admin">Home Admin</a>
+                    <a href="?Action=Logout">Logout</a>
+
+            <?php
                 } else {
             ?>
                     <li class="header-content__group"><a href="?Action=Login" class="header-content__link header-content__link--login">Đăng nhập</a></li>

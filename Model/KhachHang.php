@@ -56,6 +56,8 @@
         public function GetResultLogin($Column) {
             return $this->_result[$Column];
         }
+        //                      This part for register and login user
+        /** -------------------------------------------------------------------------------------------- */
         //Register user method
         public function Register($Email) {
             //Hash the password before execute statement
@@ -125,8 +127,11 @@
             }
             return false;
         }
+        /**------------------------------------------------End login and register user --------------------------------- */
 
-        public function muaHang($UserId, $FullName, $Email, $Address, $City, $Quan, $SoDienThoai, $ThanhToan_Id, $ThanhTien, $GioHang_Id) {
+         //           This part for process checkout
+        /**     ----------------------------------------------------         */
+        public function muaHang($UserId, $FullName, $Email, $Address, $City, $Quan, $SoDienThoai, $ThanhToan_Id, $ThanhTien, $SameAddr, $GioHang_Id) {
             $MuaHangStatement = $this->_pdo->prepare("INSERT INTO diachigiaohang(
                                                                         KhachHang_Id, 
                                                                         Ten,
@@ -136,8 +141,9 @@
                                                                         Sdt, 
                                                                         Email, 
                                                                         ThanhToan_Id, 
-                                                                        ThanhTien, 
-                                                                        GioHang_Id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                                                        ThanhTien,
+                                                                        SameAddr, 
+                                                                        GioHang_Id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $MuaHangStatement->bindParam(1, $UserId);
             $MuaHangStatement->bindParam(2, $FullName);
             $MuaHangStatement->bindParam(3, $Address);
@@ -147,12 +153,102 @@
             $MuaHangStatement->bindParam(7, $Email);
             $MuaHangStatement->bindParam(8, $ThanhToan_Id);
             $MuaHangStatement->bindParam(9, $ThanhTien);
-            $MuaHangStatement->bindParam(10, $GioHang_Id);
+            $MuaHangStatement->bindParam(10, $SameAddr);
+            $MuaHangStatement->bindParam(11, $GioHang_Id);
             $MuaHangStatement->execute();
             $MuaHangStatement->closeCursor();
             return $MuaHangStatement;
         }
 
+        public function timKiemThanhToan($ThanhToan_Name) {
+            $TimKiemThanhToan = $this->_pdo->prepare("SELECT ThanhToan_Id FROM thanhtoan WHERE KieuThanhToan = ?");
+            $TimKiemThanhToan->bindParam(1, $ThanhToan_Name);
+            $TimKiemThanhToan->execute();
+            $StoreValue = $TimKiemThanhToan->fetch();
+            $TimKiemThanhToan->closeCursor();
+            return $StoreValue;
+        }
+
+        public function themVaoGioHangCheckOut($KhachHang_Id, $SPCT_Id, $SoLuong) {
+            
+                $ThemVaoGiohangCheckOut = $this->_pdo->prepare("INSERT INTO giohang(KhachHang_Id, SPCT_Id, SoLuong) VALUES (?, ?, ?)");
+                $ThemVaoGiohangCheckOut->bindParam(1, $KhachHang_Id);
+                $ThemVaoGiohangCheckOut->bindParam(2, $SPCT_Id);
+                $ThemVaoGiohangCheckOut->bindParam(3, $SoLuong);
+                $ThemVaoGiohangCheckOut->execute();
+                $ThemVaoGiohangCheckOut->closeCursor();
+                return 1;
+           
+        }
+
+        public function getGioHangId($UserId) {
+
+                $GetGioHangID = $this->_pdo->prepare("SELECT GioHang_Id from giohang WHERE KhachHang_Id = ?");
+                $GetGioHangID->bindParam(1, $UserId);
+                $GetGioHangID->execute();
+                $StoreValue = $GetGioHangID->fetch();
+                $GetGioHangID->closeCursor();
+                return $StoreValue;
+        }
+
+        public function themVaoCreditCard($UserID, $cardname, $cardnumber, $expmonth, $expyear, $ccv) {
+                $ThemVaoCreditCard = $this->_pdo->prepare("INSERT INTO creditcard(KhachHang_Id, cardname, cardnumber, expmonth, expyear,ccv) VALUES(?, ?, ?, ?, ?, ?)");
+                $ThemVaoCreditCard->bindParam(1, $UserID);
+                $ThemVaoCreditCard->bindParam(2, $cardname);
+                $ThemVaoCreditCard->bindParam(3, $cardnumber);
+                $ThemVaoCreditCard->bindParam(4, $expmonth);
+                $ThemVaoCreditCard->bindParam(5, $expyear);
+                $ThemVaoCreditCard->bindParam(6, $ccv);
+                $ThemVaoCreditCard->execute();
+                $ThemVaoCreditCard->closeCursor();
+                return $ThemVaoCreditCard;
+        }
+        /**------------------------------End process checkout ------------------------------------ */
+
+        //           This part for manage order for admin
+        /**     ----------------------------------------------------         */
+        public function layRaDiaChiGiaoHang() {
+            $layRaDiachiGiaoHang = $this->_pdo->prepare("SELECT * FROM diachigiaohang");
+            $layRaDiachiGiaoHang->execute();
+            $StoreValue = $layRaDiachiGiaoHang->fetchAll();
+            $layRaDiachiGiaoHang->closeCursor();
+            return $StoreValue;
+        }
         
+        public function layTenCuaNguoiDung($UserId) {
+            $LayTenCuaNguoiDung = $this->_pdo->prepare("SELECT UserName FROM khachhang WHERE KhachHang_Id = ?");
+            $LayTenCuaNguoiDung->bindParam(1, $UserID);
+            $LayTenCuaNguoiDung->execute();
+            $StoreValue = $LayTenCuaNguoiDung->fetch();
+            $LayTenCuaNguoiDung->closeCursor();
+            return $StoreValue;
+        }
+
+        //public function layGioHang($UserId) {
+            //$layGioHang = $this->_pdo->prepare("SELECT * FROM giohang WHERE KhachHang_Id = ?");
+            //$layGioHang->bindParam(1, $UserID);
+            //$layGioHang->execute();
+            //$StoreValue= $layGioHang->fetchAll();
+            //$layGioHang->closeCursor();
+            //return $StoreValue;
+        //}
+
+        public function timKiemKieuThanhToan($ThanhToan_Id) {
+            $TimKiemKieuThanhToan = $this->_pdo->prepare("SELECT KieuThanhToan FROM thanhtoan WHERE ThanhToan_Id = ?");
+            $TimKiemKieuThanhToan->bindParam(1, $ThanhToan_Id);
+            $TimKiemKieuThanhToan->execute();
+            $StoreValue = $TimKiemKieuThanhToan->fetch();
+            $TimKiemKieuThanhToan->closeCursor();
+            return $StoreValue;
+        }
+
+        public function layGioHang() {
+            $LayGiohang = $this->_pdo->prepare("SELECT * FROM giohang");
+            $LayGiohang->execute();
+            $StoreValue = $LayGiohang->fetchAll();
+            $LayGiohang->closeCursor();
+            return $StoreValue;
+        }
+
     }
 ?>

@@ -102,28 +102,52 @@ span.price {
     </style>
 </head>
 <body>
+<?php
+                    $total = 0; 
+                    $Associate = array();
+                    if(isset($_SESSION['cart'])) {
+                        
+                        foreach($_SESSION['cart'] as $key => $value) {
+                            $total += $value['gia'] * $value['quantity_SP'];
+                            
+                    ?>       
+                    <?php 
+                        }
+                        
+                        for($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
+                            $Associate[$i]['id_sp'] = $_SESSION['cart'][$i]['id_sp'];
+                            $Associate[$i]['quantity'] = $_SESSION['cart'][$i]['quantity_SP'];
+                        }
+
+                        
+                    }
+                    
+                    
+                    ?>
     <h2>Responsive Checkout Form</h2>
     <div class="row">
         <div class="col-75">
             <div class="container">
-                <form action="?Action=Purchase" method="POST">
+                
                     <div class="row">
                         <div class="col-58">
                             <h3>Billing Address</h3>
-        <form action="?Action=DoCheckOut"></form>
+    <?php if($_SESSION['Delivery_type'] == "CashOnCard") {?>
+        <form action="?Action=DoCheckOutCard" method="POST">
             <label for="fname"><i class="fa fa-user"></i>Full Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="Input your name">
+            <input type="text" id="fname" name="fullname" placeholder="Input your name">
             
             <label for="email"><i class="fa fa-envelope"></i>Email</label>
             <input type="text" id="email" name="email" placeholder="HuyBui@gmail.com"> 
 
             <label for="Address"><i class="fa fa-address-caed-o"></i>Address</label>
             <input type="text" id="Address" name="Address" placeholder="452 Nguyen Tri Phuong">
-
+            <label for="PhoneNumber">Phone Number</label>
+            <input type="number" minlength="8" name="PhoneNumber">
             <label for="city"><i class="fa fa-institution"></i>City</label>
             <input type="text" id="city" name="city" placeholder="Da Nang">
-            
-            
+            <input type="hidden" name="UserId" value="<?php echo $_SESSION['KhachHang_Id']?>">
+            <input type="hidden" name="Array_SP" value=>
             
             <div class="row">
                 <div class="col-50">
@@ -133,9 +157,10 @@ span.price {
             </div>
 
             <div class="col-50">
-                <h3>Payment</h3>
-                <?php if($_SESSION['Delivery_type'] == "CashOnCard") {?>
+                
+                    <h3>Payment</h3>
                     <label for="fname">Accepted Card</label>
+                    <input type="hidden" id="cdelivery" name="cdelivery" value="<?php echo $_SESSION['Delivery_type'];?>" >
                     <div class="icon-container">
                         <i class="fa fa-cc-visa" style="color: navy;"></i>
                         <i class="fa fa-cc-amex" style="color: blue;"></i>
@@ -162,29 +187,54 @@ span.price {
                             <input type="text" id="cvv" name="cvv" placeholder="532">
                         </div>
                     </div>
+                    <label><input type="checkbox" checked="checked" name="sameadr" >Shipping address same as billing</label>
+                    <input type="hidden" name="ThanhTien" value="<?php echo $total;?>">
+                    <button type="submit" value="Buy" class="btn" name="DoCheckOut">Mua</button>
+            </form>
                 <?php } else {?>
-                    <label for="cdelivery">You choose card on delivery</label>
-                    <input type="text" id="cdelivery" name="cdelivery" value="<?php echo $_SESSION['Delivery_type'];?>" readonly>
+                    <form action="?Action=DoCheckOutNoCard" method="POST">
+                    <?php 
+                        foreach($Associate as $keys) {
+                            echo '<input type="hidden" name="resultSP[]" value="'.$keys['id_sp']. '">';
+                            echo '<input type="hidden" name="resultquantity[]" value="'.$keys['quantity']. '">';
+                        }
+                    ?>
+                        <label for="fname"><i class="fa fa-user"></i>Full Name</label>
+                        <input type="text" id="fname" name="fullname" placeholder="Input your name">
+            
+                        <label for="email"><i class="fa fa-envelope"></i>Email</label>
+                        <input type="text" id="email" name="email" placeholder="HuyBui@gmail.com"> 
+
+                        <label for="Address"><i class="fa fa-address-caed-o"></i>Address</label>
+                        <input type="text" id="Address" name="Address" placeholder="452 Nguyen Tri Phuong">
+                        <label for="PhoneNumber">Phone Number</label>
+                        <input type="number" minlength="8" name="PhoneNumber">
+                        <label for="city"><i class="fa fa-institution"></i>City</label>
+                        <input type="text" id="city" name="city" placeholder="Da Nang">
+                        <input type="hidden" name="UserId" value="<?php echo $_SESSION['KhachHang_Id']?>">
+            
+            
+                        <div class="row">
+                            <div class="col-50">
+                                <label for="quan">Quan</label>
+                                <input type="text" id="quan" name="quan" placeholder="Hai Chau">
+                            </div>
+                        </div>
+                        <label for="cdelivery">You choose card on delivery</label>
+                        <input type="text" id="cdelivery" name="cdelivery" value="<?php echo $_SESSION['Delivery_type'];?>" readonly>
+                        <label><input type="checkbox" checked="checked" name="sameadr" >Shipping address same as billing</label>
+                        <input type="hidden" name="ThanhTien" value="<?php echo $total;?>">
+                        <button type="submit" value="Buy" class="btn" name="DoCheckOut">Mua</button>
+            </form>
                 <?php } ?>
             </div>
-            <label><input type="checkbox" checked="checked" name="sameadr">Shipping address same as billing</label>
+            
            
             
                         </div>
                     </div>
-                    <?php
-                    $total = 0; 
-                    if(isset($_SESSION['cart'])) {
-                        foreach($_SESSION['cart'] as $key => $value) {
-                            $total += $value['gia'] * $value['quantity_SP'];
-                    ?>       
-                    <?php 
-                        }
-                    } 
-                    ?>
-            <input type="hidden" name="ThanhTien" value="<?php echo $total;?>">
-            <input type="submit" value="Buy" class="btn" name="DoCheckOut">
-         </form>
+                    
+            
             </div>
         </div>
         <div class="col-25">

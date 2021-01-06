@@ -57,7 +57,7 @@
                 <?php 
                     
                     
-                    if(isset($_SESSION['UserName'])) {?>
+                    if(isset($_SESSION['UserName']) && $_SESSION['UserName'] != "") {?>
                         <?php echo "<span class='mr-2 d-none d-lg-inline text-gray-600 small'>" . $_SESSION['UserName'] . "</span>"; ?>
                         <?php 
                             
@@ -71,6 +71,9 @@
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
+                </a>
+                <a href="?Action=Home" class="dropdown-item">
+                      Home
                 </a>
               </div>
             </li>

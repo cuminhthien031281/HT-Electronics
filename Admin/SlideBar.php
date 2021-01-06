@@ -74,7 +74,7 @@
         <div id="collapseDonHang" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Xử lý đơn hàng: </h6>
-            <a class="collapse-item" href="utilities-color.html">Xem và duyệt đơn</a>
+            <a class="collapse-item" href="?Action=XemVaDuyetDon">Xem và duyệt đơn</a>
           </div>
         </div>
       </li>

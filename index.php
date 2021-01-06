@@ -259,10 +259,60 @@
         case "CheckOut":
             include_once './View/checkout.php';
             break;
-        case "DoCheckOut": 
+        case "DoCheckOutCard": 
             //Get all information need for handle checkout process
             $KhachHangCheckOutController = new BuyProductController();
+            //Thong tin chung
+            $fullname = $_POST['fullname'];
+            $email = $_POST['email'];
+            $Address = $_POST['Address'];
+            $city = $_POST['city'];
+            $quan = $_POST['quan'];
+            $UserId = $_POST['UserId'];
+            $PhoneNumber = $_POST['PhoneNumber'];
+            $Submit = $_POST['DoCheckOut'];
+            $sameadr = $_POST['sameadr'];
+            //Check kieu thanh toan
+            $resultSP = $_POST['resultSP'];
+            $resultquantity = $_POST['resultquantity'];
+            $cdelivery = $_POST['cdelivery'];
+            $Thanhtien = $_POST['ThanhTien'];
             
+            //Thong tin card
+            $cardname = $_POST['cardname'];
+            $cardnumber = $_POST['cardnumber'];
+            $expmonth = $_POST['expmonth'];
+            $expyear = $_POST['expyear'];
+            $cvv = $_POST['ccv'];
+            $KhachHangCheckOutController->xuLyCheckOutCard($Submit,$UserId, $fullname, $email, $Address, $city, $quan, $PhoneNumber, $cdelivery, $Thanhtien, $sameadr, $resultSP, $resultquantity,$cardname, $cardnumber, $expmonth, $expyear, $cvv);
+            break;
+        case "DoCheckOutNoCard": 
+            $fullname = $_POST['fullname'];
+            $email = $_POST['email'];
+            $Address = $_POST['Address'];
+            $city = $_POST['city'];
+            $quan = $_POST['quan'];
+            $UserId = $_POST['UserId'];
+            $PhoneNumber = $_POST['PhoneNumber'];
+            $Submit = $_POST['DoCheckOut'];
+            $sameadr = $_POST['sameadr'];
+            //Check kieu thanh toan
+            $cdelivery = $_POST['cdelivery'];
+            $Thanhtien = $_POST['ThanhTien'];
+            $resultSP = $_POST['resultSP'];
+            $resultquantity = $_POST['resultquantity'];
+        
+            $KhachHangMua = new BuyProductController();
+            $KhachHangMua->xuLyCheckOutKhongCard($Submit,$UserId, $fullname, $email, $Address, $city, $quan, $PhoneNumber, $cdelivery, $Thanhtien, $sameadr, $resultSP, $resultquantity);
+            break;
+        case "processcheckoutsuccess": 
+            include_once './View/success.php';
+            break;
+        case "error": 
+            include_once './View/error.php';
+            break;
+        case "XemVaDuyetDon":
+            include_once './Admin/QuanLyDonHang/XemVaDuyetDon.php';
             break;
         default: 
             break;
