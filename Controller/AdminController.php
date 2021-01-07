@@ -4,7 +4,7 @@
     include_once './Model//Khuyenmai.php';
     include_once './Model/NoiDungChiTietSP.php';
     include_once './Model/Session.php';
-
+    include_once './Model/Admin.php';
     class AdminController {
         public function UploadTTSP($TenSPCT, $TenHMTDM, $DonGia, $SoLuong ,$ValueUpload) {
             if(isset($ValueUpload) == "SubmitTTSP") {
@@ -274,6 +274,24 @@
                     $batCtrinhKMSession->SetSession("Status", "Failed");
                     $batCtrinhKMSession->SetSession("Status_Code", "failed");
                     header("Location: ./?Action=ApDungKM");
+                    exit();
+                }
+            }
+        }
+
+        public function HuyVaDuyetDon($DiaChi_Id, $Value, $ValueSubmit) {
+            $HuyVaDuyetDonzz = new Admin();
+            $HuyVaDuyetDonSession = new Session();
+            if(isset($ValueSubmit)) {
+                if($HuyVaDuyetDonzz->DuyetVaHuyDon($DiaChi_Id, $Value)) {
+                    $HuyVaDuyetDonSession->SetSession("Status", "Success");
+                    $HuyVaDuyetDonSession->SetSession("Status_Code", "success");
+                    header("Location: ./?Action=XemVaDuyetDon");
+                    exit();
+                } else {
+                    $HuyVaDuyetDonSession->SetSession("Status", "Failed");
+                    $HuyVaDuyetDonSession->SetSession("Status_Code", "failed");
+                    header("Location: ./?Action=XemVaDuyetDon");
                     exit();
                 }
             }

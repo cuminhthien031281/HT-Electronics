@@ -2,6 +2,6 @@
 <?php include_once 'Header.php';?>
 
     <h1>Success checkout!!!</h1>
-    <a href="?Action"></a>
+    <a href="?Action=Home">Quay ve trang chu</a>
 <?php include_once 'Footer.php';?>
 <?php include_once 'EndHead.php';?>

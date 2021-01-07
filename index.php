@@ -314,6 +314,20 @@
         case "XemVaDuyetDon":
             include_once './Admin/QuanLyDonHang/XemVaDuyetDon.php';
             break;
+        case "DuyetDon":
+            $DiaChi_Id = $_POST['DiaChi_Id'];
+            $Value = $_POST['Duyet'];
+            $ValueSubmit = $_POST['DuyetDon'];  
+            $DuyetDon = new AdminController();
+            $DuyetDon->HuyVaDuyetDon($DiaChi_Id, $Value, $ValueSubmit);
+            break;
+        case "HuyDon": 
+            $DiaChi_Id = $_POST['DiaChi_Id'];
+            $Value = $_POST['Huy'];
+            $ValueSubmit = $_POST['HuyDon'];
+            $HuyDon = new AdminController();
+            $HuyDon->HuyVaDuyetDon($DiaChi_Id, $Value, $ValueSubmit);
+            break;
         default: 
             break;
     }

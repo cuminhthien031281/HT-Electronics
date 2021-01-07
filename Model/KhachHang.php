@@ -131,7 +131,7 @@
 
          //           This part for process checkout
         /**     ----------------------------------------------------         */
-        public function muaHang($UserId, $FullName, $Email, $Address, $City, $Quan, $SoDienThoai, $ThanhToan_Id, $ThanhTien, $SameAddr, $GioHang_Id) {
+        public function muaHang($UserId, $FullName, $Email, $Address, $City, $Quan, $SoDienThoai, $ThanhToan_Id, $ThanhTien, $SameAddr) {
             $MuaHangStatement = $this->_pdo->prepare("INSERT INTO diachigiaohang(
                                                                         KhachHang_Id, 
                                                                         Ten,
@@ -142,8 +142,8 @@
                                                                         Email, 
                                                                         ThanhToan_Id, 
                                                                         ThanhTien,
-                                                                        SameAddr, 
-                                                                        GioHang_Id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                                                        SameAddr 
+                                                                        ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $MuaHangStatement->bindParam(1, $UserId);
             $MuaHangStatement->bindParam(2, $FullName);
             $MuaHangStatement->bindParam(3, $Address);
@@ -154,7 +154,6 @@
             $MuaHangStatement->bindParam(8, $ThanhToan_Id);
             $MuaHangStatement->bindParam(9, $ThanhTien);
             $MuaHangStatement->bindParam(10, $SameAddr);
-            $MuaHangStatement->bindParam(11, $GioHang_Id);
             $MuaHangStatement->execute();
             $MuaHangStatement->closeCursor();
             return $MuaHangStatement;
@@ -169,26 +168,25 @@
             return $StoreValue;
         }
 
-        public function themVaoGioHangCheckOut($KhachHang_Id, $SPCT_Id, $SoLuong) {
+        public function themVaoGioHangCheckOut($SPCT_Id, $DiaChi_Id, $SoLuong) {
             
-                $ThemVaoGiohangCheckOut = $this->_pdo->prepare("INSERT INTO giohang(KhachHang_Id, SPCT_Id, SoLuong) VALUES (?, ?, ?)");
-                $ThemVaoGiohangCheckOut->bindParam(1, $KhachHang_Id);
-                $ThemVaoGiohangCheckOut->bindParam(2, $SPCT_Id);
+                $ThemVaoGiohangCheckOut = $this->_pdo->prepare("INSERT INTO giohang(SPCT_Id, DiaChi_Id, SoLuong) VALUES (?, ?, ?)");
+                $ThemVaoGiohangCheckOut->bindParam(1, $SPCT_Id);
+                $ThemVaoGiohangCheckOut->bindParam(2, $DiaChi_Id);
                 $ThemVaoGiohangCheckOut->bindParam(3, $SoLuong);
                 $ThemVaoGiohangCheckOut->execute();
                 $ThemVaoGiohangCheckOut->closeCursor();
                 return 1;
            
         }
-
-        public function getGioHangId($UserId) {
-
-                $GetGioHangID = $this->_pdo->prepare("SELECT GioHang_Id from giohang WHERE KhachHang_Id = ?");
-                $GetGioHangID->bindParam(1, $UserId);
-                $GetGioHangID->execute();
-                $StoreValue = $GetGioHangID->fetch();
-                $GetGioHangID->closeCursor();
-                return $StoreValue;
+        
+        public function layRaDiaChiGiaoHangDuaTrenUserID($UserId) {
+            $layRaDiachiGiaoHangDuaTrenUserId = $this->_pdo->prepare("SELECT DiaChi_Id FROM diachigiaohang WHERE KhachHang_Id = ?");
+            $layRaDiachiGiaoHangDuaTrenUserId->bindParam(1, $UserId);
+            $layRaDiachiGiaoHangDuaTrenUserId->execute();
+            $StoreValue = $layRaDiachiGiaoHangDuaTrenUserId->fetchAll();
+            $layRaDiachiGiaoHangDuaTrenUserId->closeCursor();
+            return $StoreValue;
         }
 
         public function themVaoCreditCard($UserID, $cardname, $cardnumber, $expmonth, $expyear, $ccv) {
@@ -217,7 +215,7 @@
         
         public function layTenCuaNguoiDung($UserId) {
             $LayTenCuaNguoiDung = $this->_pdo->prepare("SELECT UserName FROM khachhang WHERE KhachHang_Id = ?");
-            $LayTenCuaNguoiDung->bindParam(1, $UserID);
+            $LayTenCuaNguoiDung->bindParam(1, $UserId);
             $LayTenCuaNguoiDung->execute();
             $StoreValue = $LayTenCuaNguoiDung->fetch();
             $LayTenCuaNguoiDung->closeCursor();

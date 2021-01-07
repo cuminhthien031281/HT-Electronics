@@ -30,6 +30,7 @@
                             <th>Xác minh đúng địa chỉ</th>
                             <th>Sản phẩm</th>
                             <th>Duyệt đơn</th>
+                            <th>Trạng thái</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -42,6 +43,7 @@
                             <th>Xác minh đúng địa chỉ</th>
                             <th>Sản phẩm</th>
                             <th>Duyệt đơn</th>
+                            <th>Trạng thái</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -66,19 +68,37 @@
                                             $GioHang = $ManageOrder->layGioHang();
                                             $SanPhamId = array();
                                             foreach($GioHang as $GioHangs) {
-                                                if($GioHangs['KhachHang_Id'] == $ValueDisplays['KhachHang_Id']) {
+                                                if($GioHangs['DiaChi_Id'] == $ValueDisplays['DiaChi_Id']) {
                                                     $SanPhamId[] =  $GioHangs['SPCT_Id'];
                                         ?>
-                                                    
+                                                    <p>Ten san pham: <?php echo $TenSanPham = $HinhAnh->HienThiTenSPCT($GioHangs['SPCT_Id'])[0];?> x <?php echo $GioHangs['SoLuong'];?></p>
                                                 
                                         <?php
                                                 }
                                             }
-                                            print_r($SanPhamId);
-                                            
                                         ?>
                                 </td>
-                                <td><button>Duyệt đơn</button></td>
+                                
+                                    <?php if($ValueDisplays['status_don'] == 0) {?>
+                                        <td>
+                                            <form action="?Action=DuyetDon" method="post">
+                                                <input type="hidden" value="<?= $ValueDisplays['DiaChi_Id'];?>" name="DiaChi_Id">
+                                                <input type="hidden" value="1" name="Duyet">
+                                                <button class="btn btn-success" type="Submit" name="DuyetDon" value="DuyetDonDiaChiGiaoHang">Duyệt đơn</button>
+                                            </form>
+                                        </td>
+                                        <td>Chờ duyệt đơn</td>
+                                    <?php } else {?>
+                                        <td>
+                                            <form action="?Action=HuyDon" method="post">
+                                                <input type="hidden" value="<?= $ValueDisplays['DiaChi_Id'];?>" name="DiaChi_Id">
+                                                <input type="hidden" value="0" name="Huy">
+                                                <button class="btn btn-danger" type="Submit" name="HuyDon" value="HuyDonDiaChiGiaoHang">Huy Don</button>
+                                            </form>
+                                        </td>
+                                        <td>Đang trên đường đến</td>
+                                    <?php } ?>
+                                
                                 
                             </tr>
                         <?php }?>

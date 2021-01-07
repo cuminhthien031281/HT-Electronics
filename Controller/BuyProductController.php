@@ -81,18 +81,20 @@
                 $Status = 1;
             }
             if(isset($Post)) {
+                $KhachHangXuLyCheckOut->muaHang($UserId,$Fullname, $Email, $Address, $City, $Quan, $SoDienThoai, $ThanhToan_Id, $ThanhTien, $Status);
+                $DiaChi_Id = $KhachHangXuLyCheckOut->layRaDiaChiGiaoHangDuaTrenUserID($UserId);
+                $countArray = count($DiaChi_Id);
+                $Element = $countArray - 1;
                 for($i = 0; $i <sizeof($ArrayMaSP); $i++) {
-                    $KhachHangXuLyCheckOut->themVaoGioHangCheckOut($UserId, 
-                                                                   $ArrayMaSP[$i], 
+                    $KhachHangXuLyCheckOut->themVaoGioHangCheckOut($ArrayMaSP[$i], 
+                                                                   $DiaChi_Id[$Element]['DiaChi_Id'], 
                                                                    $ArrayQuantity[$i]);
                     
                 }
-                $GioHangID = $KhachHangXuLyCheckOut->getGioHangId($UserId)[0];
-                $KhachHangXuLyCheckOut->muaHang($UserId,$Fullname, $Email, $Address, $City, $Quan, $SoDienThoai, $ThanhToan_Id, $ThanhTien, $Status, $GioHangID);
                 unset($_SESSION['cart']);
                 $xuLyCheckOutKhongCardSession->SetSession("Status", "Success");
                 $xuLyCheckOutKhongCardSession->SetSession("Status_Code", "success");
-                header("Location: ./?Action=Home");
+                header("Location: ./?Action=processcheckoutsuccess");
                 exit();
             } else {
                 header("Location: ./?Action=error");
@@ -111,19 +113,19 @@
                 $Status = 1;
             }
             if(isset($Post)) {
+                $KhachHangXuLyCheckOut->muaHang($UserId,$Fullname, $Email, $Address, $City, $Quan, $SoDienThoai, $ThanhToan_Id, $ThanhTien, $Status);
+                $DiaChi_Id = $KhachHangXuLyCheckOut->layRaDiaChiGiaoHangDuaTrenUserID($UserId)[0];
                 for($i = 0; $i <sizeof($ArrayMaSP); $i++) {
-                    $KhachHangXuLyCheckOut->themVaoGioHangCheckOut($UserId, 
-                                                                   $ArrayMaSP[$i], 
+                    $KhachHangXuLyCheckOut->themVaoGioHangCheckOut($ArrayMaSP[$i], 
+                                                                   $DiaChi_Id, 
                                                                    $ArrayQuantity[$i]);
                     
                 }
-                $GioHangID = $KhachHangXuLyCheckOut->getGioHangId($UserId)[0];
-                $KhachHangXuLyCheckOut->muaHang($UserId,$Fullname, $Email, $Address, $City, $Quan, $SoDienThoai, $ThanhToan_Id, $ThanhTien, $Status, $GioHangID);
                 $KhachHangXuLyCheckOut->themVaoCreditCard($UserId, $cardname, $cardnumber, $expmonth, $expyear, $cvv);
                 unset($_SESSION['cart']);
                 $xuLyCheckOutKhongCardSession->SetSession("Status", "Success");
                 $xuLyCheckOutKhongCardSession->SetSession("Status_Code", "success");
-                header("Location: ./?Action=Home");
+                header("Location: ./?Action=processcheckoutsuccess");
                 exit();
             } else {
                 header("Location: ./?Action=error");
