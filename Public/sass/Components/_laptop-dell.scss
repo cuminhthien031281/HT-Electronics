@@ -5,8 +5,9 @@
     display: flex;
     padding: 2rem;
     &__img {
-        width: 50%;
+        width: 40%;
         transition: all 0.5s;
+        overflow: hidden;
         &:hover {
             transform: scale(1.1);
         }

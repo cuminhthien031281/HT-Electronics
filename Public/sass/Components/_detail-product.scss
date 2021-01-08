@@ -117,6 +117,7 @@
         cursor: pointer;
         background-color: $color-primary;
         transition: all .4s;
+        z-index: 100000000;
     }
 }
 

@@ -4,7 +4,8 @@
   display: flex;
   justify-content: space-between;
   z-index: 100;
-  background-color: #fff; }
+  background-color: #fff;
+  border-bottom: 1px solid #ced7d8; }
   @media (max-width: 600px) {
     .header {
       display: inline-block; } }
@@ -457,8 +458,9 @@ body {
   display: flex;
   padding: 2rem; }
   .box-product__img {
-    width: 50%;
-    transition: all 0.5s; }
+    width: 40%;
+    transition: all 0.5s;
+    overflow: hidden; }
     .box-product__img:hover {
       transform: scale(1.1); }
   .box-product__detail {
@@ -806,7 +808,8 @@ body {
     padding: 1rem 1rem 1rem 2rem;
     cursor: pointer;
     background-color: #5a73fc;
-    transition: all .4s; }
+    transition: all .4s;
+    z-index: 100000000; }
 
 .description {
   margin-top: 2rem; }
@@ -909,7 +912,7 @@ body {
   margin-top: 5rem; }
 
 .laptop-dell {
-  margin-top: 5rem; }
+  margin-top: 1.5rem; }
 
 .detail-product {
   margin-top: 5rem;
@@ -918,3 +921,37 @@ body {
 .Card {
   padding-top: 2rem;
   border-top: 1px solid rgba(0, 0, 0, 0.3); }
+
+.product {
+  margin-top: 1.5rem; }
+  .product-name {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 2rem; }
+    .product-name__text--1 {
+      font-weight: bold; }
+    .product-name__text--2 {
+      font-size: 1.2rem; }
+  .product__container {
+    border-left: 3px solid #ced7d8; }
+  .product__row {
+    border-top: 1px solid #ced7d8;
+    padding-top: 1.5rem;
+    margin-top: 2rem; }
+  .product-option {
+    position: relative;
+    border-right: 3px solid #ced7d8;
+    padding: 3.5rem 0 1.5rem 1.5rem; }
+    .product-option-group {
+      list-style: none; }
+      .product-option-group__link {
+        padding-left: 2rem;
+        text-decoration: none !important;
+        font-size: 1.2rem; }
+        .product-option-group__link--price {
+          color: #000; }
+          .product-option-group__link--price:hover {
+            color: #5a73fc; }
+        .product-option-group__link--start {
+          color: orange !important;
+          transition: all 0.5s; }

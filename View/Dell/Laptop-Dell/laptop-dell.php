@@ -3,7 +3,7 @@
 <?php include_once './Model/QuerySP.php'; ?>
 <section class="laptop-dell">
     <div class="container">
-        <h3 class="">Dell</h3>
+    <h3 class="">DELL</h3>
         <?php
 
         $CheckTenHMTDM = $_GET['Action'];
