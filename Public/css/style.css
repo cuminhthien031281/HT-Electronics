@@ -932,12 +932,13 @@ body {
       font-weight: bold; }
     .product-name__text--2 {
       font-size: 1.2rem; }
-  .product__container {
-    border-left: 3px solid #ced7d8; }
   .product__row {
     border-top: 1px solid #ced7d8;
     padding-top: 1.5rem;
     margin-top: 2rem; }
+    .product__row-screen {
+      margin-left: 0 !important;
+      margin-right: 0 !important; }
   .product-option {
     position: relative;
     border-right: 3px solid #ced7d8;

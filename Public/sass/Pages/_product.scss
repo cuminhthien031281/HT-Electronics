@@ -13,13 +13,14 @@
                 }
             }
         }
-        &__container {
-            border-left: 3px solid $color-grey;
-        }
         &__row {
             border-top: 1px solid $color-grey;
             padding-top: 1.5rem;
             margin-top: 2rem;
+            &-screen {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
         }
         &-option {
             position: relative;

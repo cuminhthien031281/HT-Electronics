@@ -40,7 +40,7 @@
     </div>
 </div>
 <section class="product">
-    <div class="row ">
+    <div class="row product__row-screen">
         <div class="col-2">
             <div class="product-option">
                 <div class="product-option__price">
@@ -88,12 +88,11 @@
                 </div>
             </div>
         </div>
-    <!-----1----->
         <div class="col-10">
-        <div class="product-name">
+            <div class="product-name">
                 <h2 class="product-name__text--1">Loptop, Pc-gaming, Linh kiện điện tử</h2>
                 <span class="product-name__text--2">Mua máy tính xách tay, máy tính để bàn, màn hình, máy tính bảng, PC chơi game, ổ cứng và bộ lưu trữ, phụ kiện, v.v.</span>
-        </div>
+            </div>
             <div class="row product__row">
                 <!-----1----->
                 <div class="col-4">
