@@ -4,6 +4,7 @@
     include_once './Controller/RegisterController.php';
     include_once './Controller/AdminController.php';
     include_once './Controller/BuyProductController.php';
+    date_default_timezone_set("Asia/Ho_Chi_Minh");
     $actView = isset($_GET['Action']) ? $_GET['Action'] : "Home";
     switch ($actView) {
         case "Home": 
@@ -327,6 +328,22 @@
             $ValueSubmit = $_POST['HuyDon'];
             $HuyDon = new AdminController();
             $HuyDon->HuyVaDuyetDon($DiaChi_Id, $Value, $ValueSubmit);
+            break;
+        //Chua thanh cong
+        case "generateReport":
+            $ExportExcelSubmit = $_POST['export_excel']; 
+            $dateExport = $_POST['dateExport'];
+            $GenerateReport = new AdminController();
+            $GenerateReport->generateReport($ExportExcelSubmit, $dateExport);
+            break;
+        case "BinhLuanDetail": 
+            $BinhLuanSubmit = $_POST['BinhLuan'];
+            $DateComment = $_POST['Datetimee'];
+            $IdKhachHang = $_POST['IdKhachHang'];
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $NoiDungBinhLuan = $_POST['BinhLuanKhachHang'];
+            $BinhLuanController = new BuyProductController();
+            $BinhLuanController->comment($BinhLuanSubmit, $IdKhachHang, $SPCT_Id, $NoiDungBinhLuan, $DateComment);
             break;
         default: 
             break;

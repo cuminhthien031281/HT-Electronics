@@ -133,6 +133,18 @@
             }
             
         }
+
+        public function comment($Submit, $KhachHang_Id, $SPCT_Id, $NoiDungBinhLuan, $NgayGio) {
+            $Comment = new KhachHang();
+            $Location = "Location: ./?Action=ChiTietSanPham&Id=".$SPCT_Id;
+            if(isset($Submit)) {
+                $Comment->comment($KhachHang_Id, $SPCT_Id, $NoiDungBinhLuan, $NgayGio);
+                header($Location);
+            } else {
+                header("Location: ./?Action=error");
+                exit();
+            }
+        }
             
     }
 

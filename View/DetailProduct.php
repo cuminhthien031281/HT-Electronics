@@ -2,7 +2,13 @@
 <?php include_once 'View/Header.php'; ?>
 <?php $SPCT_Id = $_GET['Id'];
     include_once './Model/NoiDungChiTietSP.php';
+    include_once './Model/KhachHang.php';
+    include_once './Model/KhachHang.php';
     $NoiDungSP = new NoiDungChiTiet();
+    $BinhLuan = new KhachHang();
+    
+    $KiemTraComment = $BinhLuan->kiemtraComment($SPCT_Id);  
+                       
 ?>
 <section class="detail-product">
     <div id="content">
@@ -382,6 +388,22 @@
 
     </div>
     <div class="container">
+    <?php 
+                
+                    $ArrayDonHang = $BinhLuan->timKiemIdDonHang($_SESSION['KhachHang_Id']);
+                    $SPCT_ID_Array = array();
+            
+                    for($i=0;$i<count($ArrayDonHang);$i++) {
+                        $SPCT_ID_Array = $BinhLuan->timKiemSpctId($ArrayDonHang[$i]['DiaChi_Id']);
+                    }
+                    $CombindSPCT_Id = array();
+                    for($i=0; $i<count($SPCT_ID_Array);$i++) {
+                        $CombindSPCT_Id[0][$i] = $SPCT_ID_Array[$i][0];
+                    }
+                    
+                    
+                    if(isset($_SESSION['UserName']) AND in_array($SPCT_Id, $CombindSPCT_Id[0])) {
+                ?>
         <div class="opinion">
             <div class="opinion-rating">
                 <h3>Đánh giá sản phẩm</h3>
@@ -398,20 +420,47 @@
                     <label for="rate-1" class="fas fa-star"></label>
                 </div>
             </div>
-            <div class="opinion-comment">
-                <h3 class="u-margin-bottom-small">Bình luận</h3>
-                <form>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nhập tên...">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <textarea type="text" class="form-control" style="height: 10rem;" placeholder="Nhập bình luận..."></textarea>
-                    </div>
-                    <button type="submit" class="form__btn">Bình luận</button>
-                </form>
+           
+                <?php if(!in_array($_SESSION['KhachHang_Id'], $KiemTraComment[0])) {?>
+                    <div class="opinion-comment">
+                            <h3 class="u-margin-bottom-small">Bình luận</h3>
+                            <form action="?Action=BinhLuanDetail" method="POST">
+                                <div class="form-group">
+                                    <h1><?php echo $_SESSION['UserName'];?></h1>
+                                    <input type="hidden" name="IdKhachHang" value="<?php echo $_SESSION['KhachHang_Id'];?>">
+                                    <input type="hidden" name="Datetimee" value="<?php echo date("F j, Y, g:i a");?>">
+                                    <input type="hidden" name="SPCT_Id" value="<?php echo $SPCT_Id;?>">
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <textarea type="text" name="BinhLuanKhachHang" class="form-control" style="height: 10rem;" placeholder="Nhập bình luận..."></textarea>
+                                </div>
+                                <button type="submit" class="form__btn" name="BinhLuan" value="KhachHangBinhLuan">Bình luận</button>
+                            </form>
+                
+                
+                </div>
+                <?php } else {?>
+                            <h2>Ban da comment san pham nay roi</h2>
+                <?php } ?>
+             
             </div>
-        </div>
+        <?php 
+                    } else {
+                ?>  
+                            <a href="?Action=Login">Ban phai mua san pham nay truoc khi comment hoac danh gia</a>
+                            
+                <?php        
+                    }
+                    $HienThiComment = $NoiDungSP->hienThiComment($SPCT_Id);
+                    foreach($HienThiComment as $HienThiComments) {
+                ?>
+                        <h2><?php echo $UserName = $NoiDungSP->layRaUserName($_SESSION['KhachHang_Id'])[0];;?></h2>
+                        <p><?php echo $HienThiComments['Noidungbinhluan']; ?></p>
+                        <p>Ngay gio comment: <?php echo $HienThiComments['NgayGio'];?></p>
+                <?php 
+                    }
+                ?>  
     </div>
 </section>
 <script src="./Public/js/slide-left.js"></script>

@@ -1,3 +1,9 @@
+<?php 
+
+    include_once './Model/Admin.php';
+    $CountDon = new Admin();
+?>
+   
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -89,7 +95,10 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            <form method="post" action="excel.php">
+                <input type="hidden" value="<?php echo date('Y-m-d'); ?>" name="dateExport">
+                <button type="submit" name="export_excel" value="exportexcel" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</button>
+            </form>
           </div>
 
           <!-- Content Row -->
@@ -101,8 +110,14 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Đơn hàng đã duyệt</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                          <?php 
+                              $CountDonDaDuyet = $CountDon->hienThiDonTrenHome(1)[0];
+                              echo $CountDonDaDuyet;
+                          ?>
+
+                      </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -118,8 +133,16 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tổng thu nhập</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      
+                      <?php 
+                          
+                          $ThuNhap = $CountDon->hienThiSoTienKiemDuoc()[0];
+                          echo number_format($ThuNhap);
+                      ?>
+                      
+                      </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -138,8 +161,13 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Yêu cầu duyệt đơn</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                          <?php 
+                              $CountDonChuaDuyet = $CountDon->hienThiDonTrenHome(0)[0];
+                              echo $CountDonChuaDuyet;
+                          ?>
+                      </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>

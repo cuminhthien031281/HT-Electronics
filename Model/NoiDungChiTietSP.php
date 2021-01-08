@@ -113,6 +113,24 @@
             $suaNoiDungSP->closeCursor();
             return 1;
         }
+
+        public function hienThiComment($SPCT_Id) {
+            $hienThiComment = $this->_pdo->prepare("SELECT * FROM binhluan WHERE SPCT_Id = ?");
+            $hienThiComment->bindParam(1, $SPCT_Id);
+            $hienThiComment->execute();
+            $StoreValue = $hienThiComment->fetchAll();
+            $hienThiComment->closeCursor();
+            return $StoreValue;
+        }
+
+        public function layRaUserName($KhachHang_Id) {
+            $layRaUserName = $this->_pdo->prepare("SELECT UserName from khachhang WHERE KhachHang_Id = ?");
+            $layRaUserName->bindParam(1, $KhachHang_Id);
+            $layRaUserName->execute();
+            $StoreUserName = $layRaUserName->fetch();
+            $layRaUserName->closeCursor();
+            return $StoreUserName;
+        }
     }
 
 ?>
