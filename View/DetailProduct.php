@@ -4,9 +4,10 @@
     include_once './Model/NoiDungChiTietSP.php';
     include_once './Model/KhachHang.php';
     include_once './Model/KhachHang.php';
+    include_once './Model/QuerySP.php';
     $NoiDungSP = new NoiDungChiTiet();
     $BinhLuan = new KhachHang();
-    
+    $KiemTraKhuyenMai = new QuerySP();
     $KiemTraComment = $BinhLuan->kiemtraComment($SPCT_Id);  
                        
 ?>
@@ -91,6 +92,27 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="far fa-star"></i>
+                            <?php  $Tong = $NoiDungSP->tinhTongSoSaoCuaSanPham($SPCT_Id)[0];
+                                    $DemSoCot = $NoiDungSP->demSoCotCuaSPCT($SPCT_Id)[0];
+                                    if($DemSoCot == 0) {
+                                        $DemSoCot = "Chua co danh gia";
+                                        $Final = "Chua co so sao";
+                            ?>
+                                        <p><?php echo $DemSoCot;?></p>
+                                        <p>So sao: <?php echo $Final;?></p>
+                            <?php 
+                                    } else {
+                                        $Score1 = $Tong / $DemSoCot;
+                                        $Final = $Score1 / 20;
+                            ?>
+                                        <p><?php echo $DemSoCot;?>+</p>
+                                        <p>So sao: <?php echo $Final;?></p>
+                            <?php 
+                                    }
+                                    
+                            ?>
+
+                            
                         </div>
                     </div>
                     <div class="detail-parameter">
@@ -131,21 +153,34 @@
                     </div>
                     <div class="detail-price">
                         <?php $GiaSPCT = $NoiDungSP->HienThigiaSPCT($SPCT_Id); 
-                                                        
+                              $CheckKhuyenMai = $KiemTraKhuyenMai->checkKhuyenMai($SPCT_Id);
+                              $KieuKhuyenMai = $KiemTraKhuyenMai->checkKieuKhuyenMai($CheckKhuyenMai['KhuyenMai_Id']);
+                              $TenKhuyenMai = $KieuKhuyenMai['LoaiKhuyenMai'];
+                              $PhanTramKhuyenMai = $KieuKhuyenMai['PhanTramKhuyenMai'] % 100;
+                              $DonGiaKhuyenMai = $GiaSPCT['DonGia'] * $PhanTramKhuyenMai;
+                              if(!empty($CheckKhuyenMai)) {                              
                         ?>
-                        <del class="detail-price__old">13,540,00đ</del>
-                        <div class="detail-price__promotional" id="price"><?php echo $GiaSPCT['DonGia'];?></div>
+                                    <p>Khuyen mai dang duoc ap dung: <?php echo $TenKhuyenMai;?></p>
+                                    <del class="detail-price__old"><?php echo $GiaSPCT['DonGia'];?></del>
+                                    <div class="detail-price__promotional" id="price"><?php echo $DonGiaKhuyenMai;?></div>
+                        <?php } else {?>
+                                    <div class="detail-price__promotional" id="price"><?php echo $GiaSPCT['DonGia'];?></div>
+                        <?php } ?>    
+                        
                     </div>
                     
                     <div class="detail-order">
-                        <button type="submit" class="form__btn">Đặt hàng</button>
                         <form action="?Action=AddToCart" method="post">
                             
                             <input type="number" name="quantity_SP" min="1" max="10" id="quantity">
                             
                             <input type="hidden" name="id_sp" value="<?php echo $SPCT_Id;?>">
                             <input type="hidden" name="ten_sp" value="<?php echo $TenSPCT['TenSPCT'];?>">
-                            <input type="hidden" name="gia" value="<?php echo $GiaSPCT['DonGia'];?>">
+                            <input type="hidden" name="gia" value="<?php if(!empty($CheckKhuyenMai)) {
+                                                                            echo $DonGiaKhuyenMai;
+                                                                        } else {
+                                                                            echo $GiaSPCT['DonGia'];
+                                                                        }?>">
                             <button type="submit" name="ThemVaoGio" value="ThemSanPham" class="form__btn form__btn--add-to-card">Thêm vào giỏ hàng</button>
                         </form>
                     </div>
@@ -389,7 +424,6 @@
     </div>
     <div class="container">
     <?php 
-                
                     $ArrayDonHang = $BinhLuan->timKiemIdDonHang($_SESSION['KhachHang_Id']);
                     $SPCT_ID_Array = array();
             
@@ -400,28 +434,62 @@
                     for($i=0; $i<count($SPCT_ID_Array);$i++) {
                         $CombindSPCT_Id[0][$i] = $SPCT_ID_Array[$i][0];
                     }
+                    $TimKiemSoSao = $BinhLuan->timKiemSoSao($_SESSION['KhachHang_Id']);
+                    $ArraySPCT_IDRAte = array();
+                    $ArrayKhachHang_Rate = array();
+                    for($i = 0; $i<count($TimKiemSoSao); $i++) {
+                        $ArraySPCT_IDRAte[0][$i] = $TimKiemSoSao[$i]['SPCT_Id'];
+                    }
+                    for($i=0;$i<count($TimKiemSoSao); $i++) {
+                        $ArrayKhachHang_Rate[0][$i] = $TimKiemSoSao[$i]['KhachHang_Id'];
+                    }
                     
-                    
-                    if(isset($_SESSION['UserName']) AND in_array($SPCT_Id, $CombindSPCT_Id[0])) {
+                    if(empty($CombindSPCT_Id)) {
                 ?>
-        <div class="opinion">
+                            <a href="?Action=Login">Ban phai mua san pham nay truoc khi comment hoac danh gia</a>
+        
+                <?php 
+                    } elseif(isset($_SESSION['UserName']) AND in_array($SPCT_Id, $CombindSPCT_Id[0])) {
+                ?>  
+                            <div class="opinion">
             <div class="opinion-rating">
-                <h3>Đánh giá sản phẩm</h3>
-                <div class="star-widget u-margin-bottom-small">
-                    <input type="radio" name="rate" id="rate-5">
-                    <label for="rate-5" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-4">
-                    <label for="rate-4" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-3">
-                    <label for="rate-3" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-2">
-                    <label for="rate-2" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-1">
-                    <label for="rate-1" class="fas fa-star"></label>
-                </div>
+                <?php if(in_array($_SESSION['KhachHang_Id'], $ArrayKhachHang_Rate[0]) AND in_array($SPCT_Id, $ArraySPCT_IDRAte[0])) {?>
+                        <h2>Ban da danh gia san pham nay roi</h2>
+                <?php } else {?>
+                        
+                        <h3>Đánh giá sản phẩm</h3>
+                            <div class="star-widget u-margin-bottom-small">
+                                <form action="?Action=ratingDetail" method="POST">
+                                    <input type="radio" name="rate" id="rate-5" value="100">
+                                    <label for="rate-5" class="fas fa-star"></label>
+                                    <input type="radio" name="rate" id="rate-4" value="75">
+                                    <label for="rate-4" class="fas fa-star"></label>
+                                    <input type="radio" name="rate" id="rate-3" value="50">
+                                    <label for="rate-3" class="fas fa-star"></label>
+                                    <input type="radio" name="rate" id="rate-2" value="25">
+                                    <label for="rate-2" class="fas fa-star"></label>
+                                    <input type="radio" name="rate" id="rate-1" value="0">
+                                    <label for="rate-1" class="fas fa-star"></label>
+                                    <input type="hidden" name="SPCT_Id" value="<?php echo $SPCT_Id;?>">
+                                    <input type="hidden" name="KhachHang_Id" value="<?php echo $_SESSION['KhachHang_Id'];?>">
+                                    <input type="hidden" name="Datetimee" value="<?php echo date("F j, Y, g:i a");?>">
+                                    <button type="submit" name="buttonRate" class="btn btn-success" value="Rating product">Submit</button>
+                                </form>
+                            </div>
+                    <?php } ?>
             </div>
-           
-                <?php if(!in_array($_SESSION['KhachHang_Id'], $KiemTraComment[0])) {?>
+                <?php 
+                    
+                    $ArrayKhachHang_Comment = array();
+                    for($i = 0; $i<count($KiemTraComment); $i++) {
+                        $ArrayKhachHang_Comment[0][$i] = $KiemTraComment[$i]['KhachHang_Id'];
+                    }
+                    $ArraySPCT_Id_Comment = array();
+                    for($i = 0; $i<count($KiemTraComment); $i++) {
+                        $ArraySPCT_Id_Comment[0][$i] = $KiemTraComment[$i]['SPCT_Id'];
+                    }
+                    
+                if(empty($ArrayKhachHang_Comment) AND empty($ArraySPCT_Id_Comment) ) {?>
                     <div class="opinion-comment">
                             <h3 class="u-margin-bottom-small">Bình luận</h3>
                             <form action="?Action=BinhLuanDetail" method="POST">
@@ -437,20 +505,20 @@
                                 </div>
                                 <button type="submit" class="form__btn" name="BinhLuan" value="KhachHangBinhLuan">Bình luận</button>
                             </form>
-                
-                
-                </div>
-                <?php } else {?>
-                            <h2>Ban da comment san pham nay roi</h2>
+                    </div>
+                <?php } elseif(in_array($_SESSION['KhachHang_Id'], $ArrayKhachHang_Comment[0]) AND in_array($SPCT_Id, $ArraySPCT_Id_Comment[0])) {?>
+                             <h2>Ban da comment san pham nay roi</h2>
+                            
+                            
                 <?php } ?>
              
             </div>
-        <?php 
-                    } else {
-                ?>  
-                            <a href="?Action=Login">Ban phai mua san pham nay truoc khi comment hoac danh gia</a>
                             
                 <?php        
+                    } else {
+                ?> 
+                        <a href="?Action=Login">Ban phai mua san pham nay truoc khi comment hoac danh gia</a>
+                <?php 
                     }
                     $HienThiComment = $NoiDungSP->hienThiComment($SPCT_Id);
                     foreach($HienThiComment as $HienThiComments) {
@@ -458,6 +526,11 @@
                         <h2><?php echo $UserName = $NoiDungSP->layRaUserName($_SESSION['KhachHang_Id'])[0];;?></h2>
                         <p><?php echo $HienThiComments['Noidungbinhluan']; ?></p>
                         <p>Ngay gio comment: <?php echo $HienThiComments['NgayGio'];?></p>
+                        <form action="?Action=XoaComment" method="POST">
+                            <input type="hidden" name="SPCT_Id" value="<?php echo $SPCT_Id;?>">
+                            <input type="hidden" name="KhachHang_Id" value="<?php echo $_SESSION['KhachHang_Id'];?>">
+                            <button class="btn btn-danger" name="XoaComment" value="XoaComment">Xoa Comment</button>                            
+                        </form>
                 <?php 
                     }
                 ?>  

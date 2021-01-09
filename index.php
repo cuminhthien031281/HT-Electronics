@@ -266,11 +266,11 @@
             //Thong tin chung
             $fullname = $_POST['fullname'];
             $email = $_POST['email'];
-            $Address = $_POST['Address'];
-            $city = $_POST['city'];
-            $quan = $_POST['quan'];
-            $UserId = $_POST['UserId'];
             $PhoneNumber = $_POST['PhoneNumber'];
+            $city = $_POST['calc_shipping_provinces'];
+            $quan = $_POST['Quan'];
+            $Address = $_POST['Address'];
+            $UserId = $_POST['UserId'];
             $Submit = $_POST['DoCheckOut'];
             $sameadr = $_POST['sameadr'];
             //Check kieu thanh toan
@@ -290,11 +290,11 @@
         case "DoCheckOutNoCard": 
             $fullname = $_POST['fullname'];
             $email = $_POST['email'];
-            $Address = $_POST['Address'];
-            $city = $_POST['city'];
-            $quan = $_POST['quan'];
-            $UserId = $_POST['UserId'];
             $PhoneNumber = $_POST['PhoneNumber'];
+            $city = $_POST['calc_shipping_provinces'];
+            $quan = $_POST['Quan'];
+            $Address = $_POST['Address'];
+            $UserId = $_POST['UserId'];
             $Submit = $_POST['DoCheckOut'];
             $sameadr = $_POST['sameadr'];
             //Check kieu thanh toan
@@ -344,6 +344,46 @@
             $NoiDungBinhLuan = $_POST['BinhLuanKhachHang'];
             $BinhLuanController = new BuyProductController();
             $BinhLuanController->comment($BinhLuanSubmit, $IdKhachHang, $SPCT_Id, $NoiDungBinhLuan, $DateComment);
+            break;
+        case "ratingDetail": 
+            $RatingSubmit = $_POST['buttonRate'];
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $KhachHang_Id = $_POST['KhachHang_Id'];
+            $rate = $_POST['rate'];
+            $RateDatetimee = $_POST['Datetimee'];
+            $RateSanPham = new BuyProductController();
+            $RateSanPham->rate($RatingSubmit, $KhachHang_Id, $SPCT_Id, $rate, $RateDatetimee);
+            break;
+        case "XoaComment": 
+            $KhachHang_Id = $_POST['KhachHang_Id'];
+            $SubmitXoa = $_POST['XoaComment'];
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $XoaComment = new BuyProductController();
+            $XoaComment->xoaComment($SubmitXoa, $KhachHang_Id, $SPCT_Id);
+            break;
+        case "XemXoaBinhLuan":
+            include_once './Admin/BinhLuanDanhGia/XemXoaBinhLuan.php'; 
+            break;
+        case "XoaBinhLuan": 
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $IdNguoiDung = $_POST['IdNguoiDung'];
+            $xoacommentSubmit = $_POST['xoacomment'];
+            $XoaCommentNguoiDung = new AdminController();
+            $XoaCommentNguoiDung->xoaCommentDiEm($xoacommentSubmit, $SPCT_Id, $IdNguoiDung);
+            break;
+        case "XoaDanhGia":
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $IdNguoiDung = $_POST['IdNguoiDung'];
+            $XoaDanhGiaSumit = $_POST['xoaDanhGia'];
+            $XoaDanhGiaNguoiDung = new AdminController();
+            $XoaDanhGiaNguoiDung->xoaDanhGiaDiEm($XoaDanhGiaSumit, $IdNguoiDung, $SPCT_Id);
+            break;
+        case "XemXoaDanhGia":
+            include_once './Admin/BinhLuanDanhGia/XemDanhGia.php'; 
+            break;
+        case "TimKiemSanPham": 
+            $Submit = $_POST['searchProduct'];
+            $NameFind = $_POST['SearchSanPham'];
             break;
         default: 
             break;

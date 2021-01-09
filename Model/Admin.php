@@ -40,5 +40,22 @@
             return $StoreValue;
         }
 
+        public function xoaComment($SPCT_Id, $KhachHang_Id) {
+            $xoaComment = $this->_pdo->prepare("DELETE FROM binhluan WHERE SPCT_Id = ? AND KhachHang_Id = ?");
+            $xoaComment->bindParam(1, $SPCT_Id);
+            $xoaComment->bindParam(2, $KhachHang_Id);
+            $xoaComment->execute();
+            $xoaComment->closeCursor();
+            return $xoaComment;
+        }
+
+        public function xoaDanhGia($SPCT_Id, $KhachHang_Id) {
+            $XoaDanhGia = $this->_pdo->prepare("DELETE FROM danhgia WHERE SPCT_Id = ? AND KhachHang_Id = ?");
+            $XoaDanhGia->bindParam(1, $SPCT_Id);
+            $XoaDanhGia->bindParam(2, $KhachHang_Id);
+            $XoaDanhGia->execute();
+            $XoaDanhGia->closeCursor();
+            return $XoaDanhGia;
+        }
     }
 ?>

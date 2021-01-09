@@ -131,6 +131,32 @@
             $layRaUserName->closeCursor();
             return $StoreUserName;
         }
+
+        public function tinhTongSoSaoCuaSanPham($SPCT_Id) {
+            $tinhTongSoSaoCuaSanPham =$this->_pdo->prepare("SELECT SUM(SoSao) TongSaoCuaSP FROM danhgia WHERE SPCT_Id = ?");
+            $tinhTongSoSaoCuaSanPham->bindParam(1, $SPCT_Id);
+            $tinhTongSoSaoCuaSanPham->execute();
+            $StoreTong = $tinhTongSoSaoCuaSanPham->fetch();
+            $tinhTongSoSaoCuaSanPham->closeCursor();
+            return $StoreTong;
+        }
+
+        public function demSoCotCuaSPCT($SPCT_Id) {
+            $demSoCotCuaSPCt = $this->_pdo->prepare("SELECT COUNT(SoSao)FROM danhgia WHERE SPCT_Id = ?");
+            $demSoCotCuaSPCt->bindParam(1, $SPCT_Id);
+            $demSoCotCuaSPCt->execute();
+            $StoreTong = $demSoCotCuaSPCt->fetch();
+            $demSoCotCuaSPCt->closeCursor();
+            return $StoreTong;
+        }
+
+        public function hienThiDanhGia() {
+            $hienThiDanhGia = $this->_pdo->prepare("SELECT * FROM danhgia");
+            $hienThiDanhGia->execute();
+            $StoreValue = $hienThiDanhGia->fetchAll();
+            $hienThiDanhGia->closeCursor();
+            return $StoreValue;
+        }
     }
 
 ?>

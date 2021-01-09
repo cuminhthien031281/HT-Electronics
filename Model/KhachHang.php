@@ -278,12 +278,44 @@
         }
 
         public function kiemtraComment($SPCT_ID) {
-            $Comment = $this->_pdo->prepare("SELECT KhachHang_Id FROM binhluan WHERE SPCT_Id = ?");
+            $Comment = $this->_pdo->prepare("SELECT * FROM binhluan WHERE SPCT_Id = ?");
             $Comment->bindParam(1, $SPCT_ID);
             $Comment->execute();
             $StoreValue = $Comment->fetchAll();
             $Comment->closeCursor();
             return $StoreValue;
+        }
+
+        public function rate($KhachHang_Id, $SPCT_ID, $SoSao, $NgayRate) {
+            $rate = $this->_pdo->prepare("INSERT INTO danhgia(KhachHang_Id, SPCT_Id, SoSao, NgayRate) VALUES(?, ?, ?, ?)");
+            $rate->bindParam(1, $KhachHang_Id);
+            $rate->bindParam(2, $SPCT_ID);
+            $rate->bindParam(3, $SoSao);
+            $rate->bindParam(4, $NgayRate);
+            $rate->execute();
+            $rate->closeCursor();
+            return $rate;
+        }
+
+        public function timKiemSoSao($KhachHang_Id) {
+            $timKiemSoSao = $this->_pdo->prepare("SELECT * FROM danhgia WHERE KhachHang_Id = ?");
+            $timKiemSoSao->bindParam(1, $KhachHang_Id);
+            $timKiemSoSao->execute();
+            $StoreValue = $timKiemSoSao->fetchAll();
+            $timKiemSoSao->closeCursor();
+            return $StoreValue;
+        }
+
+        public function xoaComment($KhachHang_Id) {
+            $xoaComment = $this->_pdo->prepare("DELETE FROM binhluan WHERE KhachHang_Id = ?");
+            $xoaComment->bindParam(1, $KhachHang_Id);
+            $xoaComment->execute();
+            $xoaComment->closeCursor();
+            return $xoaComment;
+        }
+        //Chua Thanh cong
+        public function timKiemSanPham($TenSP) {
+            $TimKiemSanPham = $this->_pdo->prepare("SELECT * FROM sanphamchitietcuahang WHERE TenSPCT like ? OR ");
         }
     }
 ?>

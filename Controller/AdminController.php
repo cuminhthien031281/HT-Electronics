@@ -329,6 +329,30 @@
                 exit();
             }
         }
+
+        public function xoaCommentDiEm($XoaCommentSubmit, $SPCT_Id, $KhachHang_Id) {
+            $XoaCommentKhachHang = new Admin();
+            if(isset($XoaCommentSubmit)) {
+                $XoaCommentKhachHang->xoaComment($SPCT_Id, $KhachHang_Id);
+                header('Location: ./?Action=XemXoaBinhLuan');
+                exit();
+            } else {
+                header('Location: ./?Action=error');
+                exit();
+            }
+        }
+
+        public function xoaDanhGiaDiEm($XoaDanhGiaSubmit, $KhachHang_Id, $SPCT_Id) {
+            $XoaDanhGiaKhachHang = new Admin();
+            if(isset($XoaDanhGiaSubmit)) {
+                $XoaDanhGiaKhachHang->xoaDanhGia($SPCT_Id, $KhachHang_Id);
+                header('Location: ./?Action=XemXoaDanhGia');
+                exit();
+            } else {
+                header('Location: ./?Action=error');
+                exit();
+            }
+        }
     }
 
 ?>

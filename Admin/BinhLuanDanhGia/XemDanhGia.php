@@ -14,10 +14,10 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page heading -->
-    <h1 class="h3 mb-2 text-gray-800">Xem, xóa bình luận</h1>
+    <h1 class="h3 mb-2 text-gray-800">Xem đánh giá</h1>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            Xem và xóa bình luận
+            Xem đánh giá
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -25,19 +25,23 @@
                     <thead>
                         <tr>
                             <th>Sản phẩm ID</th>
-                            <th>Id nguoi dung</th>
-                            <th>Nội dung comment</th>
-                            <th>Ngày giờ</th>
-                            <th>Xóa</th>
+                            <th>Id người dùng</th>
+                            <th>Người dùng đánh giá</th>
+                            <th>Số đánh giá của sản phẩm</th>
+                            <th>Ngay danh gia</th>
+                            
+                            <th>Xóa đánh giá của người dùng</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Sản phẩm ID</th>
                             <th>Id người dùng</th>
-                            <th>Nội dung comment</th>
-                            <th>Ngày giờ</th>
-                            <th>Xóa</th>
+                            <th>Người dùng đánh giá</th>
+                            <th>Số đánh giá của sản phẩm</th>
+                            <th>Ngay danh gia</th>
+                            
+                            <th>Xóa đánh giá của người dùng</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -45,19 +49,22 @@
                              <tr>
                                 
                                         <td><?php echo $SPCT_Id_Querys['SPCT_Id'];?></td>
-                                        <?php //Hien thi noi dung comment va ngay gio theo spct_id
+                                        <?php 
 
-                                            $Comment = $HinhAnh->hienThiComment($SPCT_Id_Querys['SPCT_Id']);
+                                            $DanhGia = $HinhAnh->hienThiDanhGia();
                                             
                                         ?>
                                         
                                         <td>
                                         <?php 
-                                            foreach($Comment as $Comments) {
+                                            foreach($DanhGia as $DanhGias) {
                                         ?>
                                                 <?php 
-                                                        echo $Comments['KhachHang_Id'].",";
-                                                
+                                                    if($DanhGias['SPCT_Id'] == $SPCT_Id_Querys['SPCT_Id']){
+                                                        echo $DanhGias['KhachHang_Id'].",";
+                                                    } else {
+                                                        echo "";
+                                                    }
                                                 ?>
                                         <?php 
                                             }
@@ -65,37 +72,65 @@
                                         </td>
                                         <td>
                                         <?php 
-                                            foreach($Comment as $Comments) {
+                                            foreach($DanhGia as $DanhGias) {
                                         ?>
                                                 <?php 
-                                                        echo $Comments['Noidungbinhluan']. ",";
-                                                
+                                                    if($DanhGias['SPCT_Id'] == $SPCT_Id_Querys['SPCT_Id']){
+                                                        echo $DanhGias['SoSao']. ",";
+                                                    } else {
+                                                        echo "";
+                                                    }
                                                 ?>
                                         <?php 
                                             }
                                         ?>
                                         </td>
                                         <td>
+                                            <?php $DemSoCot = $HinhAnh->demSoCotCuaSPCT($SPCT_Id_Querys['SPCT_Id'])[0]; 
+                                                   if($DemSoCot == 0) {
+                                                        $DemSoCot = "Chua co danh gia";
+                                            ?>
+                                                        <p><?php echo $DemSoCot;?></p>
+                                            <?php 
+                                                   } else {
+                                            ?>
+                                                        <p><?php echo $DemSoCot;?></p>
+                                            <?php
+                                                   }
+                                            ?>
+                                        </td>
+                                        <td>
                                         <?php 
-                                            foreach($Comment as $Comments) {
+                                            foreach($DanhGia as $DanhGias) {
                                         ?>
                                                 <?php 
-                                                        echo $Comments['NgayGio'].","; 
+                                                    if($DanhGias['SPCT_Id'] == $SPCT_Id_Querys['SPCT_Id']){
+                                                        echo $DanhGias['NgayRate'].","; 
+                                                    } else {
+                                                        echo "";
+                                                    }
                                                 
                                                 ?>
                                         <?php 
                                             }
                                         ?>
                                         </td>
+                                        
+                                        
                                         <td>
-                                            <form action="?Action=XoaBinhLuan" method="POST">
+                                            <form action="?Action=XoaDanhGia" method="POST">
                                                 <input type="hidden" name="SPCT_Id" value="<?php echo $SPCT_Id_Querys['SPCT_Id'];?>">
                                                 <select id="cars" name="IdNguoiDung">
-                                                    <?php foreach($Comment as $Comments) {?>
-                                                    <option value="<?= $Comments['KhachHang_Id'];?>"><?= $Comments['KhachHang_Id'];?></option>
-                                                    <?php }?>
+                                                    <?php foreach($DanhGia as $DanhGias) {
+                                                        if($DanhGias['SPCT_Id'] == $SPCT_Id_Querys['SPCT_Id']) {    
+                                                    ?>
+                                                            <option value="<?= $DanhGias['KhachHang_Id'];?>"><?= $DanhGias['KhachHang_Id'];?></option>
+                                                    <?php } ?>
+                                                            
+                                                    <?php 
+                                                         } ?>
                                                 </select>
-                                                <button class="btn btn-warning" name="xoacomment" value="xoacommentdi">Xoa</button>
+                                                <button class="btn btn-warning" name="xoaDanhGia" value="xoaDanhGiaDi">Xoa</button>
                                             </form>
                                         </td>
                                 
