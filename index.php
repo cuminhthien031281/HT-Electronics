@@ -10,6 +10,9 @@
         case "Home": 
             require_once './View/Home.php';
             break;
+        case "Product": 
+            require_once './View/product.php';
+            break;
         case "Login":
             require_once './View/Login.php';
             break;
@@ -351,6 +354,9 @@
             $HuyDon = new AdminController();
             $HuyDon->sendMail($DiaChi_Id, $ValueSubmit, $Value);
             break;
+<<<<<<< HEAD
+
+=======
         //Chua thanh cong
         case "generateReport":
             $ExportExcelSubmit = $_POST['export_excel']; 
@@ -410,6 +416,7 @@
         case "productPage": 
             include_once './View/product.php';
             break;
+>>>>>>> d6c07935692aa32752860d15fa269d87dcacd2e4
         default: 
             break;
     }

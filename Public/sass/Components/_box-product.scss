@@ -25,14 +25,23 @@
         box-sizing: border-box;
         &--name {
             position: relative;
+            @include respond(phone) {
+                width: 65px;
+            }
         }
         &--price {
             font-size: 1.5rem;
             font-weight: 600;
+            @include respond (phone) {
+                font-size: .8rem;
+            }
         }
         &--start {
             margin: 1rem 0;
             color: yellow;
+            @include respond (phone) {
+                font-size: .8rem;
+            }
         }
     }
     &__new-png {

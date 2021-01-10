@@ -4,7 +4,7 @@
         </div>
         <ul class="header-content u-center-text">
             <li class="header-content__group"><a href="?Action=Home" class="header-content__link header-content__link--home">Trang chủ</a></li>
-            <li class="header-content__group"><a href="?Action=productPage" class="header-content__link">Sản phẩm</a></li>
+            <li class="header-content__group"><a href="?Action=Product" class="header-content__link">Sản phẩm</a></li>
             <?php 
                 if(isset($_SESSION['UserName']) && $_SESSION['Role'] == 0) {
             ?>
@@ -63,13 +63,11 @@
             <li class="header-content__group">
                 <div class="header-search">
                     <div class="header-search__item">
-                        <form action="?Action=TimKiemSanPham" method="post">
-                            <input type="text" class="header-search__item--input" placeholder="Tìm kiếm ..." name="SearchSanPham">
-                            <button type="submit" name="searchProduct" value="SearchProduct" class="btn btn-success">>></button>
-                        </form>
-                        
+                        <input type="search" class="header-search__item--input" placeholder="Tìm kiếm ...">
                     </div>
-                    
+                    <div class="header-search__item">
+                        <i class="fas fa-search  header-search__item--icon"></i>
+                    </div>
             </li>
         </ul>
 </header>
