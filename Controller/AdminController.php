@@ -280,16 +280,17 @@
         public function HuyVaDuyetDon($DiaChi_Id, $Value, $ValueSubmit) {
             $HuyVaDuyetDonzz = new Admin();
             $HuyVaDuyetDonSession = new Session();
+            $String = "Location: ./?Action=SendMail&DC_Id=" . $DiaChi_Id;
             if(isset($ValueSubmit)) {
                 if($HuyVaDuyetDonzz->DuyetVaHuyDon($DiaChi_Id, $Value)) {
                     $HuyVaDuyetDonSession->SetSession("Status", "Success");
                     $HuyVaDuyetDonSession->SetSession("Status_Code", "success");
-                    header("Location: ./?Action=XemVaDuyetDon");
+                    header($String);
                     exit();
                 } else {
                     $HuyVaDuyetDonSession->SetSession("Status", "Failed");
                     $HuyVaDuyetDonSession->SetSession("Status_Code", "failed");
-                    header("Location: ./?Action=XemVaDuyetDon");
+                    header($String);
                     exit();
                 }
             }
@@ -357,6 +358,24 @@
             if(isset($Submit)) {
                 $suaThongTinChiTiet->chinhSuaThongTinChiTiet($SPCT_Id, $Hang, $HeDieuHanh, $Chip, $ManHinh, $Ram);
                 header("Location: ./?Action=ThemXoaChinhSuaTTCT");
+                exit();
+            } else {
+                header('Location: ./?Action=error');
+                exit();
+            }
+        }
+
+        public function sendMail($DiaChi_Id, $Submit, $Value) {
+            $Admin = new Admin();
+            $StringDuyet = 'Location: ./?Action=SendMail&DC_Id='.$DiaChi_Id;
+            $StringHuy = 'Location: ./?Action=DeSendMail&DC_Id='.$DiaChi_Id;
+            if(isset($Submit) && $Submit == "DuyetDonDiaChiGiaoHang") {
+                $Admin->DuyetVaHuyDon($DiaChi_Id, $Value);
+                header($StringDuyet);
+                exit();
+            } elseif(isset($Submit) && $Submit == "HuyDonDiaChiGiaoHang") {
+                $Admin->DuyetVaHuyDon($DiaChi_Id, $Value);
+                header($StringHuy);
                 exit();
             } else {
                 header('Location: ./?Action=error');

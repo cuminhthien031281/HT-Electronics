@@ -335,18 +335,29 @@
         case "DuyetDon":
             $DiaChi_Id = $_POST['DiaChi_Id'];
             $Value = $_POST['Duyet'];
-            $ValueSubmit = $_POST['DuyetDon'];  
+            $ValueSubmit = $_POST['DuyetDon'];
+            
             $DuyetDon = new AdminController();
-            $DuyetDon->HuyVaDuyetDon($DiaChi_Id, $Value, $ValueSubmit);
+            $DuyetDon->sendMail($DiaChi_Id, $ValueSubmit, $Value);
+            break;
+        case "SendMail":
+            include_once './Admin/QuanLyDonHang/sendMail.php';
+            break;
+        case "DeSendMail": 
+            include_once './Admin/QuanLyDonHang/DeSendMail.php';
             break;
         case "HuyDon": 
             $DiaChi_Id = $_POST['DiaChi_Id'];
             $Value = $_POST['Huy'];
             $ValueSubmit = $_POST['HuyDon'];
+            $KhachHang_Id = $_POST['KhachHang_Id'];
             $HuyDon = new AdminController();
-            $HuyDon->HuyVaDuyetDon($DiaChi_Id, $Value, $ValueSubmit);
+            $HuyDon->sendMail($DiaChi_Id, $ValueSubmit, $Value);
             break;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5e5ac6a43cd640aff7a996c2ccc7010901fca801
         //Chua thanh cong
         case "generateReport":
             $ExportExcelSubmit = $_POST['export_excel']; 

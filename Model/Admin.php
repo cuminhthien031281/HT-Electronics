@@ -70,5 +70,32 @@
             $chinhSuaThongTinChiTiet->closeCursor();
             return $chinhSuaThongTinChiTiet;
         }
+
+        public function layThongTinDiaChiGiaoHang($DiaChi_Id) {
+            $layThongTinDiaChiGiaoHang = $this->_pdo->prepare("SELECT * FROM diachigiaohang WHERE DiaChi_Id = ?");
+            $layThongTinDiaChiGiaoHang->bindParam(1, $DiaChi_Id);
+            $layThongTinDiaChiGiaoHang->execute();
+            $StoreValue = $layThongTinDiaChiGiaoHang->fetch();
+            $layThongTinDiaChiGiaoHang->closeCursor();
+            return $StoreValue;
+        }
+
+        public function layThongTinGioHang($DiaChi_Id) {
+            $LayThongTinGiohang = $this->_pdo->prepare("SELECT * FROM giohang WHERE DiaChi_Id = ?");
+            $LayThongTinGiohang->bindParam(1, $DiaChi_Id);
+            $LayThongTinGiohang->execute();
+            $StoreValue = $LayThongTinGiohang->fetchAll();
+            $LayThongTinGiohang->closeCursor();
+            return $StoreValue;
+        }
+
+        public function layTenSPCT($SPCT_Id) {
+            $LayTenSPCT = $this->_pdo->prepare("SELECT TenSPCT FROM sanphamchitietcuahang WHERE SPCT_Id = ?");
+            $LayTenSPCT->bindParam(1, $SPCT_Id);
+            $LayTenSPCT->execute();
+            $StoreValue = $LayTenSPCT->fetch();
+            $LayTenSPCT->closeCursor();
+            return $StoreValue;
+        }
     }
 ?>
