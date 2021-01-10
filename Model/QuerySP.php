@@ -112,13 +112,13 @@
                 }
             }
         }
-
+        
         public function xoaSanPham($SPCT_Id) {
             $XoaSanPham = $this->_pdo->prepare("DELETE FROM sanphamchitietcuahang WHERE SPCT_Id = ?");
             $XoaSanPham->bindParam(1, $SPCT_Id);
             $XoaSanPham->execute();
             $XoaSanPham->closeCursor();
-            return 1;
+            return $XoaSanPham;
         }
 
         public function updateSP($SPCT_Id, $TenSPCT, $DonGia, $SoLuong) {
@@ -134,6 +134,31 @@
             }
             $UpdateSP->closeCursor();
             
+        }
+
+        public function layRaIDSPCT() {
+            $LayRaIDSPCT = $this->_pdo->prepare("SELECT SPCT_Id FROM sanphamchitietcuahang");
+            $LayRaIDSPCT->execute();
+            $StoreValue = $LayRaIDSPCT->fetchAll();
+            $LayRaIDSPCT->closeCursor();
+            return $StoreValue;
+        }
+        public function checkKhuyenMai($SPCT_Id) {
+            $checkKhuyenMai = $this->_pdo->prepare("SELECT * FROM apdungkhuyenmai WHERE SPCT_Id = ?");
+            $checkKhuyenMai->bindParam(1, $SPCT_Id);
+            $checkKhuyenMai->execute();
+            $StoreValue = $checkKhuyenMai->fetch();
+            $checkKhuyenMai->closeCursor();
+            return $StoreValue;
+        }
+
+        public function checkKieuKhuyenMai($KhuyenMai_Id) {
+            $checkKieuKhuyenMai = $this->_pdo->prepare("SELECT * FROM chuongtrinhkhuyenmai WHERE KhuyenMai_Id = ?");
+            $checkKieuKhuyenMai->bindParam(1, $KhuyenMai_Id);
+            $checkKieuKhuyenMai->execute();
+            $StoreValue= $checkKieuKhuyenMai->fetch();
+            $checkKieuKhuyenMai->closeCursor();
+            return $StoreValue;
         }
     }
 

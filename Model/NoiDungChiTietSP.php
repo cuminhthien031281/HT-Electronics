@@ -113,6 +113,50 @@
             $suaNoiDungSP->closeCursor();
             return 1;
         }
+
+        public function hienThiComment($SPCT_Id) {
+            $hienThiComment = $this->_pdo->prepare("SELECT * FROM binhluan WHERE SPCT_Id = ?");
+            $hienThiComment->bindParam(1, $SPCT_Id);
+            $hienThiComment->execute();
+            $StoreValue = $hienThiComment->fetchAll();
+            $hienThiComment->closeCursor();
+            return $StoreValue;
+        }
+
+        public function layRaUserName($KhachHang_Id) {
+            $layRaUserName = $this->_pdo->prepare("SELECT UserName from khachhang WHERE KhachHang_Id = ?");
+            $layRaUserName->bindParam(1, $KhachHang_Id);
+            $layRaUserName->execute();
+            $StoreUserName = $layRaUserName->fetch();
+            $layRaUserName->closeCursor();
+            return $StoreUserName;
+        }
+
+        public function tinhTongSoSaoCuaSanPham($SPCT_Id) {
+            $tinhTongSoSaoCuaSanPham =$this->_pdo->prepare("SELECT SUM(SoSao) TongSaoCuaSP FROM danhgia WHERE SPCT_Id = ?");
+            $tinhTongSoSaoCuaSanPham->bindParam(1, $SPCT_Id);
+            $tinhTongSoSaoCuaSanPham->execute();
+            $StoreTong = $tinhTongSoSaoCuaSanPham->fetch();
+            $tinhTongSoSaoCuaSanPham->closeCursor();
+            return $StoreTong;
+        }
+
+        public function demSoCotCuaSPCT($SPCT_Id) {
+            $demSoCotCuaSPCt = $this->_pdo->prepare("SELECT COUNT(SoSao)FROM danhgia WHERE SPCT_Id = ?");
+            $demSoCotCuaSPCt->bindParam(1, $SPCT_Id);
+            $demSoCotCuaSPCt->execute();
+            $StoreTong = $demSoCotCuaSPCt->fetch();
+            $demSoCotCuaSPCt->closeCursor();
+            return $StoreTong;
+        }
+
+        public function hienThiDanhGia() {
+            $hienThiDanhGia = $this->_pdo->prepare("SELECT * FROM danhgia");
+            $hienThiDanhGia->execute();
+            $StoreValue = $hienThiDanhGia->fetchAll();
+            $hienThiDanhGia->closeCursor();
+            return $StoreValue;
+        }
     }
 
 ?>

@@ -133,6 +133,42 @@
             }
             
         }
+
+        public function comment($Submit, $KhachHang_Id, $SPCT_Id, $NoiDungBinhLuan, $NgayGio) {
+            $Comment = new KhachHang();
+            $Location = "Location: ./?Action=ChiTietSanPham&Id=".$SPCT_Id;
+            if(isset($Submit)) {
+                $Comment->comment($KhachHang_Id, $SPCT_Id, $NoiDungBinhLuan, $NgayGio);
+                header($Location);
+            } else {
+                header("Location: ./?Action=error");
+                exit();
+            }
+        }
+
+        public function rate($Submit, $KhachHang_Id, $SPCT_Id, $SoSao, $NgayRate) {
+            $Rate = new KhachHang();
+            $Location = "Location: ./?Action=ChiTietSanPham&Id=".$SPCT_Id;
+            if(isset($Submit)) {
+                $Rate->rate($KhachHang_Id, $SPCT_Id, $SoSao, $NgayRate);
+                header($Location);
+            } else {
+                header("Location: ./?Action=error");
+                exit();
+            }
+        }
+
+        public function xoaComment($Submit, $KhachHang_Id, $SPCT_Id) {
+            $xoaComment = new KhachHang();
+            $Location = "Location: ./?Action=ChiTietSanPham&Id=".$SPCT_Id;
+            if(isset($Submit)) {
+                $xoaComment->xoaComment($KhachHang_Id);
+                header($Location);
+            } else {
+                header("Location: ./?Action=error");
+                exit();
+            }
+        }
             
     }
 

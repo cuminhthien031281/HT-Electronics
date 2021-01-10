@@ -121,17 +121,15 @@
             $XoaSanPham = new QuerySP();
             $XoaSanPhamSession = new Session();
             if(isset($ValueSubmit)) {
-                if($XoaSanPham->xoaSanPham($SPCT_Id) == 1) {
+                    $XoaSanPham->xoaSanPham($SPCT_Id);
                     $XoaSanPhamSession->SetSession("Status", "Success");
                     $XoaSanPhamSession->SetSession("Status_Code", "success");
                     header("Location: ./?Action=SanPhamAdmin");
                     exit();
-                } else {
-                    $XoaSanPhamSession->SetSession("Status", "Failed");
-                    $XoaSanPhamSession->SetSession("Status_Code", "failed");
-                    header("Location: ./?Action=SanPhamAdmin");
-                    exit();
-                }
+                
+            } else {
+                header("Location: ./?Action=error");
+                exit();
             }
         }
 
@@ -294,6 +292,75 @@
                     header("Location: ./?Action=XemVaDuyetDon");
                     exit();
                 }
+            }
+        }
+
+        public function generateReport($Submit, $NgayTao) {
+            $Admin = new Admin();
+            $HienThiDonDaDuyet = $Admin->hienThiDonTrenHome(1)[0];
+            $HienThiTongTien = $Admin->hienThiSoTienKiemDuoc()[0];
+            $OutPut = '';
+            if(isset($Submit)) {
+                $OutPut .= '
+                        <table class="table" bordered="1">
+                            <tr>
+                                <th>Ngay tao</th>
+                                <th>So don da duyet</th>
+                                <th>Tong tien</th>
+                            </tr>
+                ';
+                $OutPut .= '
+                            <tr> 
+                                <td>'.$NgayTao.'</td>
+                                <td>'.$HienThiDonDaDuyet.'</td>
+                                <td>'.$HienThiTongTien.'</td>
+                            </tr>
+                
+                ';
+                $OutPut .= '</table>';
+                header("Content-Type: application/xls");
+                header("Content-Disposition: attachment, filename=thongke.xls");
+                echo $OutPut;
+
+            } else {
+                header('Location: ./?Action=error');
+                exit();
+            }
+        }
+
+        public function xoaCommentDiEm($XoaCommentSubmit, $SPCT_Id, $KhachHang_Id) {
+            $XoaCommentKhachHang = new Admin();
+            if(isset($XoaCommentSubmit)) {
+                $XoaCommentKhachHang->xoaComment($SPCT_Id, $KhachHang_Id);
+                header('Location: ./?Action=XemXoaBinhLuan');
+                exit();
+            } else {
+                header('Location: ./?Action=error');
+                exit();
+            }
+        }
+
+        public function xoaDanhGiaDiEm($XoaDanhGiaSubmit, $KhachHang_Id, $SPCT_Id) {
+            $XoaDanhGiaKhachHang = new Admin();
+            if(isset($XoaDanhGiaSubmit)) {
+                $XoaDanhGiaKhachHang->xoaDanhGia($SPCT_Id, $KhachHang_Id);
+                header('Location: ./?Action=XemXoaDanhGia');
+                exit();
+            } else {
+                header('Location: ./?Action=error');
+                exit();
+            }
+        }
+
+        public function suaThongTinChiTiet($Submit, $Hang, $HeDieuHanh, $Chip, $ManHinh,$Ram, $SPCT_Id) {
+            $suaThongTinChiTiet = new Admin();
+            if(isset($Submit)) {
+                $suaThongTinChiTiet->chinhSuaThongTinChiTiet($SPCT_Id, $Hang, $HeDieuHanh, $Chip, $ManHinh, $Ram);
+                header("Location: ./?Action=ThemXoaChinhSuaTTCT");
+                exit();
+            } else {
+                header('Location: ./?Action=error');
+                exit();
             }
         }
     }

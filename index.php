@@ -4,13 +4,11 @@
     include_once './Controller/RegisterController.php';
     include_once './Controller/AdminController.php';
     include_once './Controller/BuyProductController.php';
+    date_default_timezone_set("Asia/Ho_Chi_Minh");
     $actView = isset($_GET['Action']) ? $_GET['Action'] : "Home";
     switch ($actView) {
         case "Home": 
             require_once './View/Home.php';
-            break;
-        case "Product": 
-            require_once './View/product.php';
             break;
         case "Login":
             require_once './View/Login.php';
@@ -99,6 +97,20 @@
             $ValueSubmit = $_POST['themthongtin'];
             $ThemThongTinSanPham = new AdminController();
             $ThemThongTinSanPham->uploadThongTinSP($SPCT_Id, $Hang, $HeDieuHanh, $Chip, $ManHinh, $Ram, $ValueSubmit);
+            break;
+        case "ChinhSuaThongTin": 
+            $ChinhSuaThongTinSubmit = $_POST['chinhsuaTT'];
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $Hang = $_POST['Hang'];
+            $HeDieuHanh = $_POST['HeDieuHanh'];
+            $Chip = $_POST['Chip'];
+            $ManHinh = $_POST['ManHinh'];
+            $Ram = $_POST['Ram'];
+            $ChinhSuaThongTinChiTiet = new AdminController();
+            $ChinhSuaThongTinChiTiet->suaThongTinChiTiet($ChinhSuaThongTinSubmit, $Hang, $HeDieuHanh, $Chip, $ManHinh, $Ram, $SPCT_Id);
+            break;
+        case "ChinhSuaThongTinUI": 
+            include_once './Admin/QuanLySanPham/ChinhSuaThongTin.php';
             break;
         case "ThemXoaChinhSuaND":
             include_once './Admin/QuanLySanPham/ThemXoaChinhSuaNoiDung.php'; 
@@ -268,11 +280,11 @@
             //Thong tin chung
             $fullname = $_POST['fullname'];
             $email = $_POST['email'];
-            $Address = $_POST['Address'];
-            $city = $_POST['city'];
-            $quan = $_POST['quan'];
-            $UserId = $_POST['UserId'];
             $PhoneNumber = $_POST['PhoneNumber'];
+            $city = $_POST['calc_shipping_provinces'];
+            $quan = $_POST['Quan'];
+            $Address = $_POST['Address'];
+            $UserId = $_POST['UserId'];
             $Submit = $_POST['DoCheckOut'];
             $sameadr = $_POST['sameadr'];
             //Check kieu thanh toan
@@ -292,11 +304,11 @@
         case "DoCheckOutNoCard": 
             $fullname = $_POST['fullname'];
             $email = $_POST['email'];
-            $Address = $_POST['Address'];
-            $city = $_POST['city'];
-            $quan = $_POST['quan'];
-            $UserId = $_POST['UserId'];
             $PhoneNumber = $_POST['PhoneNumber'];
+            $city = $_POST['calc_shipping_provinces'];
+            $quan = $_POST['Quan'];
+            $Address = $_POST['Address'];
+            $UserId = $_POST['UserId'];
             $Submit = $_POST['DoCheckOut'];
             $sameadr = $_POST['sameadr'];
             //Check kieu thanh toan
@@ -331,7 +343,69 @@
             $HuyDon = new AdminController();
             $HuyDon->HuyVaDuyetDon($DiaChi_Id, $Value, $ValueSubmit);
             break;
+<<<<<<< HEAD
 
+=======
+        //Chua thanh cong
+        case "generateReport":
+            $ExportExcelSubmit = $_POST['export_excel']; 
+            $dateExport = $_POST['dateExport'];
+            $GenerateReport = new AdminController();
+            $GenerateReport->generateReport($ExportExcelSubmit, $dateExport);
+            break;
+        case "BinhLuanDetail": 
+            $BinhLuanSubmit = $_POST['BinhLuan'];
+            $DateComment = $_POST['Datetimee'];
+            $IdKhachHang = $_POST['IdKhachHang'];
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $NoiDungBinhLuan = $_POST['BinhLuanKhachHang'];
+            $BinhLuanController = new BuyProductController();
+            $BinhLuanController->comment($BinhLuanSubmit, $IdKhachHang, $SPCT_Id, $NoiDungBinhLuan, $DateComment);
+            break;
+        case "ratingDetail": 
+            $RatingSubmit = $_POST['buttonRate'];
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $KhachHang_Id = $_POST['KhachHang_Id'];
+            $rate = $_POST['rate'];
+            $RateDatetimee = $_POST['Datetimee'];
+            $RateSanPham = new BuyProductController();
+            $RateSanPham->rate($RatingSubmit, $KhachHang_Id, $SPCT_Id, $rate, $RateDatetimee);
+            break;
+        case "XoaComment": 
+            $KhachHang_Id = $_POST['KhachHang_Id'];
+            $SubmitXoa = $_POST['XoaComment'];
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $XoaComment = new BuyProductController();
+            $XoaComment->xoaComment($SubmitXoa, $KhachHang_Id, $SPCT_Id);
+            break;
+        case "XemXoaBinhLuan":
+            include_once './Admin/BinhLuanDanhGia/XemXoaBinhLuan.php'; 
+            break;
+        case "XoaBinhLuan": 
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $IdNguoiDung = $_POST['IdNguoiDung'];
+            $xoacommentSubmit = $_POST['xoacomment'];
+            $XoaCommentNguoiDung = new AdminController();
+            $XoaCommentNguoiDung->xoaCommentDiEm($xoacommentSubmit, $SPCT_Id, $IdNguoiDung);
+            break;
+        case "XoaDanhGia":
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $IdNguoiDung = $_POST['IdNguoiDung'];
+            $XoaDanhGiaSumit = $_POST['xoaDanhGia'];
+            $XoaDanhGiaNguoiDung = new AdminController();
+            $XoaDanhGiaNguoiDung->xoaDanhGiaDiEm($XoaDanhGiaSumit, $IdNguoiDung, $SPCT_Id);
+            break;
+        case "XemXoaDanhGia":
+            include_once './Admin/BinhLuanDanhGia/XemDanhGia.php'; 
+            break;
+        case "TimKiemSanPham": 
+            $Submit = $_POST['searchProduct'];
+            $NameFind = $_POST['SearchSanPham'];
+            break;
+        case "productPage": 
+            include_once './View/product.php';
+            break;
+>>>>>>> d6c07935692aa32752860d15fa269d87dcacd2e4
         default: 
             break;
     }

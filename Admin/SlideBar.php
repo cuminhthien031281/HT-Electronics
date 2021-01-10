@@ -80,7 +80,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="?Action=XemXoaBinhLuan">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Xem, xóa bình luận</span>
         </a>
@@ -89,7 +89,7 @@
       
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse"  aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="?Action=XemXoaDanhGia" >
           <i class="fas fa-fw fa-wrench"></i>
           <span>Xem, xóa đánh giá</span>
         </a>

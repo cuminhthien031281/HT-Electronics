@@ -18,6 +18,7 @@
             $QuerySP->queryTableImageSPCTTID($SanPhams['SPCT_Id']);
             $HinhAnhSanPham = $QuerySP->getImageSource();
             $RowCount = $QuerySP->getRowCount();
+            $StatusApDungKhuyenMai = $QuerySP->checkKhuyenMai($SanPhams['SPCT_Id']);
             if ($RowCount > 0) {
             ?>
                 <div class="box-product">
@@ -40,8 +41,19 @@
                         <i class="fas fa-star-half-alt"></i>
                         <i class="far fa-star"></i>
                     </div>
-                    <del class="font-box-product-old">18,000,000₫</del>
+                    <?php if($StatusApDungKhuyenMai['Status'] == 1 AND $SanPhams['SPCT_Id'] == $StatusApDungKhuyenMai['SPCT_Id']) {
+                            $KieuKhuyenMai = $QuerySP->checkKieuKhuyenMai($StatusApDungKhuyenMai['KhuyenMai_Id']);
+                            $TenKhuyenMai = $KieuKhuyenMai['LoaiKhuyenMai'];
+                            $PhanTramKhuyenMai = $KieuKhuyenMai['PhanTramKhuyenMai'] / 100;
+                            $DonGiaSanPhamKhuyenMai = $SanPhams['DonGia'] * $PhanTramKhuyenMai;
+                ?>
+                    <del class="font-box-product-old"><?php echo $SanPhams['DonGia']; ?>₫</del>
+                    <div class="box-product__detail--price-new"><?php echo$DonGiaSanPhamKhuyenMai;?></div>
+                    <div><h1>Chuong trinh giam gia: <?php echo $TenKhuyenMai;?></h1></div>
+
+                <?php } else {?>
                     <div class="box-product__detail--price-new"><?php echo $SanPhams['DonGia']; ?>₫</div>
+                <?php }?>
                 </div>
                 </div>
             <?php } ?>

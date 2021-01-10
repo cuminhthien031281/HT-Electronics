@@ -54,7 +54,7 @@
                         <?php foreach ($DisplaySPCT as $DisplaySPCTs) { ?>
                             <tr>
                                 <td><?php echo $DisplaySPCTs['TenSPCT']; ?></td>
-                                <td><?php echo $DisplaySPCTs['DonGia']; ?></td>
+                                <td><?php echo number_format($DisplaySPCTs['DonGia']); ?></td>
                                 <td><?php echo $DisplaySPCTs['SoLuong']; ?></td>
                                 <td>
                                 <?php if(in_array($DisplaySPCTs['SPCT_Id'], $ArrayImage)) {
