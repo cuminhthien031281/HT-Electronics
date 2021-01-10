@@ -98,6 +98,7 @@
     </div>
 
     <div class="col-lg-3">
+    <?php if($total != 0) { ?>
         <div class="border bg-light rounded p-4">
             <h4>Phương thức thanh toán: </h4>
             <h5 class="text-right">
@@ -111,7 +112,6 @@
             
             ?></h5>
             <br>
-            <?php if($total != 0) { ?>
                         <form action="?Action=Purchase_UI" method="post">
                             <div class="form-check">
                                 <input type="radio" class="form-check-input cart-input" name="flexRadioDefault" value="CashOnDelivery" id="flexRadioDefault2" checked>
@@ -128,7 +128,11 @@
                             <button class="btn btn-primary btn-block" type="submit" name="MakePurchase" value="purchase" style="font-size: 1.5rem;">Tiến hành đặt hàng</button>
                         </form>
             <?php } else {?>
-                    <a href="?Action=Home"><button class="btn btn-warning btn-block">Bạn chưa có sản phẩm nào trong đây, quay lại trang chủ</button></a>
+                    <div class="cart-note">
+                    <img src="./Public/img/error-cart1.png" alt="" class="cart-note__img">
+                    <h3 class="cart-note__on">Không có sản phẩm nào trong giỏ hàng !</h3>
+                    <a href="?Action=Home"class="cart-note__text"><i class="far fa-share-square"></i>Tiếp tục mua hàng</a>
+                    </div>
             <?php } ?>
         </div>
         

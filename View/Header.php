@@ -29,7 +29,10 @@
                         }
                     ?>
                     <li class="header-content__group header-content-cart">
-                        <a href="?Action=GioHang" class="header-content__link"><i class="fas fa-shopping-cart header-content__link--cart"></i>giỏ hàng +<?php echo $count;?></a>
+                        <div class="header-cart">
+                        <a href="?Action=GioHang" class="header-content__link"><i class="fas fa-cart-plus header-content__link--cart"></i>giỏ hàng</a>
+                        <span class="header-cart__number">+<?php echo $count;?></span>
+                        </div>
                     </li>
                     
                     <a href="?Action=Logout">Logout</a>
