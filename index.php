@@ -98,6 +98,20 @@
             $ThemThongTinSanPham = new AdminController();
             $ThemThongTinSanPham->uploadThongTinSP($SPCT_Id, $Hang, $HeDieuHanh, $Chip, $ManHinh, $Ram, $ValueSubmit);
             break;
+        case "ChinhSuaThongTin": 
+            $ChinhSuaThongTinSubmit = $_POST['chinhsuaTT'];
+            $SPCT_Id = $_POST['SPCT_Id'];
+            $Hang = $_POST['Hang'];
+            $HeDieuHanh = $_POST['HeDieuHanh'];
+            $Chip = $_POST['Chip'];
+            $ManHinh = $_POST['ManHinh'];
+            $Ram = $_POST['Ram'];
+            $ChinhSuaThongTinChiTiet = new AdminController();
+            $ChinhSuaThongTinChiTiet->suaThongTinChiTiet($ChinhSuaThongTinSubmit, $Hang, $HeDieuHanh, $Chip, $ManHinh, $Ram, $SPCT_Id);
+            break;
+        case "ChinhSuaThongTinUI": 
+            include_once './Admin/QuanLySanPham/ChinhSuaThongTin.php';
+            break;
         case "ThemXoaChinhSuaND":
             include_once './Admin/QuanLySanPham/ThemXoaChinhSuaNoiDung.php'; 
             break;
@@ -384,6 +398,9 @@
         case "TimKiemSanPham": 
             $Submit = $_POST['searchProduct'];
             $NameFind = $_POST['SearchSanPham'];
+            break;
+        case "productPage": 
+            include_once './View/product.php';
             break;
         default: 
             break;

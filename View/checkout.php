@@ -105,6 +105,7 @@ span.price {
 <?php
                     $total = 0; 
                     $PhiVanChuyen = 200000;
+                    
                     $Associate = array();
                     if(isset($_SESSION['cart'])) {
                         
@@ -114,6 +115,8 @@ span.price {
                     ?>       
                     <?php 
                         }
+                        
+                        
                         
                         for($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
                             $Associate[$i]['id_sp'] = $_SESSION['cart'][$i]['id_sp'];
@@ -224,7 +227,7 @@ span.price {
                         <label for="cdelivery">You choose card on delivery</label>
                         <input type="text" id="cdelivery" name="cdelivery" value="<?php echo $_SESSION['Delivery_type'];?>" readonly>
                         <label><input type="checkbox" checked="checked" name="sameadr" >Shipping address same as billing</label>
-                        <input type="hidden" name="ThanhTien" value="<?php echo number_format($total);?>">
+                        <input type="hidden" name="ThanhTien" value="<?php echo $total;?>">
                         <button type="submit" value="Buy" class="btn" name="DoCheckOut">Mua</button>
             </form>
                 <?php } ?>
@@ -248,7 +251,7 @@ span.price {
                     ?>
                 <h4>Card<span class="price" style="color: black;"><i class="fa fa-shopping-cart"></i><b><?php echo $count;?></b></span></h4>
                 <?php
-                    $total = 0; 
+                     $total = 0; 
                     $PhiVanChuyen = 200000;
                     if(isset($_SESSION['cart'])) {
                         foreach($_SESSION['cart'] as $key => $value) {

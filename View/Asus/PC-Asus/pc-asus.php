@@ -44,7 +44,7 @@
                     <?php if($StatusApDungKhuyenMai['Status'] == 1 AND $SanPhams['SPCT_Id'] == $StatusApDungKhuyenMai['SPCT_Id']) {
                             $KieuKhuyenMai = $QuerySP->checkKieuKhuyenMai($StatusApDungKhuyenMai['KhuyenMai_Id']);
                             $TenKhuyenMai = $KieuKhuyenMai['LoaiKhuyenMai'];
-                            $PhanTramKhuyenMai = $KieuKhuyenMai['PhanTramKhuyenMai'] % 100;
+                            $PhanTramKhuyenMai = $KieuKhuyenMai['PhanTramKhuyenMai'] / 100;
                             $DonGiaSanPhamKhuyenMai = $SanPhams['DonGia'] * $PhanTramKhuyenMai;
                 ?>
                     <del class="font-box-product-old"><?php echo $SanPhams['DonGia']; ?>₫</del>

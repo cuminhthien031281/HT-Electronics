@@ -57,5 +57,18 @@
             $XoaDanhGia->closeCursor();
             return $XoaDanhGia;
         }
+
+        public function chinhSuaThongTinChiTiet($SPCT_Id, $Hang, $HeDieuHanh, $Chip, $ManHinh, $Ram) {
+            $chinhSuaThongTinChiTiet = $this->_pdo->prepare("UPDATE noidungsanphamchitiet SET Hang= ? , HeDieuHanh = ?, Chip= ?, ManHinh = ?, Ram = ? WHERE SPCT_Id = ?");
+            $chinhSuaThongTinChiTiet->bindParam(1, $Hang);
+            $chinhSuaThongTinChiTiet->bindParam(2, $HeDieuHanh);
+            $chinhSuaThongTinChiTiet->bindParam(3, $Chip);
+            $chinhSuaThongTinChiTiet->bindParam(4, $ManHinh);
+            $chinhSuaThongTinChiTiet->bindParam(5, $Ram);
+            $chinhSuaThongTinChiTiet->bindParam(6, $SPCT_Id);
+            $chinhSuaThongTinChiTiet->execute();
+            $chinhSuaThongTinChiTiet->closeCursor();
+            return $chinhSuaThongTinChiTiet;
+        }
     }
 ?>

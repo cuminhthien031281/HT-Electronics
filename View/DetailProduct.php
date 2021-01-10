@@ -156,8 +156,9 @@
                               $CheckKhuyenMai = $KiemTraKhuyenMai->checkKhuyenMai($SPCT_Id);
                               $KieuKhuyenMai = $KiemTraKhuyenMai->checkKieuKhuyenMai($CheckKhuyenMai['KhuyenMai_Id']);
                               $TenKhuyenMai = $KieuKhuyenMai['LoaiKhuyenMai'];
-                              $PhanTramKhuyenMai = $KieuKhuyenMai['PhanTramKhuyenMai'] % 100;
+                              $PhanTramKhuyenMai = $KieuKhuyenMai['PhanTramKhuyenMai'] / 100;
                               $DonGiaKhuyenMai = $GiaSPCT['DonGia'] * $PhanTramKhuyenMai;
+                              
                               if(!empty($CheckKhuyenMai)) {                              
                         ?>
                                     <p>Khuyen mai dang duoc ap dung: <?php echo $TenKhuyenMai;?></p>

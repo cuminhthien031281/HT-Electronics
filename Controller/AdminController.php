@@ -121,17 +121,15 @@
             $XoaSanPham = new QuerySP();
             $XoaSanPhamSession = new Session();
             if(isset($ValueSubmit)) {
-                if($XoaSanPham->xoaSanPham($SPCT_Id) == 1) {
+                    $XoaSanPham->xoaSanPham($SPCT_Id);
                     $XoaSanPhamSession->SetSession("Status", "Success");
                     $XoaSanPhamSession->SetSession("Status_Code", "success");
                     header("Location: ./?Action=SanPhamAdmin");
                     exit();
-                } else {
-                    $XoaSanPhamSession->SetSession("Status", "Failed");
-                    $XoaSanPhamSession->SetSession("Status_Code", "failed");
-                    header("Location: ./?Action=SanPhamAdmin");
-                    exit();
-                }
+                
+            } else {
+                header("Location: ./?Action=error");
+                exit();
             }
         }
 
@@ -347,6 +345,18 @@
             if(isset($XoaDanhGiaSubmit)) {
                 $XoaDanhGiaKhachHang->xoaDanhGia($SPCT_Id, $KhachHang_Id);
                 header('Location: ./?Action=XemXoaDanhGia');
+                exit();
+            } else {
+                header('Location: ./?Action=error');
+                exit();
+            }
+        }
+
+        public function suaThongTinChiTiet($Submit, $Hang, $HeDieuHanh, $Chip, $ManHinh,$Ram, $SPCT_Id) {
+            $suaThongTinChiTiet = new Admin();
+            if(isset($Submit)) {
+                $suaThongTinChiTiet->chinhSuaThongTinChiTiet($SPCT_Id, $Hang, $HeDieuHanh, $Chip, $ManHinh, $Ram);
+                header("Location: ./?Action=ThemXoaChinhSuaTTCT");
                 exit();
             } else {
                 header('Location: ./?Action=error');

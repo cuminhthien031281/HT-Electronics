@@ -99,7 +99,7 @@
                                         <td><?php echo $NoiDungQuery['ManHinh']; ?></td>
                                         <td><?php echo $NoiDungQuery['Ram']; ?></td>
                                         <!-- Hien thi form chỉnh sửa thông tin và get Id của sản phẩm -->
-                                        <td><a href="?Action=ChinhSuaThongTin&Id=<?php echo $DisplaySPCTs['SPCT_Id'];?>"><button class="btn btn-warning">Sửa thông tin</button></a></td>
+                                        <td><a href="?Action=ChinhSuaThongTinUI&Id=<?php echo $DisplaySPCTs['SPCT_Id'];?>"><button class="btn btn-warning">Sửa thông tin</button></a></td>
                         <?php 
                                     }
                         ?>

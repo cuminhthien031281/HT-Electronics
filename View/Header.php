@@ -4,7 +4,7 @@
         </div>
         <ul class="header-content u-center-text">
             <li class="header-content__group"><a href="?Action=Home" class="header-content__link header-content__link--home">Trang chủ</a></li>
-            <li class="header-content__group"><a href="#" class="header-content__link">Sản phẩm</a></li>
+            <li class="header-content__group"><a href="?Action=productPage" class="header-content__link">Sản phẩm</a></li>
             <?php 
                 if(isset($_SESSION['UserName']) && $_SESSION['Role'] == 0) {
             ?>
