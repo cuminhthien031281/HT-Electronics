@@ -10,6 +10,9 @@
         case "Home": 
             require_once './View/Home.php';
             break;
+        case "Product": 
+            require_once './View/product.php';
+            break;
         case "Login":
             require_once './View/Login.php';
             break;
