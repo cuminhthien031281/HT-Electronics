@@ -211,7 +211,7 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="row">
-                        <div class="col-lg-2">
+                        <div class="col-6 col-lg-2">
                             <div class="box">
                                 <div class="box__img">
                                     <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
@@ -231,29 +231,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-2">
-                            <div class="box">
-
-
-                                <div class="box__img">
-                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
-                                </div>
-                                <div class="box__detail">
-                                    <div class="box__detail--name">
-                                        <a href="#" class="font-default">Dell XPS 13 7390 13.3 inch 4K UHD</a>
-                                    </div>
-                                    <div class="box__detail--start">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <i class="far fa-star"></i>
-                                    </div>
-                                    <div class="box__detail--price">12.000.000₫</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2">
+                        <div class="col-6 col-lg-2">
                             <div class="box">
 
 
@@ -275,7 +253,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-6 col-lg-2">
                             <div class="box">
 
 
@@ -297,7 +275,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-6 col-lg-2">
                             <div class="box">
 
 
@@ -319,7 +297,29 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-6 col-lg-2">
+                            <div class="box">
+
+
+                                <div class="box__img">
+                                    <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
+                                </div>
+                                <div class="box__detail">
+                                    <div class="box__detail--name">
+                                        <a href="#" class="font-default">Dell XPS 13 7390 13.3 inch 4K UHD</a>
+                                    </div>
+                                    <div class="box__detail--start">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <div class="box__detail--price">12.000.000₫</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-2">
                             <div class="box">
 
 
@@ -345,7 +345,7 @@
                 </div>
                 <div class="carousel-item">
                     <div class="row">
-                        <div class="col-lg-2">
+                        <div class="col-6 col-lg-2">
                             <div class="box">
                                 <div class="box__img">
                                     <a href="#"><img src="/HT-Electronics/Public/img/ram.jpg" class="d-block w-100" alt="new-product-1"></a>
@@ -365,7 +365,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-6 col-lg-2">
                             <div class="box">
 
 
@@ -387,7 +387,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-6 col-lg-2">
                             <div class="box">
 
 

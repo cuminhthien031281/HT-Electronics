@@ -346,9 +346,7 @@
             $HuyDon = new AdminController();
             $HuyDon->HuyVaDuyetDon($DiaChi_Id, $Value, $ValueSubmit);
             break;
-<<<<<<< HEAD
 
-=======
         //Chua thanh cong
         case "generateReport":
             $ExportExcelSubmit = $_POST['export_excel']; 
@@ -408,7 +406,6 @@
         case "productPage": 
             include_once './View/product.php';
             break;
->>>>>>> d6c07935692aa32752860d15fa269d87dcacd2e4
         default: 
             break;
     }

@@ -4,6 +4,10 @@
     margin-left: 35%;
     border: 1px solid #ccc;
     padding: 1rem 2rem;
+    @include respond(phone) {
+        width: 75%;
+        margin-left: 15%;
+    }
     &__name {
         text-transform: uppercase;
         margin: 2rem 0;
@@ -68,4 +72,7 @@
     width: 20rem;
     margin: 2rem;
     margin-left: 40%;
+    @include respond(phone) {
+        margin-left: 25%;
+    }
 }

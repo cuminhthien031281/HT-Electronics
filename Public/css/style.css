@@ -346,7 +346,7 @@ body {
     width: 13rem;
     right: 11px;
     left: auto;
-    background-image: url(../img/adt.png); }
+    background-image: url(../img/adt_tet.png); }
     @media (max-width: 600px) {
       .adt-right {
         visibility: hidden; } }
@@ -354,7 +354,7 @@ body {
     bottom: 0px;
     top: 7rem;
     position: fixed;
-    height: 12rem;
+    height: 18rem;
     width: 13rem;
     transition: all .5s;
     z-index: 10; }
@@ -362,9 +362,9 @@ body {
       .adt-img {
         visibility: hidden; } }
     .adt-img-left {
-      right: 11px;
+      right: .9rem;
       left: auto;
-      background-image: url(../img/Gau-noel-right.png);
+      background-image: url(../img/Gau-noel.png);
       background-size: cover;
       animation: animationtest 5s linear infinite alternate; }
   .adt-navbar {
@@ -674,6 +674,10 @@ body {
   margin-left: 35%;
   border: 1px solid #ccc;
   padding: 1rem 2rem; }
+  @media (max-width: 600px) {
+    .form {
+      width: 75%;
+      margin-left: 15%; } }
   .form__name {
     text-transform: uppercase;
     margin: 2rem 0;
@@ -727,6 +731,9 @@ body {
   width: 20rem;
   margin: 2rem;
   margin-left: 40%; }
+  @media (max-width: 600px) {
+    .logo__form {
+      margin-left: 25%; } }
 
 .detail {
   font-size: 1.2rem;

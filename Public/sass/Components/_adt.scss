@@ -43,7 +43,7 @@
         width: 13rem;
         right: 11px;
         left: auto;
-        background-image: url(../img/adt.png);
+        background-image: url(../img/adt_tet.png);
         @include respond (phone) {
             visibility: hidden;
         }
@@ -52,7 +52,7 @@
         bottom: 0px;
         top: 7rem;
         position: fixed;
-        height: 12rem;
+        height: 18rem;
         width: 13rem;
         transition: all .5s;
         z-index: 10;
@@ -60,9 +60,9 @@
             visibility: hidden;
         }
         &-left {
-            right: 11px;
+            right: .9rem;
             left: auto;
-            background-image: url(../img/Gau-noel-right.png);
+            background-image: url(../img/Gau-noel.png);
             background-size: cover;
             animation: animationtest 5s linear infinite alternate;
         }
