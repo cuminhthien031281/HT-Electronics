@@ -7,7 +7,7 @@
     <div class="container-fluid">
        <form action="?Action=ChinhSuaSanPham" method="post">
             <input type="hidden" name="SPCT_Id" value="<?php echo $ID;?>">
-            <h2>Tên mới:</h2>
+            <h2>Tên sản phẩm:</h2>
             <input type="text" name="TenSPCT">
             <h2>Đơn giá mới:</h2>
             <input type="number" name="DonGia">

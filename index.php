@@ -9,6 +9,9 @@
         case "Home": 
             require_once './View/Home.php';
             break;
+        case "Product": 
+            require_once './View/product.php';
+            break;
         case "Login":
             require_once './View/Login.php';
             break;
@@ -328,6 +331,7 @@
             $HuyDon = new AdminController();
             $HuyDon->HuyVaDuyetDon($DiaChi_Id, $Value, $ValueSubmit);
             break;
+
         default: 
             break;
     }
