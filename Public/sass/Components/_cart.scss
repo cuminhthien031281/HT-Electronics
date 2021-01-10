@@ -1,1 +1,17 @@
-//
+.cart {
+    &-input {
+        display: block !important;
+        width: 10%;
+        height: 2rem;
+        &--2 {
+            margin-top: 1rem;
+        }
+    }
+    &-label {
+        padding-left: 1rem;
+        font-size: 1.3rem !important;
+    }
+    &-th {
+        font-size: 1.3rem !important;
+    }
+}

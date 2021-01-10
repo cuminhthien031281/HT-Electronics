@@ -354,10 +354,6 @@
             $HuyDon = new AdminController();
             $HuyDon->sendMail($DiaChi_Id, $ValueSubmit, $Value);
             break;
-<<<<<<< HEAD
-
-=======
->>>>>>> 5e5ac6a43cd640aff7a996c2ccc7010901fca801
         //Chua thanh cong
         case "generateReport":
             $ExportExcelSubmit = $_POST['export_excel']; 

@@ -48,19 +48,19 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center border rounded bg-light my-5">
-            <h1>MY CART</h1>
+            <h1>GIỎ HÀNG</h1>
         </div>
     </div>
 
     <div class="col-lg-9">
             <table class="table">
-                <thead class="thead-dark text-center" >
+                <thead class="thead-dark text-center">
                     <tr>
-                    <th scope="col">Serial No.</th>
-                    <th scope="col">Item Name</th>
-                    <th scope="col">Item Price</th>
-                    <th scope="col">quantity</th>
-                    <th scope="col">Remove</th>
+                    <th scope="col" class="cart-th">STT</th>
+                    <th scope="col" class="cart-th">Tên sản phẩm</th>
+                    <th scope="col" class="cart-th">Giá sản phẩm</th>
+                    <th scope="col" class="cart-th" style="width: 15%">Số lượng</th>
+                    <th scope="col" class="cart-th">Xóa</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
@@ -79,7 +79,7 @@
                                     <td>$value[quantity_SP]</td>
                                     <td>
                                         <form action='?Action=removeProduct' method='post'>
-                                            <button name='Remove_Item' class='btn btn-sm btn-outline-danger'>REMOVE</button>
+                                            <button name='Remove_Item' class='btn btn-sm btn-outline-danger cart-th'>Xóa</button>
                                             <input type='hidden' name= 'ten_sp' value='$value[ten_sp]'>
                                         </form>
                                     
@@ -99,7 +99,7 @@
 
     <div class="col-lg-3">
         <div class="border bg-light rounded p-4">
-            <h4>Total: </h4>
+            <h4>Phương thức thanh toán: </h4>
             <h5 class="text-right">
             <?php
             
@@ -114,18 +114,18 @@
             <?php if($total != 0) { ?>
                         <form action="?Action=Purchase_UI" method="post">
                             <div class="form-check">
-                                <input type="radio" class="form-check-input" name="flexRadioDefault" value="CashOnDelivery" id="flexRadioDefault2" checked>
-                                <label for="flexRadioDefault2" class="form-check-label">
-                                Cash On Delivery
+                                <input type="radio" class="form-check-input cart-input" name="flexRadioDefault" value="CashOnDelivery" id="flexRadioDefault2" checked>
+                                <label for="flexRadioDefault2" class="form-check-label cart-label">
+                                Thanh toán khi giao hàng
                                 </label>
 
-                                <input type="radio" class="form-check-input" name="flexRadioDefault" value="CashOnCard" id="flexRadioDefault2" checked>
-                                <label for="flexRadioDefault2" class="form-check-label">
-                                Cash On Card
+                                <input style="margin-Top: 1rem;" type="radio" class="form-check-input cart-input" name="flexRadioDefault" value="CashOnCard" id="flexRadioDefault2" checked>
+                                <label style="margin-Top: 1rem;" for="flexRadioDefault2" class="form-check-label cart-label">
+                                Thanh toán bằng thẻ tín dụng
                                 </label>
                             </div>
                             <br>
-                            <button class="btn btn-primary btn-block" type="submit" name="MakePurchase" value="purchase">Make purchase</button>
+                            <button class="btn btn-primary btn-block" type="submit" name="MakePurchase" value="purchase" style="font-size: 1.5rem;">Tiến hành đặt hàng</button>
                         </form>
             <?php } else {?>
                     <a href="?Action=Home"><button class="btn btn-warning btn-block">Bạn chưa có sản phẩm nào trong đây, quay lại trang chủ</button></a>
