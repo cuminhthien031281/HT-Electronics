@@ -83,6 +83,7 @@
                                         <td>
                                             <form action="?Action=DuyetDon" method="post">
                                                 <input type="hidden" value="<?= $ValueDisplays['DiaChi_Id'];?>" name="DiaChi_Id">
+                                                
                                                 <input type="hidden" value="1" name="Duyet">
                                                 <button class="btn btn-success" type="Submit" name="DuyetDon" value="DuyetDonDiaChiGiaoHang">Duyệt đơn</button>
                                             </form>

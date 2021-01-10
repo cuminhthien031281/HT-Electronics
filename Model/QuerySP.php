@@ -160,6 +160,14 @@
             $checkKieuKhuyenMai->closeCursor();
             return $StoreValue;
         }
+
+        public function timKiemSanPhamCoRatingCao() {
+            $timKiemSanPhamCoRatingCao = $this->_pdo->prepare("SELECT * FROM danhgia");
+            $timKiemSanPhamCoRatingCao->execute();
+            $StoreValue =$timKiemSanPhamCoRatingCao->fetchAll();
+            $timKiemSanPhamCoRatingCao->closeCursor();
+            return $StoreValue;
+        }
     }
 
 

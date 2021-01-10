@@ -1,5 +1,5 @@
-<?php include_once 'View/Head.php';?>
-<?php include_once 'View/Header.php';?>
+<?php include_once 'Head.php';?>
+<?php include_once 'Header.php';?>
 
 <div id="content">
         <a onClick="openSlideMenu()">
@@ -97,7 +97,7 @@
                 <!-----1----->
                 <div class="col-4">
                     <div class="box__img">
-                        <a href="#"><img src="Public/img/new-product-1.jpg" class="d-block h-75 w-75" alt="new-product-1"></a>
+                        <a href="#"><img src="/HT-Electronics/Public/img/new-product-1.jpg" class="d-block h-75 w-75" alt="new-product-1"></a>
                     </div>
                     <div class="box__detail">
                         <div class="box__detail--name">
@@ -275,6 +275,6 @@
         </div>
     </div>
 </section>
-<script src="./Public/js/slide-left.js"></script>
-<?php include_once 'View/Footer.php';?>
-<?php include_once 'View/EndHead.php';?>
+<script src="/HT-Electronics/Public/js/slide-left.js"></script>
+<?php include_once 'Footer.php';?>
+<?php include_once 'EndHead.php';?>
